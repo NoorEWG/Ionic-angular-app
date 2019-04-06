@@ -1,0 +1,21 @@
+.weight-loss-data {
+  font-size: 55%;
+}
+
+.statList-wrapper {
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.statList {
+    display: flex;
+    justify-content: center;
+}
+
+.statList div {
+  width: 100px;
+}
+
+
+ 

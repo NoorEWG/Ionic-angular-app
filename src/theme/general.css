@@ -1,0 +1,30 @@
+.header {
+    font-weight: bold;
+    height: 50px;
+    background-color: #990000;
+    color: white;
+    border: 1px solid gainsboro;  
+}
+
+.even {
+  background-color: bisque;
+  border: 1px solid gainsboro;
+}
+
+.uneven {
+  background-color: azure;
+  border: 1px solid gainsboro;
+}
+
+.big-icon {
+  font-size: 30px;
+}
+
+.img-border {
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid gainsboro;
+  border-radius: 4px;
+  width: 30px;
+  height: auto;
+}

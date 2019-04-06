@@ -1,0 +1,23 @@
+import { Address } from '../model/Address';
+
+export class UserData {
+ 
+    id: number;
+    name: string;
+    firstName: string;
+    tel: string;
+    email: string;
+    address: Address;
+    startWeight: number;
+    targetWeight: number;
+    length: number;
+    gender: string;
+    terms: boolean;
+    auth: boolean;
+
+    constructor() {
+      //Constructor initialization
+      //Object.assign(this, values);
+    }
+ 
+}

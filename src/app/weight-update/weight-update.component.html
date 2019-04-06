@@ -1,0 +1,29 @@
+<div>
+  <div *ngIf="auth === false ">
+    <button class="btn btn-primary" routerLink="/user-login">
+      <span>You have to login first</span>
+      <ion-icon name="person"></ion-icon>
+    </button>
+  </div>  
+  <ion-icon *ngIf="auth" name="add-circle-outline" class="big-icon"  (click)="addWeight()"></ion-icon>
+  <div *ngFor="let w of weights; let i = index;">
+    <form novalidate>
+      <div class="weightUpdateList">
+        <div>  
+          <div>week {{ w.weekNumber }}</div>
+          <div>{{ w.date | date: 'dd-MM-yyyy' }}</div>
+          <input type="text" [(ngModel)]="w.date" name="date" [value]="w.date" hidden/>
+        </div>
+        <div>  
+          <input title="weight" type="float" [(ngModel)]="w.weight" name="weight" [value]="w.weight" [disabled]="w.edit"/>
+        </div>
+        <div>  
+          <input title="abdominal circumference" type="float"  [(ngModel)]="w.abdominalCircumference" name="abdominalCircumference"  [value]="w.abdominalCircumference" [disabled]="w.edit"/>
+        </div>
+        <ion-icon name="create" (click)="editWeight(i)" [ngClass]="w.edit ? 'showButton' : 'hideButton'"></ion-icon>
+        <ion-icon name="save" (click)="saveChanges(w,i)" [ngClass]="w.save ? 'showButton' : 'hideButton'"></ion-icon>
+        <ion-icon name="close-circle-outline" (click)="deleteWeight(w)"></ion-icon>
+      </div>
+    </form>
+  </div>
+</div>

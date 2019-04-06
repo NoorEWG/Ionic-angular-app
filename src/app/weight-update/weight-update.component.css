@@ -1,0 +1,38 @@
+.weightUpdateList {
+    font-size: 70%;
+    height: 40px;
+    display: flex;
+    margin: 2px;
+    padding: 2px;
+    border: 1px solid gainsboro;
+    border-radius: 4px;
+}
+
+.weightUpdateList div {
+  vertical-align: middle;
+  margin: 2px;
+}
+
+input {
+    width: 50px;
+    margin: 2px;
+    border-radius: 4px;
+}
+
+button {
+   margin: 2px;   
+}
+
+.showButton {
+  visibility: visible;
+  display: initial;
+}
+
+.hideButton {
+  visibility: hidden;
+  display: none;
+}
+
+ion-icon {
+  font-size: 25px;
+}

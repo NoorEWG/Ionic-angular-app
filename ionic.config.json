@@ -1,0 +1,7 @@
+{
+  "name": "weight-loss-ionic",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

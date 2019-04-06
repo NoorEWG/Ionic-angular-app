@@ -1,0 +1,23 @@
+.badges-center {
+    margin-left: 10px;
+    margin-right: 10px; 
+}
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;  
+}
+.badges .img-container {
+    position: relative;
+    text-align: center;
+  }
+
+.badges .img-container .centered {
+    position: absolute;
+    color: #4B787D;
+    font-size: 90%;
+    font-weight: 800;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

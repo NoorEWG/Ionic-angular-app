@@ -1,0 +1,27 @@
+<div *ngIf="auth === false">
+    <button class="btn btn-primary" routerLink="/user-login">
+      <span>You have to login first</span>
+      <ion-icon name="person"></ion-icon>
+    </button>
+</div>  
+<div *ngIf="auth" class="card">
+  <div class="card-body">
+  <form novalidate>
+    <div class="addWeight">
+      <div class="form-group">  
+        <div>date</div>
+        <input type="date" [(ngModel)]="date" name="date" [disabled]="disabled"/>
+      </div>
+      <div class="form-group">  
+        <div>weight</div>
+        <input title="weight" type="float" [(ngModel)]="weight" name="weight" />
+      </div>
+      <div class="form-group">  
+        <div>abdominal circumference</div>
+        <input title="abdominal circumference" type="float"  [(ngModel)]="abdominalCircumference" name="abdominalCircumference" />
+      </div>
+      <ion-icon name="save" class="big-icon"  (click)="addWeight(date,weight,abdominalCircumference)"></ion-icon>
+    </div>
+  </form>
+  </div>
+</div>

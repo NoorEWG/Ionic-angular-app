@@ -1,0 +1,40 @@
+@import 'https://code.highcharts.com/css/highcharts.css';
+
+.bmi-zone-0 {
+	fill: #00b33c;
+    stroke: #00b33c;
+}
+
+.bmi-zone-1 { 
+	fill: #805a1e;
+    stroke: #805a1e;
+}
+
+.bmi-zone-2 {
+	fill: #ff0000;
+    stroke: #ff0000;
+}
+
+.bmi-zone-3  {
+	fill:#cc0000;
+    stroke:#cc0000;
+}
+
+.bmi-zone-4  {
+	fill:#990000;
+    stroke:#990000;
+}
+
+.bmi-zone-5  {
+	fill:#900000 !important;
+    stroke:#900000 !important;
+}
+
+.highcharts-color-0 {
+    fill:#900000 !important;
+    stroke:#900000 !important;
+}
+
+.pie-chart {
+    height: 600px;
+}

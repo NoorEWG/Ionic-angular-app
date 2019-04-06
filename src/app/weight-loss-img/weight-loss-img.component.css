@@ -1,0 +1,8 @@
+.kg-img-center {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.kg-img {
+    display: flex;
+    flex-wrap: wrap;
+}

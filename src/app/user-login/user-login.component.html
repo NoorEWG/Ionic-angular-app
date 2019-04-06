@@ -1,0 +1,89 @@
+<div class="login">
+  <br>
+  <b>{{ loginText }}</b>
+  <div *ngIf="message" class="alert alert-danger">
+    {{ message }}    
+  </div>
+  <div class="card" *ngIf="showLogin === true">
+      <div class="card-body">
+        <form [formGroup]="angForm" novalidate>
+          <div class="form-group">
+            <label class="col-md-4">Email</label>
+            <input type="text" class="form-control" formControlName="email" #email />
+          </div>
+          <div *ngIf="angForm.controls['email'].invalid && (angForm.controls['email'].dirty || angForm.controls['email'].touched)" class="alert alert-danger">
+            <div *ngIf="angForm.controls['email'].errors.required">
+              Email is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4">Password </label>
+            <input type="password" class="form-control" formControlName="pwd" #pwd />
+          </div>
+          <div *ngIf="angForm.controls['pwd'].invalid && (angForm.controls['pwd'].dirty || angForm.controls['pwd'].touched)" class="alert alert-danger">
+            <div *ngIf="angForm.controls['pwd'].errors.required">
+              Password is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" 
+            [disabled]="angForm.pristine || angForm.invalid" 
+            class="btn btn-primary" (click)="loginUser()">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div  *ngIf="showLogin === true">
+      <button type="submit" class="btn btn-primary" (click)="inscription()">Inscription</button>
+    </div>
+    <div class="card" *ngIf="showLogin === false">
+        <div class="card-body">
+            <form [formGroup]="bForm" novalidate>
+              <div class="form-group">
+                <label class="col-md-4">Email</label>
+                <input type="text" class="form-control" formControlName="email" #email />
+              </div>
+              <div *ngIf="bForm.controls['email'].invalid && (bForm.controls['email'].dirty || bForm.controls['email'].touched)" class="alert alert-danger">
+                <div *ngIf="bForm.controls['email'].errors.required">
+                  Email is required.
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4">Password </label>
+                <input type="password" class="form-control" formControlName="pwd" #pwd />
+              </div>
+              <div *ngIf="bForm.controls['pwd'].invalid && (bForm.controls['pwd'].dirty || bForm.controls['pwd'].touched)" class="alert alert-danger">
+                <div *ngIf="bForm.controls['pwd'].errors.required">
+                  Password is required.
+                </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-md-4">Name</label>
+                  <input type="text" class="form-control" formControlName="name" #name />
+                </div>
+                <div *ngIf="bForm.controls['name'].invalid && (bForm.controls['name'].dirty || bForm.controls['name'].touched)" class="alert alert-danger">
+                  <div *ngIf="bForm.controls['name'].errors.required">
+                    Name is required.
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4">Firstname</label>
+                  <input type="text" class="form-control" formControlName="firstName" #firstName />
+                </div>
+                <div *ngIf="bForm.controls['firstName'].invalid && (bForm.controls['firstName'].dirty || bForm.controls['firstName'].touched)" class="alert alert-danger">
+                  <div *ngIf="bForm.controls['firstName'].errors.required">
+                    Firstname is required.
+                  </div>
+                </div>
+              <div class="form-group">
+                <button type="submit" 
+                [disabled]="bForm.pristine || bForm.invalid" 
+                class="btn btn-primary" (click)="saveUser()">Submit</button>
+              </div>
+            </form>
+          </div>
+    </div>
+    <div *ngIf="showLogin === false">
+    <button type="submit" class="btn btn-primary" (click)="login()">Back to login</button>  
+    </div>
+  </div>

@@ -1,0 +1,24 @@
+.login {
+    font-size: 80%;
+}
+
+.form-control {
+  height: 25px;
+  padding: 2px;   
+}
+
+.alert {
+  height: 25px;
+  padding: 2px;
+}
+
+.btn {
+  padding: 5px;
+  font-size: 80%;
+}
+
+.col-md-4 {
+  margin: 2px;
+  padding: 2px;
+}
+
