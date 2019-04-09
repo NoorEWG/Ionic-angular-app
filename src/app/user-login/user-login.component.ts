@@ -49,7 +49,8 @@ export class UserLoginComponent implements OnInit {
   }
 
   saveUser() {
-    console.log(this.bForm.value);
+    // console.log(this.bForm.value);
+    // TODO
   }
 
   loginUser() {
@@ -60,7 +61,6 @@ export class UserLoginComponent implements OnInit {
         this.events.publish('user', this.userData);
         this.storage.set('user',this.userData);  
         this.message = "You are connected";
-        //this.navCrtl.navigateForward('/weight-stats');
       }
       else {
         this.message = "Impossible to login, please check your email and password";
