@@ -7,3 +7,13 @@
     width: 300px;
     border: 1px solid gainsboro;
 }
+
+.info {
+    display: flex;
+    justify-content: left;
+}
+
+.info span  {
+    width: 120px;
+}
+

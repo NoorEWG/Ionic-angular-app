@@ -5,6 +5,9 @@
   </div>
   <div *ngFor="let i of info; let j = index" class="overview">
     <div [ngClass]="(j % 2 === 0) ? 'even' : 'uneven'">{{ i.label }}</div>
-    <div [ngClass]="(j % 2 === 0) ? 'even' : 'uneven'">{{ i.data }}</div>
+    <div [ngClass]="(j % 2 === 0) ? 'even info' : 'uneven info'">
+      <span>{{ i.info1 }}</span>
+      <span>{{ i.info2 }}</span>
+    </div>
   </div>
 </div>    

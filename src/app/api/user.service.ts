@@ -38,6 +38,17 @@ export class UserService {
       }
     );
   }  
+
+
+  public saveUser(user: UserData): Observable<HttpResponse<number>>  {
+    let url = this.baseUrl + 'saveUser.php';
+    return this.http.post<number>(url, user,
+      {
+        headers: this.httpHeaders,
+        observe: 'response'
+      }
+    );
+  }  
 }
 
 export class LoginData {

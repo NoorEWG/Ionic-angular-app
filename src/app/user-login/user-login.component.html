@@ -33,9 +33,6 @@
         </form>
       </div>
     </div>
-    <div  *ngIf="showLogin === true">
-      <button type="submit" class="btn btn-primary" (click)="inscription()">Inscription</button>
-    </div>
     <div class="card" *ngIf="showLogin === false">
         <div class="card-body">
             <form [formGroup]="bForm" novalidate>
@@ -75,6 +72,33 @@
                     Firstname is required.
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="col-md-4">Start Weight</label>
+                  <input type="text" class="form-control" formControlName="startWeight" #startWeight />
+                </div>
+                <div *ngIf="bForm.controls['startWeight'].invalid && (bForm.controls['startWeight'].dirty || bForm.controls['startWeight'].touched)" class="alert alert-danger">
+                  <div *ngIf="bForm.controls['startWeight'].errors.required">
+                    Start weight is required.
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4">Target Weight</label>
+                    <input type="text" class="form-control" formControlName="targetWeight" #targetWeight />
+                </div>
+                <div *ngIf="bForm.controls['targetWeight'].invalid && (bForm.controls['targetWeight'].dirty || bForm.controls['targetWeight'].touched)" class="alert alert-danger">
+                  <div *ngIf="bForm.controls['targetWeight'].errors.required">
+                    Target weight is required.
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4">Length</label>
+                    <input type="text" class="form-control" formControlName="length" #length />
+                </div>
+                <div *ngIf="bForm.controls['length'].invalid && (bForm.controls['length'].dirty || bForm.controls['length'].touched)" class="alert alert-danger">
+                  <div *ngIf="bForm.controls['length'].errors.required">
+                    Length is required.
+                  </div>
+                </div>      
               <div class="form-group">
                 <button type="submit" 
                 [disabled]="bForm.pristine || bForm.invalid" 
@@ -83,7 +107,13 @@
             </form>
           </div>
     </div>
-    <div *ngIf="showLogin === false">
-    <button type="submit" class="btn btn-primary" (click)="login()">Back to login</button>  
+    <div *ngIf="showLogin === true && auth === false">
+        <button type="submit" class="btn btn-primary" (click)="inscription()">Inscription</button>
+      </div>
+    <div *ngIf="showLogin === false && auth === false">
+      <button type="submit" class="btn btn-primary" (click)="login()">Back to login</button>  
+    </div>
+    <div *ngIf="auth === true">
+      <button type="submit" class="btn btn-primary" (click)="logOut()"><ion-icon name="exit"></ion-icon> Logout</button>  
     </div>
   </div>

@@ -161,6 +161,11 @@ export class WeightStatsComponent implements OnInit {
       this.calculateData(this.userData.id);
     });
 
+    this.events.subscribe('clearData', (data) => {
+      this.userData = data;
+      this.auth = false;
+    });
+
     this.events.subscribe('weightUpdate', (data) => {
       if(this.userData && this.userData.id) { 
         this.calculateData(this.userData.id);
