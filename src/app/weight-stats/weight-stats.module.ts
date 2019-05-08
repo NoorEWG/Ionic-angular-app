@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { WeightStatsPage } from './weight-stats.page';
 import { ComponentModule} from '../component.module';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -25,4 +26,7 @@ const routes: Routes = [
     WeightStatsPage
   ]
 })
+
 export class WeightStatsPageModule {}
+
+

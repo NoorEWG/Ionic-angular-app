@@ -4,11 +4,14 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Health } from '@ionic-native/health/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule, HttpClient } from '@angular/common/http'; 
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import {
@@ -25,6 +28,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+}
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -32,6 +39,14 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule, 
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     BrowserAnimationsModule,
     DragDropModule,
     ScrollingModule,
@@ -56,6 +71,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
   ],
   providers: [
     StatusBar,
+    Health,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

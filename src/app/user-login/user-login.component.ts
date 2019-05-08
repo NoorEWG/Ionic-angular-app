@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
-import { NavController, Events } from '@ionic/angular';
+import { Events } from '@ionic/angular';
 import { UserService} from '../api/user.service';
 import { UserData } from '../model/UserData';
+import { Internationalization } from '../model/Internationalization';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -11,20 +12,33 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
-
+   
   angForm: FormGroup;
   bForm: FormGroup;
-  showLogin: boolean;
   loginText: string;
+  user: string;
+  password: string;
   userData: UserData;
   message: string;
-  auth: boolean;
+  showLogin: boolean = true;
+  auth: boolean = false;
+  language: string;
+  translations: Internationalization = new Internationalization();
+  translateArray: Array<string>;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private navCrtl: NavController, private events: Events, private storage: Storage) {
-    this.showLogin = true;
-    this.auth = false;
-    this.loginText = "Login";
+  constructor(
+    private fb: FormBuilder, 
+    private userService: UserService, 
+    private events: Events, 
+    private storage: Storage,
+    
+    ) {
+    this.storage.get('translations').then((data) => {
+      this.translations = data;
+    });
+    // initialize the form
     this.createForms();
+    this.knownUser();
   }
 
   createForms() {
@@ -43,14 +57,24 @@ export class UserLoginComponent implements OnInit {
     });
   }
 
+  knownUser() {
+    this.storage.get('user').then((data) => {
+      var user = data;
+      if(user && user.id) {
+        this.user = user;
+        this.auth = true;
+      } 
+    });
+  }
+
   inscription() {
     this.showLogin = false;
-    this.loginText = "Inscription";
+    this.loginText = this.translations.inscription;
   }
 
   login() {
     this.showLogin = true;
-    this.loginText = "Login";
+    this.loginText = this.translations.logout;
   }
 
   logOut() {
@@ -58,12 +82,11 @@ export class UserLoginComponent implements OnInit {
     this.auth = false;
     this.storage.clear();
     this.events.publish('clearData', null);
-    this.loginText = "Login";
-    this.message = "You are disconnected";
+    this.loginText = this.translations.login;
+    this.message = this.translations.logoutMessage; //"You are disconnected";
   }
 
   saveUser() {
-    console.log(this.bForm.value);
     this.userService.saveUser(this.bForm.value).subscribe(data => {
       var id = data.body;
       if(id > 0) {
@@ -72,18 +95,18 @@ export class UserLoginComponent implements OnInit {
           if(this.userData && this.userData.id > 0) {
             this.userData.auth = true;
             this.auth = true;
-            this.events.publish('user', this.userData);
             this.storage.set('user',this.userData);  
-            this.message = "You are connected";
+            this.events.publish('user', this.userData);
+            this.message = this.translations.loginMessage; //"You are connected";
           }
           else {
-            this.message = "Impossible to login, please check your email and password";
+            this.message = this.translations.loginErrorMessage;//"Impossible to login, please check your email and password";
           }
         });
       }
       else {
         this.userData.auth = false;
-        this.message = "Something went wrong with your inscription, please try again later";
+        this.message = this.translations.inscriptionErrorMessage; //"Something went wrong with your inscription, please try again later";
       }
     });
   }
@@ -96,16 +119,21 @@ export class UserLoginComponent implements OnInit {
         this.auth = true;
         this.events.publish('user', this.userData);
         this.storage.set('user',this.userData);  
-        this.message = "You are connected";
+        this.message = this.translations.loginMessage; //"You are connected";
       }
       else {
-        this.message = "Impossible to login, please check your email and password";
+        this.message = this.translations.loginErrorMessage; //"Impossible to login, please check your email and password";
         this.auth = false;
       }
     });
   }
 
-  ngOnInit() {
+  ngOnInit() { 
+    this.events.subscribe('translations', (data) => {
+      this.translations = data;
+      this.createForms();
+      this.knownUser();
+    }); 
   }
 
 }

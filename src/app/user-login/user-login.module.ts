@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { UserLoginPage } from './user-login.page';
 import { UserLoginComponent } from '../user-login/user-login.component';
+import { HealthComponent} from '../health/health.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     UserLoginPage,
-    UserLoginComponent
+    UserLoginComponent,
+    HealthComponent
   ],
   imports: [
     CommonModule,

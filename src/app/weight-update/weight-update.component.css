@@ -1,12 +1,30 @@
 .weightUpdateList {
-    font-size: 70%;
-    height: 40px;
-    display: flex;
-    margin: 2px;
+    font-size: 70%;   
+    margin-top: 4px;
+    margin-top: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
     padding: 2px;
+    background-color: #ECFFFF;
     border: 1px solid gainsboro;
     border-radius: 4px;
 }
+
+.updateFlexBetween {
+  display:flex;
+  justify-content: space-between;
+}
+
+.updateFlex {
+  display:flex;
+  justify-content: left;
+}
+
+.updateFlexRight {
+  display:flex;
+  justify-content: right;
+}
+
 
 .weightUpdateList div {
   vertical-align: middle;
@@ -14,11 +32,16 @@
 }
 
 input {
-    width: 50px;
+    width: 60px;
     margin: 2px;
     border-radius: 4px;
 }
 
+label {
+  width: 70px;
+  margin: 2px;
+  text-align: right;
+}
 button {
    margin: 2px;   
 }
@@ -33,6 +56,17 @@ button {
   display: none;
 }
 
+.showEdit {
+  visibility: visible;
+  display: block;
+}
+
+.hideEdit {
+  visibility: hidden;
+  display: none;
+}
+
 ion-icon {
   font-size: 25px;
+  width: 30px;
 }

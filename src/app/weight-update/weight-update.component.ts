@@ -6,6 +6,7 @@ import { UserData } from '../model/UserData';
 import { ToastController } from '@ionic/angular';
 import { Events} from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { Internationalization } from '../model/Internationalization';
 
 @Component({
   selector: 'app-weight-update',
@@ -18,12 +19,15 @@ export class WeightUpdateComponent implements OnInit {
   user: UserData;
   message: String;
   status: number;
+  translations: Internationalization;
   auth: boolean
 
   constructor(private weightService: WeightService, private toastController: ToastController, private events: Events, private storage: Storage) { 
-    storage.get('user').then((val) => {
-      if(val) {
-        this.user = val;
+    
+    this.auth = false;
+    this.storage.get('user').then((data) => {
+      if(data) {
+        this.user = data;
         this.auth = this.user.auth;
         weightService.getWeightStats('DESC', this.user.id).subscribe(data => { 
           this.weights = data.weights;
@@ -31,12 +35,16 @@ export class WeightUpdateComponent implements OnInit {
           this.weights.forEach( function(w) {
             w.edit = true;
             w.save = false;
+            w.openEdit = false;
           });
         });
       }
     });
-    
-    this.auth = false;
+    this.storage.get('translations').then((data) => {
+      if(data) {
+       this.translations = data;
+      }
+    });
     this.events.subscribe('user', (data) => {
       this.user = data;
       this.auth = this.user.auth;
@@ -61,7 +69,7 @@ export class WeightUpdateComponent implements OnInit {
   }
 
   public saveChanges(weightDate: WeightDate, index: number) {
-    if(Number(weightDate.weight) && Number(weightDate.abdominalCircumference)) {
+    if(Number(weightDate.weight)) {
       this.weights[index].save = false;
       this.weights[index].edit = true;
       this.weightService.editWeight(weightDate, this.user).subscribe(data => {
@@ -72,7 +80,7 @@ export class WeightUpdateComponent implements OnInit {
       });
     }
     else {
-      this.message = "Please verify the entered data you would like to change";
+      this.message = this.translations.weightUpdateMissingData;
       this.presentToast(2000);
     }  
   }
@@ -82,11 +90,26 @@ export class WeightUpdateComponent implements OnInit {
     this.weights[index].edit = false;
   }
   
-  public deleteWeight(weightDate) {
-    this.weightService.deleteWeight(weightDate,this.user).subscribe(data => {
+  public deleteWeight(index, weightDate) {
+    this.weightService.deleteWeight(weightDate, this.user).subscribe(data => {
       this.message = data.body;
-      this.status = data.status;
-      this.events.publish("weightDelete", true);
+      if(this.message.includes('deleted') && data.status === 200) {
+        this.weights[index].weight = null;
+        this.weights[index].hips = null;
+        this.weights[index].abdominalCircumference = null;
+        this.weights[index].leftArm = null;
+        this.weights[index].rightArm = null;
+        this.weights[index].leftLeg = null;
+        this.weights[index].rightLeg = null;
+        this.weights[index].weightLoss = null;
+        this.weights[index].weekWeightLoss = null;
+        this.weights[index].bmi = null;
+        this.status = data.status;
+        this.events.publish("weightDelete", true);
+      }
+      else {
+        this.message = "Something went wrong";
+      }
       this.presentToast(2000);
     }); 
   }
@@ -96,8 +119,8 @@ export class WeightUpdateComponent implements OnInit {
     var lastDate = this.weights[0].date;
     var newDate = moment(lastDate, 'YYYY-MM-DD').add(7,'days').format('YYYY-MM-DD');
 
-    if( moment(lastDate, 'YYYY-MM-DD').add(7,'days') > moment() )   {
-      this.message = "You can't add a new weight, you will have to wait until " +  moment(newDate, 'YYYY-MM-DD').format('DD-MM-YYYY');
+    if( moment(lastDate, 'YYYY-MM-DD').add(7,'days') > moment() ) {
+      this.message = this.translations.weightUpdateNewDateAfterNow +  moment(newDate, 'YYYY-MM-DD').format('DD-MM-YYYY');
       this.presentToast(2000);
     } else {
       newWeight.date = newDate;
@@ -108,9 +131,23 @@ export class WeightUpdateComponent implements OnInit {
       this.weights[0].save = true;
       this.weights[0].edit = false;
     }
-
   }
 
-  ngOnInit() {}
+  public openEdit(index: number, open: boolean) {
+    this.weights.forEach( function(w) {
+      w.openEdit = false;
+    });
+    this.weights[index].openEdit = open;
+    if(open) {
+      this.weights[index].edit = open;
+      this.weights[index].save = false;
+    } 
+  }
+
+  ngOnInit() {
+    this.events.subscribe('translations', (data) => {
+      this.translations = data;
+    }); 
+  }
 
 }

@@ -7,21 +7,23 @@
                   <ion-icon name="menu"></ion-icon>
                 </ion-menu-toggle>
             </ion-buttons>
-            <ion-title>menu</ion-title>
+            <ion-title>{{ translations.menu }}</ion-title>
           </ion-toolbar>
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-item routerLink="/weight-update"><span class="img-border"><ion-icon name="add-circle-outline"></ion-icon></span>Weight update</ion-item>
-          <ion-item routerLink="/weight-add"><span class="img-border"><ion-icon name="create"></ion-icon></span>Weight add</ion-item>
-          <ion-item routerLink="/weight-stats/overview"><img src="assets/img/human-body.png" class="img-border"/>Overview</ion-item>
-          <ion-item routerLink="/weight-stats/stats-data"><img src="assets/img/human-body.png" class="img-border"/>Data</ion-item>
-          <ion-item routerLink="/weight-stats/weight-chart"><img src="assets/img/graph.png" class="img-border"/>Weight</ion-item>
-          <ion-item routerLink="/weight-stats/weight-loss-chart"><img src="assets/img/graph.png" class="img-border"/>Weight loss</ion-item>
-          <ion-item routerLink="/weight-stats/weight-pie-charts"><img src="assets/img/pie-chart.png" class="img-border"/>Weight loss/gain pie charts</ion-item>
-          <ion-item routerLink="/weight-stats/bmi-chart"><img src="assets/img/graph.png" class="img-border"/>BMI</ion-item>
-          <ion-item routerLink="/weight-stats/waist-chart"><img src="assets/img/graph.png" class="img-border"/>Waist</ion-item>
-        </ion-list>
+          <ion-item routerLink="/weight-update"><span class="img-border"><ion-icon name="add-circle-outline"></ion-icon></span>{{ translations.weightUpdate }}</ion-item>
+          <!--ion-item routerLink="/weight-add"><span class="img-border"><ion-icon name="create"></ion-icon></span>{{ translations.weightAdd }}</ion-item-->
+          <ion-item routerLink="/weight-stats/overview"><img src="assets/img/human-body.png" class="img-border"/>{{ translations.overview }}</ion-item>
+          <ion-item routerLink="/weight-stats/stats-data"><img src="assets/img/human-body.png" class="img-border"/>{{ translations.data }}</ion-item>
+          <ion-item routerLink="/weight-stats/weight-chart"><img src="assets/img/graph.png" class="img-border"/>{{ translations.weight }}</ion-item>
+          <ion-item routerLink="/weight-stats/weight-loss-chart"><img src="assets/img/graph.png" class="img-border"/>{{ translations.weightLoss }}</ion-item>
+          <ion-item routerLink="/weight-stats/weight-pie-charts"><img src="assets/img/pie-chart.png" class="img-border"/>{{ translations.weightLossGainPieCharts }}</ion-item>
+          <ion-item routerLink="/weight-stats/bmi-chart"><img src="assets/img/graph.png" class="img-border"/>{{ translations.bmi }}</ion-item>
+          <ion-item routerLink="/weight-stats/waist-chart"><img src="assets/img/graph.png" class="img-border"/>{{ translations.waist }} / {{ translations.hips }}</ion-item>
+          <ion-item routerLink="/weight-stats/arms-chart"><img src="assets/img/graph.png" class="img-border"/>{{ translations.arms }}</ion-item>
+          <ion-item routerLink="/weight-stats/legs-chart"><img src="assets/img/graph.png" class="img-border"/>{{ translations.legs }}</ion-item>
+        </ion-list>        
       </ion-content>
   </ion-menu>
   <ion-router-outlet main></ion-router-outlet>
@@ -34,12 +36,21 @@
         <ion-tab-button tab="weight-stats/overview">
           <ion-icon name="analytics"></ion-icon>
         </ion-tab-button>
-        <ion-tab-button tab="weight-add">
+        <!--ion-tab-button tab="weight-add">
             <ion-icon name="add-circle-outline"></ion-icon>
-          </ion-tab-button>
+          </ion-tab-button-->
         <ion-tab-button tab="weight-update">
           <ion-icon name="create"></ion-icon>
         </ion-tab-button>
+        <ion-list>
+          <ion-item>
+            <ion-select [(ngModel)]="language" (ionChange)="changeLanguage(true)">
+              <ion-select-option value="nl" selected="true">NL</ion-select-option>
+              <ion-select-option value="en">EN</ion-select-option>
+              <ion-select-option value="fr">FR</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
       </ion-tab-bar>
     </ion-tabs>
 </ion-app>

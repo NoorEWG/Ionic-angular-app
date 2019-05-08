@@ -1,0 +1,13 @@
+<div class="weight-loss-month-data">
+  <br>
+  <div class="statList header">
+    <div class="text-right">{{ translations.month }}</div>
+    <div class="text-right">{{ translations.monthlyWeightLoss }}</div>
+  </div>
+  <div *ngFor="let m of monthData" [ngClass]="(m.month % 2)? 'statList even':'statList uneven'">
+    <div class="text-right">{{ m.month }} / {{ m.year}} </div>
+    <div class="text-right">{{ m.monthWeightLoss }}</div>
+  </div>
+  <br>
+</div>
+

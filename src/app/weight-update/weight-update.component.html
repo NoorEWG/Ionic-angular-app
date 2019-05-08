@@ -8,21 +8,46 @@
   <ion-icon *ngIf="auth" name="add-circle-outline" class="big-icon"  (click)="addWeight()"></ion-icon>
   <div *ngFor="let w of weights; let i = index;">
     <form novalidate>
+      <input type="text" [(ngModel)]="w.date" name="date" [value]="w.date" hidden>
       <div class="weightUpdateList">
-        <div>  
-          <div>week {{ w.weekNumber }}</div>
-          <div>{{ w.date | date: 'dd-MM-yyyy' }}</div>
-          <input type="text" [(ngModel)]="w.date" name="date" [value]="w.date" hidden/>
+        <div class="updateFlexBetween">
+          <div class="updateFlex">  
+            <ion-icon name="arrow-dropdown" (click)="openEdit(i,true)" [ngClass]="w.openEdit ? 'hideButton' : 'showButton'"></ion-icon>
+            <ion-icon name="arrow-dropup" (click)="openEdit(i, false)" [ngClass]="w.openEdit ? 'showButton' : 'hideButton'"></ion-icon>
+            <div><b>week {{ w.weekNumber }} ({{ w.date | date: 'dd-MM-yyyy' }})</b></div>
+          </div>
+          <div>
+            <div class="updateFlexRight">
+            <ion-icon name="create" (click)="editWeight(i)" [ngClass]="(w.edit && w.openEdit) ? 'showButton' : 'hideButton'"></ion-icon>
+            <ion-icon name="save" (click)="saveChanges(w,i)" [ngClass]="(w.save && w.openEdit) ? 'showButton' : 'hideButton'"></ion-icon>
+            <ion-icon name="close-circle-outline" (click)="deleteWeight(i,w)"  [ngClass]="w.openEdit ? 'showButton' : 'hideButton'"></ion-icon>
+            </div>
+          </div>
         </div>
-        <div>  
-          <input title="weight" type="float" [(ngModel)]="w.weight" name="weight" [value]="w.weight" [disabled]="w.edit"/>
-        </div>
-        <div>  
-          <input title="abdominal circumference" type="float"  [(ngModel)]="w.abdominalCircumference" name="abdominalCircumference"  [value]="w.abdominalCircumference" [disabled]="w.edit"/>
-        </div>
-        <ion-icon name="create" (click)="editWeight(i)" [ngClass]="w.edit ? 'showButton' : 'hideButton'"></ion-icon>
-        <ion-icon name="save" (click)="saveChanges(w,i)" [ngClass]="w.save ? 'showButton' : 'hideButton'"></ion-icon>
-        <ion-icon name="close-circle-outline" (click)="deleteWeight(w)"></ion-icon>
+        <div [ngClass]="w.openEdit ? 'showEdit' : 'hideEdit'">
+          <div class="updateFlex">  
+            <label>{{ translations.weight }}</label>
+            <input title="weight" type="float" [(ngModel)]="w.weight" name="weight" [value]="w.weight" [disabled]="w.edit"/>
+            <label>{{ translations.waist }}</label>
+            <input title="waist" type="float"  [(ngModel)]="w.abdominalCircumference" name="abdominalCircumference"  [value]="w.abdominalCircumference" [disabled]="w.edit"/>
+          </div>
+          <div class="updateFlex">  
+            <label>{{ translations.hips }}</label>
+            <input title="hips" type="float" [(ngModel)]="w.hips" name="hips" [value]="w.hips" [disabled]="w.edit"/>
+          </div>
+          <div class="updateFlex">  
+            <label>{{ translations.leftLeg }}</label>
+            <input title="left leg" type="float" [(ngModel)]="w.leftLeg" name="leftLeg" [value]="w.leftLeg" [disabled]="w.edit"/>
+            <label>{{ translations.rightLeg }}</label>
+            <input title="right leg" type="float"  [(ngModel)]="w.rightLeg" name="rightLeg"  [value]="w.rightLeg" [disabled]="w.edit"/>
+          </div>
+          <div class="updateFlex">  
+            <label>{{ translations.leftArm }}</label>
+            <input title="left arm" type="float" [(ngModel)]="w.leftArm" name="leftArm" [value]="w.leftArm" [disabled]="w.edit"/>
+            <label>{{ translations.rightArm }}</label>
+            <input title="right arm" type="float"  [(ngModel)]="w.rightArm" name="rightArm"  [value]="w.rightArm" [disabled]="w.edit"/>
+          </div> 
+        </div>     
       </div>
     </form>
   </div>

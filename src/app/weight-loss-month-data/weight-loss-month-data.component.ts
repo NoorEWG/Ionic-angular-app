@@ -1,21 +1,19 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { WeightDate } from '../model/WeightDate';
-import { Events } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { Events } from '@ionic/angular';
+import { MonthWeightLoss } from '../model/MonthWeightLoss';
 import { Internationalization } from '../model/Internationalization';
 
 @Component({
-  selector: 'app-weight-loss-data',
-  templateUrl: './weight-loss-data.component.html',
-  styleUrls: ['./weight-loss-data.component.css']
+  selector: 'app-weight-loss-month-data',
+  templateUrl: './weight-loss-month-data.component.html',
+  styleUrls: ['./weight-loss-month-data.component.scss'],
 })
-export class WeightLossDataComponent implements OnInit {
+export class WeightLossMonthDataComponent implements OnInit {
 
-  
-  @Input('weights') weights: Array<WeightDate>;
-  @Input('totalWeightToLose') totalWeightToLose: number;
+  @Input('monthData') monthData: Array<MonthWeightLoss>;
+
   translations: Internationalization;
-  
   constructor(
     private storage: Storage,
     private events: Events
@@ -23,10 +21,10 @@ export class WeightLossDataComponent implements OnInit {
     this.storage.get('translations').then((data) => {
       this.translations = data;
     });
+    this.monthData = null;
   }
 
   ngOnInit() {
-  
     this.events.subscribe('translations', (data) => {
       this.translations = data;
     }); 

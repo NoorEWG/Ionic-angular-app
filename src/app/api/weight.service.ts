@@ -47,7 +47,7 @@ export class WeightService {
   }  
   public editWeight(weightDate: WeightDate, user: UserData): Observable<HttpResponse<String>> {
     let url = this.baseUrl + "editWeightStats.php";
-    var data = {'weight': weightDate, 'user': user};
+    let data = {'weight': weightDate, 'user': user};
     return this.http.post<String>(url, data, 
       {
         headers: this.httpHeaders,
@@ -56,10 +56,10 @@ export class WeightService {
     );
   } 
 
-  public deleteWeight(weightDate: WeightDate, user: UserData): Observable<HttpResponse<String>> {
-    let url = this.baseUrl + "deleteWeight.php";
-    var data = {'weight': weightDate, 'user': user};
-    return this.http.post<String>(url, data,
+  public deleteWeight(weightDate: WeightDate, user: UserData): Observable<HttpResponse<string>> {
+    let url = this.baseUrl + "deleteWeightStats.php";
+    let data = {'weight': weightDate, 'user': user};
+    return this.http.post<string>(url, data,
       {
         headers: this.httpHeaders,
         observe: 'response'

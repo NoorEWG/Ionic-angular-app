@@ -1,11 +1,12 @@
-.overview {
+.overview, .header-flex {
     display: flex;
     justify-content: center;    
 }
 
-.overview div {
-    width: 300px;
-    border: 1px solid gainsboro;
+.header {
+    width: 600px;
+    padding: 2px;
+    margin: 0;
 }
 
 .info {
@@ -13,7 +14,36 @@
     justify-content: left;
 }
 
-.info span  {
-    width: 120px;
+.overview .even, .uneven {
+    width: 360px;
+    padding: 2px;
 }
 
+.overview .info {
+    width: 240px;
+    padding: 2px;
+}
+
+@media (min-width: 901px) {
+    .info span  {
+        width: 100px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .even, .uneven, .info {
+        font-size: 80%;
+    }
+    .info span  {
+        width: 70px;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+    .even, .uneven, .even-info, .uneven-info {
+        font-size: 90%;
+    }       
+    .info span  {
+        width: 80px;
+    }
+}

@@ -12,6 +12,7 @@ export class UserData {
     targetWeight: number;
     length: number;
     gender: string;
+    age: number;
     terms: boolean;
     auth: boolean;
 

@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
+import { Events} from '@ionic/angular';
 import * as moment from 'moment'; 
+import { Internationalization } from '../model/Internationalization';
+import { SWITCH_VIEW_CONTAINER_REF_FACTORY__POST_R3__ } from '@angular/core/src/linker/view_container_ref';
 
 @Component({
   selector: 'app-weight-loss-overview',
@@ -16,40 +20,46 @@ export class WeightLossOverviewComponent implements OnInit  {
   @Input('totalLost') totalLost: number;
   @Input('totalWeeks') totalWeeks: number;
   @Input('length') length: number;
-  percentage: number;
-  averageWeightLossPerWeek: number;
   info: Array<OverViewData>;
+  translations: Internationalization;
 
-  constructor() {
+  constructor(
+    private events: Events, 
+    private storage: Storage,
+    ) {
     this.info = new Array<OverViewData>();
+    this.translations = new Internationalization();
   }
 
   ngOnInit() {
+    this.storage.get('translations').then((translations) => {
+      this.translations = translations;
+      this.setInfo();
+    });
 
-    this.percentage = Math.round(this.totalLost / this.totalWeightToLose * 1000) / 10;
-    this.averageWeightLossPerWeek = Math.round(this.totalLost * 10 / this.totalWeeks ) / 10;
+    this.events.subscribe('translations', (data) => {
+      this.translations = data;
+      this.setInfo();
+    }); 
+  }
+
+  setInfo() {
+    var percentage = Math.round(this.totalLost / this.totalWeightToLose * 1000) / 10;     
     var bmiStart = Math.round((this.startWeight / (this.length * this.length))*10)/10;
     var bmiEnd = Math.round((this.targetWeight / (this.length * this.length))*10)/10;
     var actualWeight =  Math.round((this.startWeight-this.totalLost)*10)/10;
     var bmiActual = Math.round((actualWeight / (this.length * this.length))*10)/10;
-    var data = new OverViewData('Start weight', this.startWeight + " kg", "(BMI: " + bmiStart+")"); 
-    this.info.push(data);
-    data = new OverViewData('Target weight', this.targetWeight + " kg", "(BMI: " + bmiEnd +")");
-    this.info.push(data);
-    data = new OverViewData('Total weight to lose', this.totalWeightToLose + " kg");
-    this.info.push(data);
-    data = new OverViewData('Actuel weight',  actualWeight + " kg", "(BMI: " + bmiActual +")");
-    this.info.push(data);
-    data = new OverViewData('Total weight lost so far',  this.totalLost + " kg", "(" + this.percentage + "%)");
-    this.info.push(data);
-    data = new OverViewData('Average per week',  Math.round(this.totalLost * 10 / this.totalWeeks ) / 10 + " kg");
-    this.info.push(data);
-    data = new OverViewData('Startdate', moment(this.startDate, 'YYYY-MM-DD').format('DD-MM-YYYY'));
-    this.info.push(data);
-    data = new OverViewData('Targetdate (based on average results so far):', this.targetDate);
-    this.info.push(data);
+    var info = [];
+    info.push(new OverViewData(this.translations.startWeight, this.startWeight + " " + this.translations.kg, "(" + this.translations.bmi + " " +  bmiStart+")"));   
+    info.push(new OverViewData(this.translations.targetWeight, this.targetWeight + " " + this.translations.kg, "(" + this.translations.bmi + " "  + bmiEnd +")"));
+    info.push(new OverViewData(this.translations.totalWeightToLose, this.totalWeightToLose + " " + this.translations.kg));
+    info.push(new OverViewData(this.translations.actuelWeight,  actualWeight + " " + this.translations.kg, "(" + this.translations.bmi + " " +  bmiActual +")"));
+    info.push(new OverViewData(this.translations.totalWeightLostSoFar,  this.totalLost + " " + this.translations.kg, "(" + percentage + "%)"));
+    info.push(new OverViewData(this.translations.averagePerWeek,  Math.round(this.totalLost * 100 / this.totalWeeks ) / 100 + " " + this.translations.kg));
+    info.push(new OverViewData(this.translations.startDate, moment(this.startDate, 'YYYY-MM-DD').format('DD-MM-YYYY')));
+    info.push(new OverViewData(this.translations.targetDate, this.targetDate));
+    this.info = info;
   }
-
 }
 
 export class OverViewData {

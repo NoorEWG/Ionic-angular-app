@@ -1,34 +1,34 @@
 <div class="login">
   <br>
   <b>{{ loginText }}</b>
-  <div *ngIf="message" class="alert alert-danger">
+  <div *ngIf="message" class="alert alert-success">
     {{ message }}    
   </div>
   <div class="card" *ngIf="showLogin === true">
       <div class="card-body">
         <form [formGroup]="angForm" novalidate>
           <div class="form-group">
-            <label class="col-md-4">Email</label>
+            <label class="col-md-4"> {{ translations.email }}</label>
             <input type="text" class="form-control" formControlName="email" #email />
           </div>
           <div *ngIf="angForm.controls['email'].invalid && (angForm.controls['email'].dirty || angForm.controls['email'].touched)" class="alert alert-danger">
             <div *ngIf="angForm.controls['email'].errors.required">
-              Email is required.
+              {{ translations.emailRequired}}
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-4">Password </label>
+            <label class="col-md-4">{{ translations.password }}</label>
             <input type="password" class="form-control" formControlName="pwd" #pwd />
           </div>
           <div *ngIf="angForm.controls['pwd'].invalid && (angForm.controls['pwd'].dirty || angForm.controls['pwd'].touched)" class="alert alert-danger">
             <div *ngIf="angForm.controls['pwd'].errors.required">
-              Password is required.
+              {{ translations.passwordRequired }}
             </div>
           </div>
           <div class="form-group">
             <button type="submit" 
             [disabled]="angForm.pristine || angForm.invalid" 
-            class="btn btn-primary" (click)="loginUser()">Submit</button>
+            class="btn btn-primary" (click)="loginUser()">{{ translations.submit }}</button>
           </div>
         </form>
       </div>
@@ -37,83 +37,83 @@
         <div class="card-body">
             <form [formGroup]="bForm" novalidate>
               <div class="form-group">
-                <label class="col-md-4">Email</label>
+                <label class="col-md-4"> {{ translations.email }}</label>
                 <input type="text" class="form-control" formControlName="email" #email />
               </div>
               <div *ngIf="bForm.controls['email'].invalid && (bForm.controls['email'].dirty || bForm.controls['email'].touched)" class="alert alert-danger">
                 <div *ngIf="bForm.controls['email'].errors.required">
-                  Email is required.
+                  {{ translations.emailRequired }}
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-4">Password </label>
+                <label class="col-md-4">{{ translations.password }}</label>
                 <input type="password" class="form-control" formControlName="pwd" #pwd />
               </div>
               <div *ngIf="bForm.controls['pwd'].invalid && (bForm.controls['pwd'].dirty || bForm.controls['pwd'].touched)" class="alert alert-danger">
                 <div *ngIf="bForm.controls['pwd'].errors.required">
-                  Password is required.
+                  {{ translations.passwordRequired }}
                 </div>
               </div>
               <div class="form-group">
-                  <label class="col-md-4">Name</label>
+                  <label class="col-md-4"> {{ translations.name }}</label>
                   <input type="text" class="form-control" formControlName="name" #name />
                 </div>
                 <div *ngIf="bForm.controls['name'].invalid && (bForm.controls['name'].dirty || bForm.controls['name'].touched)" class="alert alert-danger">
                   <div *ngIf="bForm.controls['name'].errors.required">
-                    Name is required.
+                    {{ translations.nameRequired }}
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-md-4">Firstname</label>
+                  <label class="col-md-4"> {{ translations.firstName }}</label>
                   <input type="text" class="form-control" formControlName="firstName" #firstName />
                 </div>
                 <div *ngIf="bForm.controls['firstName'].invalid && (bForm.controls['firstName'].dirty || bForm.controls['firstName'].touched)" class="alert alert-danger">
                   <div *ngIf="bForm.controls['firstName'].errors.required">
-                    Firstname is required.
+                    {{ translations.firstNameRequired }}
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-md-4">Start Weight</label>
+                  <label class="col-md-4"> {{ translations.startWeight }}</label>
                   <input type="text" class="form-control" formControlName="startWeight" #startWeight />
                 </div>
                 <div *ngIf="bForm.controls['startWeight'].invalid && (bForm.controls['startWeight'].dirty || bForm.controls['startWeight'].touched)" class="alert alert-danger">
                   <div *ngIf="bForm.controls['startWeight'].errors.required">
-                    Start weight is required.
+                    {{ translations.startWeightRequired }}
                   </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4">Target Weight</label>
+                    <label class="col-md-4"> {{ translations.targetWeight }}</label>
                     <input type="text" class="form-control" formControlName="targetWeight" #targetWeight />
                 </div>
                 <div *ngIf="bForm.controls['targetWeight'].invalid && (bForm.controls['targetWeight'].dirty || bForm.controls['targetWeight'].touched)" class="alert alert-danger">
                   <div *ngIf="bForm.controls['targetWeight'].errors.required">
-                    Target weight is required.
+                    {{ translations.targetWeightRequired }}
                   </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4">Length</label>
+                    <label class="col-md-4"> {{ translations.length }}</label>
                     <input type="text" class="form-control" formControlName="length" #length />
                 </div>
                 <div *ngIf="bForm.controls['length'].invalid && (bForm.controls['length'].dirty || bForm.controls['length'].touched)" class="alert alert-danger">
                   <div *ngIf="bForm.controls['length'].errors.required">
-                    Length is required.
+                    {{ translations.lengthRequired }}
                   </div>
                 </div>      
               <div class="form-group">
                 <button type="submit" 
                 [disabled]="bForm.pristine || bForm.invalid" 
-                class="btn btn-primary" (click)="saveUser()">Submit</button>
+                class="btn btn-primary" (click)="saveUser()">{{ translations.save }}</button>
               </div>
             </form>
           </div>
     </div>
     <div *ngIf="showLogin === true && auth === false">
-        <button type="submit" class="btn btn-primary" (click)="inscription()">Inscription</button>
+        <button type="submit" class="btn btn-primary" (click)="inscription()"> {{ translations.inscription }}</button>
       </div>
     <div *ngIf="showLogin === false && auth === false">
-      <button type="submit" class="btn btn-primary" (click)="login()">Back to login</button>  
+      <button type="submit" class="btn btn-primary" (click)="login()">{{ translations.backToLogin}}</button>  
     </div>
     <div *ngIf="auth === true">
-      <button type="submit" class="btn btn-primary" (click)="logOut()"><ion-icon name="exit"></ion-icon> Logout</button>  
+      <button type="submit" class="btn btn-primary" (click)="logOut()"><ion-icon name="exit"></ion-icon> {{ translations.logout }}</button>  
     </div>
   </div>
