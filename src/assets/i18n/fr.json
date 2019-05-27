@@ -1,4 +1,5 @@
 {
+"locale" : "fr-FR",
 "user" : "Utilisateur",
 "password" : "Mot de passe",
 "submit" : "Continuer",
@@ -11,7 +12,8 @@
 "loginMessage" : "Vous êtes connecté",
 "logoutMessage" : "Vous êtes connecté",
 "loginErrorMessage": "Connexion impossible, vérifiez votre adresse mail et votre mot de passe",
-"inscriptionErrorMessage": "CHANGE: Something went wrong with your inscription, please try again later",
+"inscriptionErrorMessage": "Impossible de vous inscrire, merci de reessayer plus tard",
+"userExistsErrorMessage" : "Impossible de vous inscrire, car il existe un autre utilisateur avec le même adresse mail",
 "email" : "Adresse mail",
 "emailRequired" : "L'adresse mail est requise",
 "passwordRequired" : "Le mot de passe est requis",
@@ -68,6 +70,20 @@
 "month" : "Mois",
 "week": "Semaine",
 "statsGraphs": "Données, Statistiques and Graphiques",
-"weightAddUpdate": "Ajouter/Modifier des données"
+"weightAddUpdate": "Ajouter/Modifier des données",
+
+"objectif": "Objectif",
+"objectifs": "Objectifs",
+"objectif1": "Poids",
+"objectif2": "% de mes kilos à perdre",
+"objectif3": "% de mon poids de départ",
+"objectif4": "IMC",
+"reward": "Recompense",
+
+"age": "Age",
+"gender": "Sexe",
+"male" : "masculin",
+"female" : "feminin",
+"other" : "autre"
 
 }

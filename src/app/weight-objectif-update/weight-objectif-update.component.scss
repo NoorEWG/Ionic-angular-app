@@ -1,0 +1,81 @@
+.weightUpdateList {
+    font-size: 70%;   
+    margin-top: 4px;
+    margin-top: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding: 2px;
+    background-color: #ECFFFF;
+    border: 1px solid gainsboro;
+    border-radius: 4px;
+}
+
+.updateFlexBetween {
+  display:flex;
+  justify-content: space-between;
+}
+
+.updateFlex {
+  display:flex;
+  justify-content: left;
+}
+
+.updateFlexRight {
+  display:flex;
+  justify-content: right;
+}
+
+.weightUpdateList div {
+  vertical-align: middle;
+  margin: 2px;
+}
+
+.large-input{
+  min-width: 65%;
+  margin: 2px;
+  min-height: 22px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.small-input {
+  width: 10%;
+  margin: 2px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+label {
+  width: 20%;
+  margin: 2px;
+  text-align: right;
+  display: inline-block;
+}
+button {
+   margin: 2px;   
+}
+
+.showButton {
+  visibility: visible;
+  display: initial;
+}
+
+.hideButton {
+  visibility: hidden;
+  display: none;
+}
+
+.showEdit {
+  visibility: visible;
+  display: block;
+}
+
+.hideEdit {
+  visibility: hidden;
+  display: none;
+}
+
+ion-icon {
+  font-size: 25px;
+  width: 30px;
+}

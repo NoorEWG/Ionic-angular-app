@@ -1,0 +1,45 @@
+<ion-icon name="add-circle-outline" class="big-icon" (click)="addObjectif()"></ion-icon>
+<div *ngFor="let w of objectifs; let i = index;">
+  <form novalidate>
+    <div class="weightUpdateList">
+      <div class="updateFlexBetween">
+        <div class="updateFlex">  
+          <ion-icon name="arrow-dropdown" (click)="openEdit(i,true)" [ngClass]="w.openEdit ? 'hideButton' : 'showButton'"></ion-icon>
+          <ion-icon name="arrow-dropup" (click)="openEdit(i, false)" [ngClass]="w.openEdit ? 'showButton' : 'hideButton'"></ion-icon>
+          <div><b>{{ translations.objectif }} {{ i+1 }}</b></div>
+        </div>
+        <div>
+          <div class="updateFlexRight">
+          <ion-icon name="create" (click)="editObjectif(i)" tooltip="save" positionV="top" arrow="true" [ngClass]="(w.edit && w.openEdit) ? 'showButton' : 'hideButton'"></ion-icon>
+          <ion-icon name="save" (click)="saveChanges(w,i)" [ngClass]="(w.save && w.openEdit) ? 'showButton' : 'hideButton'"></ion-icon>
+          <ion-icon name="close-circle-outline" (click)="confirmDelete(i)"  [ngClass]="(w.openEdit && !w.openConfirmDelete)? 'showButton' : 'hideButton'"></ion-icon>
+          <div [ngClass]="(w.openConfirmDelete) ? 'showButton' : 'hideButton'">             
+            <ion-icon name="arrow-dropleft" (click)="abortDelete(i)"></ion-icon>
+            <ion-icon name="checkmark-circle-outline" (click)="deleteObjectif(i,w)"></ion-icon>
+          </div>  
+        </div>
+        </div>
+      </div>
+      <div [ngClass]="w.openEdit ? 'showEdit' : 'hideEdit'">
+        <div class="updateFlex">  
+          <label>{{ translations.objectif }}</label>
+          <input title="percentage" type="text" [(ngModel)]="w.percentage" [ngClass]="w.showNumber ? 'showButton small-input' : 'hideButton small-input'" name="percentage" [value]="w.percentage" [disabled]="w.edit"  (change)="recalculateWeight(i)"/>
+          <select title="typeObjectif" [(ngModel)]="w.typeObjectif" class="large-input" name="typeObjectif" [value]="w.typeObjectif" [disabled]="w.edit" (change)="recalculateWeight(i)">
+            <option value="1">{{ translations.objectif1 }}</option>
+            <option value="2">{{ translations.objectif2 }}</option>
+            <option value="3">{{ translations.objectif3 }}</option>
+            <option value="4">{{ translations.objectif4 }}</option>
+          </select>        
+        </div>
+        <div class="updateFlex">  
+          <label>{{ translations.weight }}</label>
+          <input title="weight" type="float"  [(ngModel)]="w.weight" class="small-input" name="weight"  [value]="w.weight" [disabled]="w.edit"/>
+        </div>
+        <div class="updateFlex">  
+          <label>{{ translations.reward }}</label>
+          <input title="reward" type="text" [(ngModel)]="w.reward" class="large-input" name="reward" [value]="w.reward" [disabled]="w.edit"/>
+        </div>
+      </div>     
+    </div>
+  </form>
+</div>  

@@ -14,14 +14,19 @@ export class WeightLossMonthDataComponent implements OnInit {
   @Input('monthData') monthData: Array<MonthWeightLoss>;
 
   translations: Internationalization;
+  
   constructor(
     private storage: Storage,
     private events: Events
   ) { 
+    this.monthData = null;
+    this.translations = new Internationalization();
+    this.translations.monthlyWeightLoss = '';    
     this.storage.get('translations').then((data) => {
       this.translations = data;
     });
-    this.monthData = null;
+
+    
   }
 
   ngOnInit() {

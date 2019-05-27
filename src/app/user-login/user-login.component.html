@@ -1,10 +1,9 @@
 <div class="login">
   <br>
-  <b>{{ loginText }}</b>
-  <div *ngIf="message" class="alert alert-success">
-    {{ message }}    
+  <div *ngIf="message" [ngClass]="auth ? 'alert alert-success' : 'alert alert-danger'">
+  {{ message }} 
   </div>
-  <div class="card" *ngIf="showLogin === true">
+  <div class="card" *ngIf="showLogin && !auth">
       <div class="card-body">
         <form [formGroup]="angForm" novalidate>
           <div class="form-group">
@@ -43,6 +42,9 @@
               <div *ngIf="bForm.controls['email'].invalid && (bForm.controls['email'].dirty || bForm.controls['email'].touched)" class="alert alert-danger">
                 <div *ngIf="bForm.controls['email'].errors.required">
                   {{ translations.emailRequired }}
+                </div>
+                <div *ngIf="bForm.controls['email'].errors.required">
+                    TODO => email not conform
                 </div>
               </div>
               <div class="form-group">
@@ -92,13 +94,45 @@
                 </div>
                 <div class="form-group">
                     <label class="col-md-4"> {{ translations.length }}</label>
-                    <input type="text" class="form-control" formControlName="length" #length />
+                    <input type="number" min="100" max="210" class="form-control" formControlName="length" #length />
                 </div>
                 <div *ngIf="bForm.controls['length'].invalid && (bForm.controls['length'].dirty || bForm.controls['length'].touched)" class="alert alert-danger">
                   <div *ngIf="bForm.controls['length'].errors.required">
                     {{ translations.lengthRequired }}
                   </div>
-                </div>      
+                  <div *ngIf="bForm.controls['length'].errors.min || bForm.controls['length'].errors.min">
+                      TODO length tussen 100 en 210
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4"> {{ translations.age }}</label>
+                    <input type="text" class="form-control" formControlName="age" #age />
+                </div>
+                <div *ngIf="bForm.controls['age'].invalid && (bForm.controls['age'].dirty || bForm.controls['age'].touched)" class="alert alert-danger">
+                  <div *ngIf="bForm.controls['age'].errors.required">
+                    {{ translations.ageRequired }}
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4"> {{ translations.gender }}</label>
+                    <select class="form-control" formControlName="gender" #gender>
+                      <option value="m">{{ translations.male }}</option>
+                      <option value="f">{{ translations.female }}</option>
+                      <option value="o">{{ translations.other }}</option>
+                    </select>
+                </div>
+                <!--li-ionic4-datepicker [(ngModel)]="mydate" [inputDateConfig]="datePickerObj"></li-ionic4-datepicker>
+                <ion-input readonly [(ngModel)]="mydate" [liIonic4Datepicker]="datePickerObj">
+                </ion-input-->
+                <div class="form-group">
+                    <label class="col-md-4"> {{ translations.startDate }}</label>
+                    <input type="date" class="form-control" formControlName="startDate" #startdate />
+                </div>
+                <div *ngIf="bForm.controls['startDate'].invalid && (bForm.controls['startDate'].dirty || bForm.controls['startDate'].touched)" class="alert alert-danger">
+                  <div *ngIf="bForm.controls['startDate'].errors.required">
+                    {{ translations.startDateRequired }}
+                  </div>
+                </div>            
               <div class="form-group">
                 <button type="submit" 
                 [disabled]="bForm.pristine || bForm.invalid" 
@@ -107,13 +141,13 @@
             </form>
           </div>
     </div>
-    <div *ngIf="showLogin === true && auth === false">
+    <div *ngIf="showLogin && !auth">
         <button type="submit" class="btn btn-primary" (click)="inscription()"> {{ translations.inscription }}</button>
       </div>
-    <div *ngIf="showLogin === false && auth === false">
+    <div *ngIf="!showLogin && !auth">
       <button type="submit" class="btn btn-primary" (click)="login()">{{ translations.backToLogin}}</button>  
     </div>
-    <div *ngIf="auth === true">
+    <div *ngIf="auth">
       <button type="submit" class="btn btn-primary" (click)="logOut()"><ion-icon name="exit"></ion-icon> {{ translations.logout }}</button>  
     </div>
   </div>

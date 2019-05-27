@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { WeightDate} from '../model/WeightDate';
 import { UserWeightStats} from '../model/UserWeightStats';
 import { UserData } from '../model/UserData';
+import { UserWeightObjectifs } from '../model/UserWeightObjectifs';
 
 @Injectable({
   providedIn: 'root'
@@ -36,15 +37,6 @@ export class WeightService {
     return this.http.get<UserWeightStats>(url);
   }   
 
-  public addWeight(weightDate: WeightDate): Observable<HttpResponse<String>> {
-    let url = this.baseUrl + "add";
-    return this.http.post<String>(url, weightDate,
-      {
-        headers: this.httpHeaders,
-        observe: 'response'
-      }
-    );
-  }  
   public editWeight(weightDate: WeightDate, user: UserData): Observable<HttpResponse<String>> {
     let url = this.baseUrl + "editWeightStats.php";
     let data = {'weight': weightDate, 'user': user};
@@ -65,5 +57,22 @@ export class WeightService {
         observe: 'response'
       }
     );
+  }
+  
+  public getWeightObjectifs(userId: number): Observable<Array<UserWeightObjectifs>> {
+    let url = this.baseUrl + "getWeightObjectifs.php?id=" + userId;
+    return this.http.get<Array<UserWeightObjectifs>>(url);
+  }
+
+  public editWeightObjectif(weightObjectif: UserWeightObjectifs): Observable<HttpResponse<String>> {
+    let url = this.baseUrl + "editWeightObjectif.php";
+    let data = {'weightObjectif': weightObjectif};
+    return this.http.post<String>(url, data, 
+      {
+        headers: this.httpHeaders,
+        observe: 'response'
+      }
+    );
   } 
+
 }

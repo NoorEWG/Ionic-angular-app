@@ -11,6 +11,7 @@ import { WeightLossGraphComponent } from './weight-loss-graph/weight-loss-graph.
 import { WeightLossOverviewComponent } from './weight-loss-overview/weight-loss-overview.component';
 import { WeightLossPieChartComponent } from './weight-loss-pie-chart/weight-loss-pie-chart.component';
 import { WeightLossMonthDataComponent } from './weight-loss-month-data/weight-loss-month-data.component';
+import { WeightObjectifsComponent} from './weight-objectifs/weight-objectifs.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { WeightLossMonthDataComponent } from './weight-loss-month-data/weight-lo
     WeightLossMonthDataComponent,
     WeightLossGraphComponent,
     WeightLossOverviewComponent,
-    WeightLossPieChartComponent
+    WeightLossPieChartComponent,
+    WeightObjectifsComponent
   ],
   exports: [
     WeightStatsComponent,
@@ -31,7 +33,8 @@ import { WeightLossMonthDataComponent } from './weight-loss-month-data/weight-lo
     WeightLossMonthDataComponent,
     WeightLossGraphComponent,
     WeightLossOverviewComponent,
-    WeightLossPieChartComponent
+    WeightLossPieChartComponent,
+    WeightObjectifsComponent
   ],
   imports: [
     IonicModule,

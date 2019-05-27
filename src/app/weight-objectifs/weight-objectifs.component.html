@@ -1,0 +1,20 @@
+<div class="weight-objectifs">
+  <div class="header objectifList">
+    <div class="objectif-large">{{ translations.objectifs }}</div>
+    <div class="objectif-small">{{ translations.weight }}</div>
+    <div class="objectif-large">{{ translations.reward }}</div>
+    <div class="objectif-medium">{{ translations.date }}</div>
+    <div class="objectif-small">  </div>
+  </div>
+  <div *ngFor="let objectif of objectifs; let i = index" [ngClass]="i % 2 ? 'objectifList even' : 'objectifList uneven'">
+    <div class="objectif-large">
+      <span *ngIf="objectif.typeObjectif == 2|| objectif.typeObjectif == 3">{{ objectif.percentage }} </span>
+      {{ objectif.typeDescription }}
+      <span *ngIf="objectif.typeObjectif == 4"> {{ objectif.percentage }}</span>
+    </div>
+    <div class="objectif-small">{{ objectif.weight }}</div>
+    <div class="objectif-large">{{ objectif.reward }}</div>
+    <div class="objectif-medium">{{ objectif.date }}</div>
+    <div class="objectif-small"><ion-icon [name]="objectif.date ? 'trophy' : 'remove-circle-outline'" [ngClass]="objectif.date ? 'trophy-color' : todo-color" size="large"></ion-icon></div>
+  </div>  
+</div>

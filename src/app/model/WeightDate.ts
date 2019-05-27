@@ -15,10 +15,12 @@ export class WeightDate {
     save: boolean;
     edit: boolean;
     openEdit: boolean;
+    openConfirmDelete: boolean;
 
     constructor() {
       this.edit = true;
       this.save = false;
       this.openEdit = false;
+      this.openConfirmDelete = false;
     }
 }

@@ -1,0 +1,47 @@
+.weight-objectifs {
+    max-width: 600px;
+    font-size: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 2px #991111;
+    border-radius: 8px;
+}
+
+.weight-objectifs div {
+    padding: 1px;
+}
+
+.weight-objectifs div:first-child {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.weight-objectifs div:last-child {
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.objectifList {
+    display: flex;
+    justify-content: space-between;
+}
+
+.trophy-color {
+    color: green;
+}
+
+.todo-color {
+    color: red;
+}
+
+.objectif-large {
+  width: 210px;
+}
+
+.objectif-medium {
+  width: 100px;
+}
+
+.objectif-small {
+width: 50px;
+}  

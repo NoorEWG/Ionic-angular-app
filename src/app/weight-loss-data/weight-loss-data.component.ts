@@ -20,6 +20,7 @@ export class WeightLossDataComponent implements OnInit {
     private storage: Storage,
     private events: Events
   ) { 
+    this.translations = new Internationalization();
     this.storage.get('translations').then((data) => {
       this.translations = data;
     });

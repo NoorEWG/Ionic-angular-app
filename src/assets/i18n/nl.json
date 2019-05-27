@@ -1,4 +1,5 @@
 {    
+"locale" : "nl-NL", 
 "user" : "Gebruiker",
 "password" : "Wachtwoord",
 "submit" : "Doorgaan",
@@ -12,6 +13,7 @@
 "logoutMessage" : "U bent uitgelogd",
 "loginErrorMessage": "Controleer uw mail en wachtwoord",
 "inscriptionErrorMessage": "Er is iets misgegaan. Probeer het later nogmaals",
+"userExistsErrorMessage" : "Er bestaat al een gebruiker met hetzelfde emailadres",
 "email" : "Email",
 "emailRequired" : "Email is verplicht",
 "passwordRequired" : "Wachtwoord is verplicht",
@@ -68,5 +70,21 @@
 "month": "Maand",
 "week": "Week",
 "statsGraphs": "Data, Statistieken en Grafieken",
-"weightAddUpdate": "Toevoegen/Veranderen gegevens"
+"weightAddUpdate": "Toevoegen/Veranderen gegevens",
+
+"objectif": "Doel",
+"objectifs": "Doelen",
+"objectif1": "Gewicht",
+"objectif2": "% van mijn totaal af te vallen gewicht",
+"objectif3": "% van mijn startgewicht",
+"objectif4": "BMI",
+"reward": "Beloning",
+
+
+"age": "Leeftijd",
+"gender": "Geslacht",
+"male" : "man",
+"female" : "vrouw",
+"other" : "anders"
+
 }

@@ -1,4 +1,5 @@
 { 
+"locale" : "en-US",
 "user" : "User",
 "password" : "Password",
 "submit" : "Submit",
@@ -12,6 +13,7 @@
 "logoutMessage" : "You are disconnected",
 "loginErrorMessage": "Impossible to login, please check your email and password",
 "inscriptionErrorMessage": "Something went wrong with your inscription, please try again later",
+"userExistsErrorMessage" : "Impossible to register, because there is already a registered user with the same email address",
 "email" : "Email",
 "emailRequired" : "Email is required",
 "passwordRequired" : "Password is required",
@@ -67,6 +69,21 @@
 "month" : "Month",
 "week": "Week",
 "statsGraphs": "Data, Statistics and Charts",
-"weightAddUpdate": "Add/Update data"
+"weightAddUpdate": "Add/Update data",
+
+"objectif": "Objectif",
+"objectifs": "Objectifs",
+"objectif1": "Weight",
+"objectif2": "% of my weight to lose",
+"objectif3": "% of my startweight",
+"objectif4": "BMI",
+"reward": "Reward",
+
+"age": "Age",
+"gender": "Gender",
+"male" : "male",
+"female" : "female",
+"other" : "other"
+
 
 }

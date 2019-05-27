@@ -14,6 +14,9 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
+import { Ionic4DatepickerModule } from '@logisticinfotech/ionic4-datepicker';
+
 import {
   MatInputModule,
   MatPaginatorModule,
@@ -64,14 +67,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     HttpModule,
     AngularFontAwesomeModule,
+    Ionic4DatepickerModule,
     IonicStorageModule.forRoot({
-      name: '__mydb',
-      driverOrder: ['localstorage']
+      name: '__mydb'
     })
   ],
   providers: [
     StatusBar,
     Health,
+    BluetoothSerial,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

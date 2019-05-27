@@ -41,7 +41,7 @@ export class UserService {
 
 
   public saveUser(user: UserData): Observable<HttpResponse<number>>  {
-    let url = this.baseUrl + 'saveUser.php';
+    let url = this.baseUrl + 'saveUserWeightLoss.php';
     return this.http.post<number>(url, user,
       {
         headers: this.httpHeaders,

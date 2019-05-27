@@ -27,6 +27,7 @@ export class WeightLossGraphComponent implements OnInit {
   @Input('opposite') opposite: boolean;
   @Input('startWeight') startWeight: number;
   @Input('targetWeight') targetWeight: number;
+  @Input('measure') measure: string;
   @ViewChild('chartTarget') chartTarget: ElementRef;
   chart: Highcharts.Chart;
   zones: Array<Object>;
@@ -45,7 +46,6 @@ export class WeightLossGraphComponent implements OnInit {
     });
   
     this.events.subscribe('translations', (data) => {
-      console.log('graph component - translations event');
       this.translations = data;
       this.getGraph();
     }); 
@@ -55,8 +55,6 @@ export class WeightLossGraphComponent implements OnInit {
     let mesure = '';
     this.zones = new Array<Object>();
   
-    console.log(this.title);
-    console.log(this.translations.bmi);
     if(this.title === this.translations.bmi ) {
       this.zones = [{
         value: 20, 
@@ -97,16 +95,13 @@ export class WeightLossGraphComponent implements OnInit {
       this.translations.rightLeg 
     ];
     
-    if (cmGraphs.indexOf(this.title)) {
-      mesure = ' in cm';
-    }
-    else if(this.title === this.translations.bmi) {
-      mesure = '';
+    if(this.measure) {
+      mesure = ' in ' + this.measure;
     }
     else {
-      mesure = ' in kg';
+      mesure = ' ';
     }
-
+  
     const options: Highcharts.Options = {
       chart: {
         type: this.chartType,
@@ -140,9 +135,7 @@ export class WeightLossGraphComponent implements OnInit {
           formatter: function() {
             return moment(this.value).format("DD/MM/YYYY");
           }
-        },
-        ordinal: false,
-        //minTickInterval: 3600*24*30*1000 //moment.duration(1, 'month').asMilliseconds() 
+        }
       },
       yAxis: [{
         title: {
@@ -173,24 +166,24 @@ export class WeightLossGraphComponent implements OnInit {
       }
     };
   
-    var correctedSeries = this.series;
-    correctedSeries.forEach(function(element, index) {
-      if (element === 0) {
-        correctedSeries[index] = null;
-      }
-    });
-    this.series = correctedSeries;
+    this.series = this.correctSeries(this.series);
   
     if(this.chartType === 'column') {
       options.chart.type = this.chartType;
-      /*options.chart.options3d = {
+      options.chart.options3d = {
         enabled: true,
-        alpha: 20,
-        beta: 30,
-        viewDistance: 5,
-        depth: 400
-      };*/
+        alpha: 10,
+        beta: 15,
+        viewDistance: 60,
+        depth: 40
+      };
       options.series.push( <Highcharts.SeriesColumnOptions> {type: this.chartType, stack: "0", name: this.title, data: this.series, yAxis: 0});
+      options.xAxis = {
+        categories: this.categories,
+        labels: {
+          enabled : false
+        }
+      }
     }
     else if(this.chartType === 'spline') {
       options.series.push( <Highcharts.SeriesSplineOptions> {type: this.chartType, name: this.title, data: this.series, yAxis: 0});
@@ -203,38 +196,31 @@ export class WeightLossGraphComponent implements OnInit {
     }
     // min and max graph  
     options.yAxis[0].max = Math.max(...this.series) + 1;
-    var noZeros = [];
-    for( var i = 0; i < this.series.length; i++){ 
-      if ( this.series[i] ) {
-        noZeros.push(this.series[i]); 
-      }
-  }
+    var noZeros = this.calculateArrayWithoutZeros(this.series);
     options.yAxis[0].min = (Math.min(...noZeros) - 2) < 0 ? 0 : Math.min(...noZeros) - 1;
+
     // graph with 2 axis
     if(this.series2) {
+      this.series2 = this.correctSeries(this.series2);
+      var noZeros2 = this.calculateArrayWithoutZeros(this.series2); 
       var yAxisNumber = 0;
       if(this.opposite) {
+        yAxisNumber = 1;
         options.yAxis[1].opposite = true;
         // min and max graph  
         options.yAxis[1].max = Math.max(...this.series2) + 1;  
-        options.yAxis[1].min = Math.max(Math.min(...this.series2) - 1,0);
+        options.yAxis[1].min = (Math.min(...noZeros2) - 2) < 0 ? 0 : Math.min(...noZeros2) - 1;
         options.yAxis[1].visible = true;
-        yAxisNumber = 1;
       }
       else {
-        options.yAxis[1].visible = false;
         if(this.title2) {
           options.yAxis[0].title.text = this.title + " / " + this.title2 + mesure;
           options.title.text =  this.title + " / " + this.title2;
         }
+        // recalculate min and max graph 
         options.yAxis[0].max = Math.max(...this.series, ...this.series2) + 1;
-        var noZeros2 = [];
-        for( var i = 0; i < this.series2.length; i++){ 
-          if ( this.series2[i] ) {
-            noZeros2.push(this.series[i]); 
-          }
-        }
         options.yAxis[0].min = (Math.min(...noZeros, ...noZeros2) - 2) < 0 ? 0 : Math.min(...noZeros, ...noZeros2) - 1;
+        options.yAxis[1].visible = false;
       }
       if(this.chartType === 'column') {
         options.series.push( <Highcharts.SeriesColumnOptions> {type: this.chartType, stack: "1", name: this.title2, data: this.series2, yAxis: yAxisNumber});
@@ -251,5 +237,25 @@ export class WeightLossGraphComponent implements OnInit {
     }
   
     this.chart = new Highcharts.Chart(this.chartTarget.nativeElement, options);  
+  }
+
+  correctSeries(seriesToCorrect: Array<number>) {
+    var correctedSeries = seriesToCorrect;
+    seriesToCorrect.forEach(function(element, index) {
+      if (element === 0) {
+        correctedSeries[index] = null;
+      }
+    });
+    return correctedSeries;
+  }
+
+  calculateArrayWithoutZeros(seriesToCorrect: Array<number>) {
+    var noZeros = [];
+    for( var i = 0; i < this.series.length; i++){ 
+      if ( seriesToCorrect[i] ) {
+        noZeros.push(this.series[i]); 
+      }
+    }
+    return noZeros;
   }
 }

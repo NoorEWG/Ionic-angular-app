@@ -36,6 +36,7 @@ export class WeightUpdateComponent implements OnInit {
             w.edit = true;
             w.save = false;
             w.openEdit = false;
+            w.openConfirmDelete = false;
           });
         });
       }
@@ -104,6 +105,7 @@ export class WeightUpdateComponent implements OnInit {
         this.weights[index].weightLoss = null;
         this.weights[index].weekWeightLoss = null;
         this.weights[index].bmi = null;
+        this.weights[index].openConfirmDelete = false;
         this.status = data.status;
         this.events.publish("weightDelete", true);
       }
@@ -142,6 +144,14 @@ export class WeightUpdateComponent implements OnInit {
       this.weights[index].edit = open;
       this.weights[index].save = false;
     } 
+  }
+
+  public abortDelete(index: number) {
+    this.weights[index].openConfirmDelete = false;
+  }
+
+  public confirmDelete(index: number) {
+    this.weights[index].openConfirmDelete = true;
   }
 
   ngOnInit() {

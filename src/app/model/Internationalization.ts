@@ -67,6 +67,21 @@ export class Internationalization {
     week: string;
     statsGraphs: string;
 
+    objectif: string;
+    objectifs: string;
+    objectif1: string;
+    objectif2: string;
+    objectif3: string;
+    objectif4: string;
+    reward: string;
+    locale: string;
+    userExistsErrorMessage: string;
+    age: string;
+    gender: string;
+    male: string;
+    female: string;
+    other: string;
+
     constructor(
         user: string =  '',
         password: string ='',
@@ -131,7 +146,20 @@ export class Internationalization {
         monthlyWeightLoss: string = '',
         month: string = '',
         week: string = '',
-        statsGraphs: string = ''
+        statsGraphs: string = '',
+        objectif: string = '',
+        objectifs: string = '',
+        objectif1: string = '',
+        objectif2: string = '',
+        objectif3: string = '',
+        objectif4: string = '',
+        reward: string = '',
+        locale: string = 'en-US',
+        userExistsErrorMessage: string = '',
+        age: string = '',
+        gender: string ='',
+        male: string = '',
+        female: string = '',
+        other: string = '',
     ) {}
-
 }

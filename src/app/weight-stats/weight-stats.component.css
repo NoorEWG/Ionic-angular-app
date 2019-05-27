@@ -34,9 +34,12 @@
     stroke:#900000 !important;
 }
 
-/*.pie-chart {
-    height: 600px;
-}*/
+.kg-badges {
+    padding: 2px;
+    background-color: #ccbebe;
+    border: 2px solid#991111;
+    border-radius: 8px;
+}
 
 .img-container {
     padding: 5px;

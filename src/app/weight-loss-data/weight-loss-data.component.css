@@ -1,5 +1,21 @@
 .weight-loss-data {
   font-size: 55%;
+  border: solid 2px #991111;
+  border-radius: 8px;
+}
+
+.weight-loss-data div {
+  padding: 1px;
+}
+
+.weight-loss-data div:first-child {
+border-top-right-radius: 4px;
+border-top-left-radius: 4px;
+}
+
+.weight-loss-data div:last-child {
+border-bottom-right-radius: 6px;
+border-bottom-left-radius: 6px;
 }
 
 .statList-wrapper {

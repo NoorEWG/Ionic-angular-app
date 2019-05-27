@@ -7,10 +7,11 @@
     display: flex;
     flex-wrap: wrap;  
 }
+
 .badges .img-container {
     position: relative;
     text-align: center;
-  }
+}
 
 .badges .img-container .centered {
     position: absolute;

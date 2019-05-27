@@ -235,10 +235,12 @@ export class WeightStatsComponent implements OnInit {
     var monthWeightLossData = new Array<MonthWeightLoss>();
     var weightEndOfMonth = this.userData.startWeight;
     monthStats.forEach( function(item) {
-      var monthWeightLoss = Math.round((weightEndOfMonth - item.stats[item.stats.length-1].weight)*10)/10;
-      weightEndOfMonth = item.stats[item.stats.length-1].weight;
-      var mwl = new MonthWeightLoss(item.month, item.year, monthWeightLoss);
-      monthWeightLossData.push(mwl);
+      if(item.stats.length > 0) {
+        var monthWeightLoss = Math.round((weightEndOfMonth - item.stats[item.stats.length-1].weight)*10)/10;
+        weightEndOfMonth = item.stats[item.stats.length-1].weight;
+        var mwl = new MonthWeightLoss(item.month, item.year, monthWeightLoss);
+        monthWeightLossData.push(mwl);
+      }
     });
     this.monthWeightLoss = monthWeightLossData;
   }
@@ -269,7 +271,6 @@ export class WeightStatsComponent implements OnInit {
     });     
 
     this.events.subscribe('translations', (data) => {
-      console.log("weight stats, translations event");
       this.translations = data;
       if(this.userData && this.userData.id) { 
         this.calculateData(this.userData.id);

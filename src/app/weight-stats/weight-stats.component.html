@@ -5,20 +5,24 @@
     </button>
 </div>  
 <div *ngIf="auth">
-  <!--span><b>{{ infoTitle }}</b></span>
-  <hr-->
-  <br>
   <app-weight-loss-overview *ngIf="showInfo === 'overview'" [targetWeight]="userStats.user.targetWeight"  [startWeight]="userStats.user.startWeight" [totalWeightToLose]="totalWeightToLose" [startDate]="firstDate" [targetDate]="targetDate" [totalLost]="totalLost" [totalWeeks]="totalWeeks" [length]="userStats.user.length"></app-weight-loss-overview> 
-  <app-weight-loss-data *ngIf="showInfo === 'stats-data'" [weights]="userStats.weights" [totalWeightToLose]="totalWeightToLose"></app-weight-loss-data>
-  <app-weight-loss-img *ngIf="showInfo === 'stats-data'" [kg] ="kg"></app-weight-loss-img>
-  <app-weight-loss-badges *ngIf="showInfo === 'stats-data'" [targetWeight]="userStats.user.targetWeight"  [startWeight]="userStats.user.startWeight"  [totalLost]="totalLost"  ></app-weight-loss-badges>
-  <app-weight-loss-month-data *ngIf="showInfo === 'stats-data'" [monthData]="monthWeightLoss"></app-weight-loss-month-data>
+  <span *ngIf="showInfo === 'stats-data'">
+    <app-weight-loss-data [weights]="userStats.weights" [totalWeightToLose]="totalWeightToLose"></app-weight-loss-data>
+    <div class="kg-badges">
+      <app-weight-loss-img [kg] ="kg"></app-weight-loss-img>
+      <app-weight-loss-badges [targetWeight]="userStats.user.targetWeight"  [startWeight]="userStats.user.startWeight"  [totalLost]="totalLost"  ></app-weight-loss-badges>
+    </div>
+    <br>
+    <app-weight-loss-month-data [monthData]="monthWeightLoss"></app-weight-loss-month-data>
+    <br>
+    <app-weight-objectifs></app-weight-objectifs>
+  </span>
   <app-weight-loss-graph *ngIf="showInfo === 'bmi-chart'" [title]="translations.bmi" [categories]="chartDates" [series]="bmiData" chartType="areaspline"></app-weight-loss-graph>
   <app-weight-loss-pie-chart *ngIf="showInfo === 'weight-pie-charts'" [title]="translations.weightLossPieChart" name="week " [series]="weightLossPieData"></app-weight-loss-pie-chart> 
   <app-weight-loss-pie-chart *ngIf="showInfo === 'weight-pie-charts'" [title]="translations.weightGainPieChart" name="week " [series]="weightGainPieData"></app-weight-loss-pie-chart> 
-  <app-weight-loss-graph *ngIf="showInfo === 'weight-chart'" [title]="translations.weight" [categories]="chartDates" [series]="weightData" chartType="areaspline"></app-weight-loss-graph>
-  <app-weight-loss-graph *ngIf="showInfo === 'weight-loss-chart'" [title]="translations.weightLoss" [categories]="chartDates" [series]="weightLossData" chartType="areaspline"></app-weight-loss-graph>
-  <app-weight-loss-graph *ngIf="showInfo === 'waist-chart'" [title]="translations.waist" [title2]="translations.hips" [categories]="chartDates" [series]="abdominalCircumferenceData" [series2]="hipsData" chartType="areaspline" opposite="true"></app-weight-loss-graph>
-  <app-weight-loss-graph *ngIf="showInfo === 'arms-chart'" [title]="translations.leftArm" [title2]="translations.rightArm" [categories]="chartDates" [series]="leftArmData" [series2]="rightArmData" chartType="column"></app-weight-loss-graph>
-  <app-weight-loss-graph *ngIf="showInfo === 'legs-chart'" [title]="translations.leftLeg" [title2]="translations.rightLeg" [categories]="chartDates" [series]="leftLegData" [series2]="rightLegData" chartType="column"></app-weight-loss-graph>
+  <app-weight-loss-graph *ngIf="showInfo === 'weight-chart'" measure="kg" [title]="translations.weight" [categories]="chartDates" [series]="weightData" chartType="areaspline"></app-weight-loss-graph>
+  <app-weight-loss-graph *ngIf="showInfo === 'weight-loss-chart'" measure="kg" [title]="translations.weightLoss" [categories]="chartDates" [series]="weightLossData" chartType="areaspline"></app-weight-loss-graph>
+  <app-weight-loss-graph *ngIf="showInfo === 'waist-chart'" measure="cm" [title]="translations.waist" [title2]="translations.hips" [categories]="chartDates" [series]="abdominalCircumferenceData" [series2]="hipsData" chartType="areaspline" opposite="true"></app-weight-loss-graph>
+  <app-weight-loss-graph *ngIf="showInfo === 'arms-chart'" measure="cm" [title]="translations.leftArm" [title2]="translations.rightArm" [categories]="chartDates" [series]="leftArmData" [series2]="rightArmData" chartType="column"></app-weight-loss-graph>
+  <app-weight-loss-graph *ngIf="showInfo === 'legs-chart'" measure= "cm" [title]="translations.leftLeg" [title2]="translations.rightLeg" [categories]="chartDates" [series]="leftLegData" [series2]="rightLegData" chartType="column"></app-weight-loss-graph>
 </div>

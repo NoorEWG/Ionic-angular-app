@@ -47,7 +47,8 @@ export class AppComponent {
         "totalWeightToLose","kg","actuelWeight","totalWeightLostSoFar","averagePerWeek",
         "startDate","targetDate","date","totalWeightLoss","percentageOfWeightToLose",
         "leftToLose","weeklyWeightLoss", "monthlyWeightLoss", "month","week", 
-        "statsGraphs","weightAddUpdate"
+        "statsGraphs","weightAddUpdate", "objectifs", "objectif1", "objectif2", "objectif3",
+        "objectif4", "reward", "locale", "age", "gender", "male", "female", "other", "objectif"
       ];
       // initialize language
       this.initTranslate();
