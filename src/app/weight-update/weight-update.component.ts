@@ -7,6 +7,7 @@ import { ToastController } from '@ionic/angular';
 import { Events} from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Internationalization } from '../model/Internationalization';
+import { UserWeightObjectifs } from '../model/UserWeightObjectifs';
 
 @Component({
   selector: 'app-weight-update',
@@ -20,7 +21,7 @@ export class WeightUpdateComponent implements OnInit {
   message: String;
   status: number;
   translations: Internationalization;
-  auth: boolean
+  auth: boolean;
 
   constructor(private weightService: WeightService, private toastController: ToastController, private events: Events, private storage: Storage) { 
     
@@ -76,14 +77,32 @@ export class WeightUpdateComponent implements OnInit {
       this.weightService.editWeight(weightDate, this.user).subscribe(data => {
         this.message = data.body;
         this.status = data.status;
-        this.events.publish("weightUpdate", true);
+        if(this.status == 200) {
+          this.events.publish("weightUpdate", true);
+          this.weightService.getWeightObjectifs(this.user.id).subscribe(data => {
+            var objectifs = data;
+            for(var i = 0; i < objectifs.length; i++) {
+              if (weightDate.weight <= objectifs[i].weight && !objectifs[i].date) {
+                objectifs[i].date = weightDate.date;
+                this.updateObjectif(objectifs[i]);
+              }
+            }
+          });
+        }
         this.presentToast(2000);
+
       });
     }
     else {
       this.message = this.translations.weightUpdateMissingData;
       this.presentToast(2000);
     }  
+  }
+
+  public updateObjectif(objectif) {
+    this.weightService.editWeightObjectif(objectif, this.user).subscribe( data => {
+      this.events.publish("objectifUpdate", objectif);
+    });
   }
 
   public editWeight(index) {

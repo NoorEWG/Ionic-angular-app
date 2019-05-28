@@ -64,9 +64,9 @@ export class WeightService {
     return this.http.get<Array<UserWeightObjectifs>>(url);
   }
 
-  public editWeightObjectif(weightObjectif: UserWeightObjectifs): Observable<HttpResponse<String>> {
+  public editWeightObjectif(weightObjectif: UserWeightObjectifs, user: UserData): Observable<HttpResponse<String>> {
     let url = this.baseUrl + "editWeightObjectif.php";
-    let data = {'weightObjectif': weightObjectif};
+    let data = {'weightObjectif': weightObjectif, 'user': user};
     return this.http.post<String>(url, data, 
       {
         headers: this.httpHeaders,

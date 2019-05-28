@@ -98,7 +98,7 @@ export class WeightObjectifUpdateComponent implements OnInit {
     if(Number(objectif.weight)) {
       this.objectifs[index].save = false;
       this.objectifs[index].edit = true;
-      this.weightService.editWeightObjectif(objectif).subscribe(data => {
+      this.weightService.editWeightObjectif(objectif, this.user).subscribe(data => {
         this.message = data.body;
         this.events.publish("objectifUpdate", true);
         this.presentToast(2000);
