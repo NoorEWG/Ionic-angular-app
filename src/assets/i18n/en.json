@@ -83,7 +83,12 @@
 "gender": "Gender",
 "male" : "male",
 "female" : "female",
-"other" : "other"
+"other" : "other",
+
+"fat" : "Fat",
+"muscle" : "Muscle",
+"water" : "Water",
+"fatMuscleWaterPercentages" : "Fat / Muscle / Water percentages"
 
 
 }

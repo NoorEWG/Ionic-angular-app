@@ -44,6 +44,16 @@
           <label>{{ translations.rightArm }}</label>
           <input title="right arm" type="float"  [(ngModel)]="w.rightArm" name="rightArm"  [value]="w.rightArm" [disabled]="w.edit"/>
         </div> 
+        <div class="updateFlex">  
+          <label>{{ translations.fat }}</label>
+          <input title="fat percentage" type="float" [(ngModel)]="w.fatPercentage" name="fatPercentage" [value]="w.fatPercentage" [disabled]="w.edit"/>
+          <label>{{ translations.muscle }}</label>
+          <input title="muscle percentage" type="float"  [(ngModel)]="w.musclePercentage" name="musclePercentage"  [value]="w.musclePercentaghe" [disabled]="w.edit"/>
+        </div> 
+        <div class="updateFlex">  
+          <label>{{ translations.water }}</label>
+          <input title="water percentage" type="float" [(ngModel)]="w.waterPercentage" name="waterPercentage" [value]="w.waterPercentage" [disabled]="w.edit"/>
+        </div> 
       </div>     
     </div>
   </form>

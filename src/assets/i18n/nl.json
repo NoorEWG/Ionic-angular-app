@@ -85,6 +85,11 @@
 "gender": "Geslacht",
 "male" : "man",
 "female" : "vrouw",
-"other" : "anders"
+"other" : "anders",
+
+"fat" : "Vet",
+"muscle" : "Spieren",
+"water" : "Water",
+"fatMuscleWaterPercentages" : "Vet / Spier / Water percentages"
 
 }

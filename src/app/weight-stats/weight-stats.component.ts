@@ -34,6 +34,9 @@ export class WeightStatsComponent implements OnInit {
   whrRatioData: Array<number>;
   whtrRatioData: Array<number>;
   absiData: Array<number>;
+  fatPercentageData:Array<number>;
+  musclePercentageData: Array<number>;
+  waterPercentageData: Array<number>;
   weightLossPieData: Array<PieData>;
   weightGainPieData: Array<PieData>;
   chartDates: Array<string>;
@@ -131,6 +134,9 @@ export class WeightStatsComponent implements OnInit {
     var chartDates = new Array<string>();
     var weightLossPieData = new Array<PieData>(); 
     var weightGainPieData = new Array<PieData>();
+    var fatPercentageData = new Array<number>();
+    var musclePercentageData = new Array<number>();
+    var waterPercentageData = new Array<number>();
     var kg = new Array<number>();
     if(id) {
       this.weightService.getWeightStats('ASC',id).subscribe(data => {
@@ -147,6 +153,9 @@ export class WeightStatsComponent implements OnInit {
           rightArmData.push((Number(item.rightArm) == 0) ? null : Number(item.rightArm));
           leftLegData.push((Number(item.leftLeg) == 0) ? null : Number(item.leftLeg));
           rightLegData.push((Number(item.rightLeg) == 0) ? null : Number(item.rightLeg));
+          fatPercentageData.push((Number(item.fatPercentage) == 0) ? null : Number(item.fatPercentage));
+          musclePercentageData.push((Number(item.musclePercentage) == 0) ? null : Number(item.musclePercentage));
+          waterPercentageData.push((Number(item.waterPercentage) == 0) ? null : Number(item.waterPercentage));
           if(item.hips) {
             whrRatioData.push(Math.round(Number(item.abdominalCircumference)/Number(item.hips)*100)/100);
           }
@@ -191,6 +200,9 @@ export class WeightStatsComponent implements OnInit {
         this.rightArmData = rightArmData;
         this.leftLegData = leftLegData;
         this.rightLegData = rightLegData;
+        this.fatPercentageData = fatPercentageData;
+        this.musclePercentageData = musclePercentageData;
+        this.waterPercentageData = waterPercentageData;
         this.whrRatioData = whrRatioData;
         this.whtrRatioData = whtrRatioData;
         this.absiData = absiData;

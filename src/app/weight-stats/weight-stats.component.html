@@ -25,4 +25,5 @@
   <app-weight-loss-graph *ngIf="showInfo === 'waist-chart'" measure="cm" [title]="translations.waist" [title2]="translations.hips" [categories]="chartDates" [series]="abdominalCircumferenceData" [series2]="hipsData" chartType="areaspline" opposite="true"></app-weight-loss-graph>
   <app-weight-loss-graph *ngIf="showInfo === 'arms-chart'" measure="cm" [title]="translations.leftArm" [title2]="translations.rightArm" [categories]="chartDates" [series]="leftArmData" [series2]="rightArmData" chartType="column"></app-weight-loss-graph>
   <app-weight-loss-graph *ngIf="showInfo === 'legs-chart'" measure= "cm" [title]="translations.leftLeg" [title2]="translations.rightLeg" [categories]="chartDates" [series]="leftLegData" [series2]="rightLegData" chartType="column"></app-weight-loss-graph>
+  <app-weight-loss-graph *ngIf="showInfo === 'fat-muscle-water-chart'" measure= "percentage" [title]="translations.fat" [title2]="translations.muscle"  [categories]="chartDates" [series]="fatPercentageData" [series2]="musclePercentageData" chartType="spline"></app-weight-loss-graph>
 </div>

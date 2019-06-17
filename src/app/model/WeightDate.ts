@@ -8,6 +8,9 @@ export class WeightDate {
     rightLeg: number;
     leftArm: number;
     rightArm: number;
+    fatPercentage: number;
+    musclePercentage: number;
+    waterPercentage: number;
     weightLoss: number;
     weekWeightLoss: number;
     weightToLose: number;
