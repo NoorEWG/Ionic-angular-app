@@ -262,8 +262,8 @@ export class WeightLossGraphComponent implements OnInit {
         yAxisNumber = 1;
         options.yAxis[1].opposite = true;
         // min and max graph  
-        options.yAxis[1].max = Math.max(...this.series3) + 1;  
-        options.yAxis[1].min = (Math.min(...noZeros3) - 2) < 0 ? 0 : Math.min(...noZeros3) - 1;
+        options.yAxis[1].max = Math.max(...this.series2, ...this.series3) + 1;  
+        options.yAxis[1].min = (Math.min(...noZeros2, ...noZeros3) - 2) < 0 ? 0 : Math.min(...noZeros2, ...noZeros3) - 1;
         options.yAxis[1].visible = true;
       }
       else {
@@ -273,7 +273,7 @@ export class WeightLossGraphComponent implements OnInit {
         }
         // recalculate min and max graph 
         options.yAxis[0].max = Math.max(...this.series, ...this.series2, ...this.series3) + 1;
-        options.yAxis[0].min = (Math.min(...noZeros, ...noZeros2, ...noZeros3) - 2) < 0 ? 0 : Math.min(...noZeros, ...noZeros2, ...noZeros3) - 1;
+        options.yAxis[0].min = Math.min(...noZeros, ...noZeros2, ...noZeros3) - 2 < 0 ? 0 :  Math.min(...noZeros, ...noZeros2, ...noZeros3) - 1;
         options.yAxis[1].visible = false;
       }
       if(this.chartType === 'column') {
@@ -305,9 +305,9 @@ export class WeightLossGraphComponent implements OnInit {
 
   calculateArrayWithoutZeros(seriesToCorrect: Array<number>) {
     var noZeros = [];
-    for( var i = 0; i < this.series.length; i++){ 
+    for( var i = 0; i < seriesToCorrect.length; i++){ 
       if ( seriesToCorrect[i] ) {
-        noZeros.push(this.series[i]); 
+        noZeros.push(seriesToCorrect[i]); 
       }
     }
     return noZeros;
