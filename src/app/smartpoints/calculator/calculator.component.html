@@ -1,0 +1,79 @@
+<form novalidate>
+  <div class="voedingsmiddelen">
+    <div>  
+      <div>Voedingsmiddel</div>
+      <input type="text" [(ngModel)]="nutrition" name="nutrition" />
+    </div>
+    <div >  
+      <div>Hoeveelheid</div>
+      <input type="text" [(ngModel)]="quantity" name="quantity"/>
+    </div>
+    <div>    
+      <div>Eenheid</div>
+      <select [(ngModel)]="unit" name="unit">
+        <option value="gram">gram</option>
+        <option value="koffielepel">koffielepel</option>
+        <option value="eetlepel">eetlepel</option>
+        <option value="ml">ml</option>
+        <option value="stuk">stuk</option>
+        <option value="blikje">blikje</option>
+      </select>  
+    </div>
+  </div>  
+  <div class="voedingsmiddelen">
+    <div>  
+      <div>Calorieen</div>
+      <input type="float" [(ngModel)]="calories" name="calories" (ngModelChange)="calculate()" />
+    </div>
+  </div>
+  <div class="voedingsmiddelen">  
+    <div>  
+      <div>Vetten</div>
+      <input title="vet" type="float" [(ngModel)]="fat" name="fat" />
+    </div>
+    <div>  
+      <div>Verzadigd vet</div>
+      <input title="verzadigd vet" type="float" [(ngModel)]="saturatedFat" (ngModelChange)="calculate()" name="saturatedFat" />
+    </div>
+  </div>
+  <div class="voedingsmiddelen">  
+    <div>  
+      <div>Koolhydraten</div>
+      <input title="koolhydraten" type="float" [(ngModel)]="carbs" name="carbs" />
+    </div>
+    <div>  
+        <div>Suiker</div>
+        <input title="suiker" type="float" [(ngModel)]="sugar" (ngModelChange)="calculate()" name="sugar" />
+    </div>
+    <div>  
+        <div>Vezels</div>
+        <input title="vezels" type="float" [(ngModel)]="fiber" name="fiber" />
+    </div>  
+  </div>
+  <div class="voedingsmiddelen">  
+    <div >  
+      <div>Eiwitten</div>
+      <input title="eiwit" type="float" [(ngModel)]="protein" (ngModelChange)="calculate()" name="protein" />
+    </div>
+  </div>
+  <div class="voedingsmiddelen">  
+    <div >  
+      <div>Zero points</div>
+      <input title="zero-points" type="checkbox" [(ngModel)]="zeroPoints" (ngModelChange)="calculate()" name="zeroPoints" />
+    </div>
+  </div>
+  <div class="voedingsmiddelen">  
+    <div>
+      <div>Smart Points</div>
+      <input type="number" [(ngModel)]="smartPoints" name="smartPoints" disabled/>
+    </div>
+    <br>
+    <div>
+      <div>
+        <button (click)="addNutrition()" tooltip="Voeg toe">Voeg toe</button>
+      </div>
+      <div>{{ message.message }}</div>
+    </div>
+  </div>  
+</form>
+<br/>

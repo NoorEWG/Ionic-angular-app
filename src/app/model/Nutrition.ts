@@ -1,0 +1,19 @@
+export class Nutrition {
+
+    name: string;
+    unit: string;
+    quantity: number;
+    calories: number;
+    carbs: number;
+    sugar: number;
+    fiber: number;
+    fat: number;
+    saturatedFat: number;
+    protein: number;
+    zeroPoints: boolean;
+    smartPoints: number;
+    showPoints: boolean;
+  
+    constructor() {}
+
+}

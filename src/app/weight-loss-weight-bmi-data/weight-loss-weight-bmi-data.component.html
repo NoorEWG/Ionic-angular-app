@@ -1,0 +1,18 @@
+<br>
+<div class="weight-loss-data">
+  <div class="statList header">
+    <div class="dateWidth">{{ translations.week }}</div>
+    <div class="dateWidth">{{ translations.date }}</div>
+    <div class="text-right">{{ translations.bmi }}</div>
+    <div class="text-right">{{translations.weight }}</div>
+    <div class="text-right">{{translations.weightLoss }}</div>
+  </div>
+  <div *ngFor="let w of weights; let i = index" [ngClass]="(w.weekNumber % 2)? 'statList even':'statList uneven'">
+    <div>{{ i + 1}}</div>
+    <div>{{ w.date | date: "dd-MM-yyyy" }}</div>
+    <div class="text-right">{{ w.bmi }}</div>
+    <div class="text-right">{{ w.weight }} </div>
+    <div class="text-right">{{ w.weightLoss }} </div>
+  </div>
+</div>
+<br>

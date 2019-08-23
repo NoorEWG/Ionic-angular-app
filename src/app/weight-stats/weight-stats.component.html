@@ -18,12 +18,16 @@
     <app-weight-objectifs></app-weight-objectifs>
   </span>
   <app-weight-loss-graph *ngIf="showInfo === 'bmi-chart'" [title]="translations.bmi" [categories]="chartDates" [series]="bmiData" chartType="areaspline"></app-weight-loss-graph>
+  <app-weight-loss-weight-bmi-data *ngIf="showInfo === 'bmi-chart'" [weights]="userStats.weights"></app-weight-loss-weight-bmi-data>
   <app-weight-loss-pie-chart *ngIf="showInfo === 'weight-pie-charts'" [title]="translations.weightLossPieChart" name="week " [series]="weightLossPieData"></app-weight-loss-pie-chart> 
   <app-weight-loss-pie-chart *ngIf="showInfo === 'weight-pie-charts'" [title]="translations.weightGainPieChart" name="week " [series]="weightGainPieData"></app-weight-loss-pie-chart> 
   <app-weight-loss-graph *ngIf="showInfo === 'weight-chart'" measure="kg" [title]="translations.weight" [categories]="chartDates" [series]="weightData" chartType="areaspline"></app-weight-loss-graph>
+  <app-weight-loss-weight-bmi-data *ngIf="showInfo === 'weight-chart'" [weights]="userStats.weights"></app-weight-loss-weight-bmi-data>
   <app-weight-loss-graph *ngIf="showInfo === 'weight-loss-chart'" measure="kg" [title]="translations.weightLoss" [categories]="chartDates" [series]="weightLossData" chartType="areaspline"></app-weight-loss-graph>
+  <app-weight-loss-weight-bmi-data *ngIf="showInfo === 'weight-loss-chart'" [weights]="userStats.weights"></app-weight-loss-weight-bmi-data>
   <app-weight-loss-graph *ngIf="showInfo === 'waist-chart'" measure="cm" [title]="translations.waist" [title2]="translations.hips" [categories]="chartDates" [series]="abdominalCircumferenceData" [series2]="hipsData" chartType="areaspline" opposite="true"></app-weight-loss-graph>
   <app-weight-loss-graph *ngIf="showInfo === 'arms-chart'" measure="cm" [title]="translations.leftArm" [title2]="translations.rightArm" [categories]="chartDates" [series]="leftArmData" [series2]="rightArmData" chartType="column"></app-weight-loss-graph>
   <app-weight-loss-graph *ngIf="showInfo === 'legs-chart'" measure= "cm" [title]="translations.leftLeg" [title2]="translations.rightLeg" [categories]="chartDates" [series]="leftLegData" [series2]="rightLegData" chartType="column"></app-weight-loss-graph>
   <app-weight-loss-graph *ngIf="showInfo === 'fat-muscle-water-chart'" measure= "percentage" [title]="translations.fat" [title2]="translations.muscle" [title3]="translations.water"  [categories]="chartDates" [series]="fatPercentageData" [series2]="musclePercentageData" [series3]="waterPercentageData"  chartType="spline"></app-weight-loss-graph>
+  <app-calculator *ngIf="showInfo === 'smartpoints-calculator'"></app-calculator>
 </div>
