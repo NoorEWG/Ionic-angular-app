@@ -1,0 +1,90 @@
+<form novalidate>
+  <div class="nutrition-form">
+    <div>  
+      <div>Voedingsmiddel</div>
+      <select [(ngModel)]="nutrition" name="nutrition" >
+        <option *ngFor = "let n of nutritionList" [ngValue]="n">{{ n.name }} ({{ n.quantity }} {{ n.unit }})</option>
+      </select>  
+    </div>
+    <div>  
+      <div>Hoeveelheid</div>
+      <input type="float" [(ngModel)]="quantity" name="quantity" /> 
+    </div>
+    <div>  
+      <div>Maaltijd</div>
+      <select [(ngModel)]="mealType" name="mealType" >
+        <option *ngFor = "let m of mealTypeList" [ngValue]="m">{{ m.mealType }}</option>
+      </select>  
+    </div>
+    <div>  
+      <div>Datum</div>
+      <input type="date" [(ngModel)]="date" name="date" (change)="changeNutritionData()"> 
+    </div>
+    <div>
+      <button (click)="addUserNutrition()">Voeg toe</button>
+    </div>
+  </div>  
+</form>
+<div class="nutrition-form">
+  <div>
+    <div>Maaltijd</div>
+    <select [(ngModel)] = "selectedMealType" (change)="changeMealNutritionData()">
+      <option value="1">Alles</option>
+      <option value="2">Ontbijt</option>
+      <option value="3">Lunch</option>
+      <option value="4">Diner</option>
+      <option value="5">Tussendoortjes</option>
+    </select>
+  </div>
+</div>
+<div class="nutrition-data">
+  <div class="nutrition-header">
+    <div><b>Voeding</b></div>
+    <div><b>Calorieën</b></div>
+    <div><b>Smartpoints</b></div>
+    <div></div>
+    <div></div>
+  </div>  
+  <div *ngFor="let nd of nutritionData; let i of index" class="nutrition-table statList">
+    <div>{{ nd.name }}</div>
+    <div>{{ nd.calories }}</div>
+    <div>{{ nd.smartPoints}}</div>
+    <div *ngIf="nd.editNutrition && !nd.name.includes('totaal')">
+      <ion-icon name="create" (click)="editNutrition(nd)"></ion-icon>
+    </div>
+    <div *ngIf="!nd.editNutrition && !nd.name.includes('totaal')">
+      <input class="edit-nutrition" type="float" [(ngModel)]="nd.quantityChange" /> 
+      {{ nd.unit }}
+      <select [(ngModel)]="nd.mealTypeUpdate">
+        <option *ngFor = "let m of mealTypeList" [ngValue]="m.mealType">{{ m.mealType }}</option>
+      </select>  
+      <ion-icon name="save" (click)="saveNutrition(nd)"></ion-icon>
+    </div>
+    <div *ngIf="nd.deleteNutrition && !nd.name.includes('totaal')">
+      <ion-icon name="close-circle-outline" (click)="deleteNutrition(nd)"></ion-icon>
+    </div>
+    <div *ngIf="!nd.deleteNutrition && !nd.name.includes('totaal')">
+      Weet U het zeker ?
+      <ion-icon name="close-circle-outline" (click)="confirmNutrition(nd)"></ion-icon>
+    </div>
+    <div *ngIf="nd.name.includes('totaal')">
+    </div>
+    <div *ngIf="nd.name.includes('totaal')">
+   </div>
+  </div>
+</div>
+<div class="nutrition-form">Minimaal benodigde calorieën per dag {{ neededCalories }}</div>
+<div class="nutrition-data">
+  <div class="nutrition-header">
+      <div>Datum</div>
+      <div>Calorieën</div>
+      <div>Verschil</div>
+      <div>SmartPoints</div>
+  </div>
+  <div *ngFor="let c of caloriesData.valuesPerDay; let i of index" class="nutrition-table statList">
+    <div class="caloriesMin">{{ c.date }}</div>
+    <div [ngClass]="c.calories > 1500 ? 'caloriesPlus' : 'caloriesMin'">{{ c.calories }}</div>
+    <div class="caloriesMin">{{ c.calories - neededCalories }}</div>
+    <div [ngClass]="c.smartPoints > 28 ? 'smartPointsPlus' : 'smartPointsMin'">{{ c.smartPoints }}</div>
+  </div>
+</div>

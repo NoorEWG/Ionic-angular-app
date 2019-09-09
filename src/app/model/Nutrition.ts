@@ -1,5 +1,6 @@
 export class Nutrition {
 
+    id: number;
     name: string;
     unit: string;
     quantity: number;
@@ -12,7 +13,7 @@ export class Nutrition {
     protein: number;
     zeroPoints: boolean;
     smartPoints: number;
-    showPoints: boolean;
+    //showPoints: boolean;
   
     constructor() {}
 

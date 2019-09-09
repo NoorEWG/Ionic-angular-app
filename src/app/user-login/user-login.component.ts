@@ -173,6 +173,7 @@ export class UserLoginComponent implements OnInit {
   loginUser() {
     this.userService.login(this.angForm.value).subscribe(data => {
       this.userData = data.body;
+      console.log(JSON.stringify(this.userData));
       if(this.userData && this.userData.id > 0) {
         this.userData.auth = true;
         this.auth = true;

@@ -14,6 +14,7 @@ import { WeightLossMonthDataComponent } from './weight-loss-month-data/weight-lo
 import { WeightObjectifsComponent} from './weight-objectifs/weight-objectifs.component';
 import { WeightLossWeightBmiDataComponent} from './weight-loss-weight-bmi-data/weight-loss-weight-bmi-data.component';
 import { CalculatorComponent} from './smartpoints/calculator/calculator.component';
+import { AddEditNutritionComponent} from './nutrition/add-edit-nutrition/add-edit-nutrition.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CalculatorComponent} from './smartpoints/calculator/calculator.componen
     WeightLossPieChartComponent,
     WeightObjectifsComponent,
     WeightLossWeightBmiDataComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    AddEditNutritionComponent
   ],
   exports: [
     WeightStatsComponent,
@@ -40,7 +42,8 @@ import { CalculatorComponent} from './smartpoints/calculator/calculator.componen
     WeightLossPieChartComponent,
     WeightObjectifsComponent,
     WeightLossWeightBmiDataComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    AddEditNutritionComponent
   ],
   imports: [
     IonicModule,

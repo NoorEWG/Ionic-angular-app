@@ -9,6 +9,7 @@ export class UserData {
     email: string;
     address: Address;
     startWeight: number;
+    currentWeight: number;
     targetWeight: number;
     length: number;
     gender: string;

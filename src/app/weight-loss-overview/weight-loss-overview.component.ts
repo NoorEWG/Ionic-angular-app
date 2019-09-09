@@ -47,18 +47,26 @@ export class WeightLossOverviewComponent implements OnInit  {
     var percentage = Math.round(this.totalLost / this.totalWeightToLose * 1000) / 10;     
     var bmiStart = Math.round((this.startWeight / (this.length * this.length))*10)/10;
     var bmiEnd = Math.round((this.targetWeight / (this.length * this.length))*10)/10;
-    var actualWeight =  Math.round((this.startWeight-this.totalLost)*10)/10;
-    var bmiActual = Math.round((actualWeight / (this.length * this.length))*10)/10;
+    var currentWeight =  Math.round((this.startWeight-this.totalLost)*10)/10;
+    var bmiActual = Math.round((currentWeight / (this.length * this.length))*10)/10;
     var info = [];
     info.push(new OverViewData(this.translations.startWeight, this.startWeight + " " + this.translations.kg, "(" + this.translations.bmi + " " +  bmiStart+")"));   
     info.push(new OverViewData(this.translations.targetWeight, this.targetWeight + " " + this.translations.kg, "(" + this.translations.bmi + " "  + bmiEnd +")"));
     info.push(new OverViewData(this.translations.totalWeightToLose, this.totalWeightToLose + " " + this.translations.kg));
-    info.push(new OverViewData(this.translations.actuelWeight,  actualWeight + " " + this.translations.kg, "(" + this.translations.bmi + " " +  bmiActual +")"));
+    info.push(new OverViewData(this.translations.actuelWeight,  currentWeight + " " + this.translations.kg, "(" + this.translations.bmi + " " +  bmiActual +")"));
     info.push(new OverViewData(this.translations.totalWeightLostSoFar,  this.totalLost + " " + this.translations.kg, "(" + percentage + "%)"));
     info.push(new OverViewData(this.translations.averagePerWeek,  Math.round(this.totalLost * 100 / this.totalWeeks ) / 100 + " " + this.translations.kg));
     info.push(new OverViewData(this.translations.startDate, moment(this.startDate, 'YYYY-MM-DD').format('DD-MM-YYYY')));
     info.push(new OverViewData(this.translations.targetDate, this.targetDate));
     this.info = info;
+
+    this.storage.get('user').then((val) => {
+      if(val) {
+        let user = val;
+        user.currentWeight = currentWeight;
+        this.storage.set('user',user);
+      }
+    });
   }
 }
 

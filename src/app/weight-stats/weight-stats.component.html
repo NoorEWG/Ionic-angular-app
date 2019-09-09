@@ -30,4 +30,5 @@
   <app-weight-loss-graph *ngIf="showInfo === 'legs-chart'" measure= "cm" [title]="translations.leftLeg" [title2]="translations.rightLeg" [categories]="chartDates" [series]="leftLegData" [series2]="rightLegData" chartType="column"></app-weight-loss-graph>
   <app-weight-loss-graph *ngIf="showInfo === 'fat-muscle-water-chart'" measure= "percentage" [title]="translations.fat" [title2]="translations.muscle" [title3]="translations.water"  [categories]="chartDates" [series]="fatPercentageData" [series2]="musclePercentageData" [series3]="waterPercentageData"  chartType="spline"></app-weight-loss-graph>
   <app-calculator *ngIf="showInfo === 'smartpoints-calculator'"></app-calculator>
+  <app-add-edit-nutrition *ngIf="showInfo === 'voeding'"></app-add-edit-nutrition>
 </div>

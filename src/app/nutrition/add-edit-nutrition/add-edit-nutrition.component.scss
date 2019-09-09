@@ -1,0 +1,116 @@
+input, select {
+    margin: 2px;
+    padding: 1px;
+    border-radius: 4px;
+}
+
+button {
+    margin: 2px;
+    padding: 4px;
+    background: #991111;
+    color: white;
+    border-radius: 4px;
+}
+
+.nutrition-form { 
+    font-size: 80%;
+    margin-top: 4px;
+    margin-bottom: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    background-color: #ccbebe;
+    border: solid 2px #cca3a3; 
+    border-radius: 4px;
+    width: 95%;
+}
+
+.nutrition-form div {
+    display:flex;
+}
+
+.nutrition-form span {
+    padding: 4px;
+    border: 1px solid black;
+    border-radius: 4px;
+
+}
+
+.nutrition-form div div{
+    width: 40%;
+    text-align: right;
+}
+
+.nutrition-data {
+    font-size: 55%;
+    border: solid 2px #991111;
+    border-radius: 8px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+  
+.nutrition-data div {
+    padding: 1px;
+}
+  
+.nutrition-data div:first-child {
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+  
+.nutrition-data div:last-child {
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+
+.nutrition-table, .nutrition-header {
+  display: flex;
+}
+
+.nutrition-header {
+    background: #991111;
+    color: white;
+    font-weight: bold;
+}
+
+.nutrition-data .nutrition-table:nth-child(2n) {
+    background-color: #cca3a3;
+}
+
+.nutrition-data .nutrition-table:nth-child(2n+1) {
+    background-color: #ccbebe;
+}
+
+.nutrition-table div:first-child, .nutrition-header div:first-child {
+    width: 250px;
+}
+ 
+.nutrition-table div:nth-child(2), .nutrition-header div:nth-child(2),
+.nutrition-table div:nth-child(3), .nutrition-header div:nth-child(3) {
+    width: 110px;
+}
+
+.nutrition-table div:nth-child(4), .nutrition-header div:nth-child(4),
+.nutrition-table div:nth-child(5), .nutrition-header div:nth-child(5) {
+    width: 80px;
+}
+
+.nutrition-data .nutrition-table:last-child div {
+    font-weight: bold;
+}
+
+.edit-nutrition {
+    width: 20px;
+    display: inline-block;
+}
+
+.caloriesPlus, .smartPointsPlus {
+    color:  #991111;
+    font-weight: bold;
+}
+
+.caloriesMin, .smartPointsMin {
+    font-weight: bold;
+}

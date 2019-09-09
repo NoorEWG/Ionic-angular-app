@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpResponse } from '@angular/common/http'; 
 import { Observable } from 'rxjs';
-import { Nutrition} from '../model/Nutrition';
+import { UserData } from '../model/UserData';
+import { Nutrition } from '../model/Nutrition';
+import { NutritionData } from '../model/NutritionData';
+import { MealType } from '../model/MealType';
+import { UserNutritionDay } from '../model/UserNutritionDay';
 
 
 @Injectable({
@@ -37,5 +41,46 @@ export class NutritionService {
         observe: 'response'
       }
     );
-  } 
-}
+  }
+
+  public addNutritionItem(userNutritionDay: UserNutritionDay): Observable<HttpResponse<String>> {
+    let url = this.baseUrl + "addNutritionPerDay.php";
+    let data = {userNutritionDay};
+    return this.http.post<string>(url, data, 
+      {
+        headers: this.httpHeaders,
+        observe: 'response'
+      }
+    );
+  }
+  
+  public getNutritionList(): Observable<Array<Nutrition>> {
+    let url = this.baseUrl + "getNutritionList.php";
+    return this.http.get<Array<Nutrition>>(url);
+  }
+
+  public getMealTypeList(): Observable<Array<MealType>> {
+    let url = this.baseUrl + "getMealTypeList.php";
+    return this.http.get<Array<MealType>>(url);
+  }
+
+  public getNutritionData(user: UserData,date: string): Observable<Array<NutritionData>> {
+    let url = this.baseUrl + "getNutritionData.php?user_id=" + user.id + "&date=" + date;
+    return this.http.get<Array<NutritionData>>(url);
+  }
+
+  public editUserNutritionItem(id: number, quantity: number, mealType: string):  Observable<string> {
+    let url = this.baseUrl + "editUserNutritionItem.php?id=" + id + "&quantity=" + quantity +  "&meal_type=" + mealType;
+    return this.http.get<string>(url);
+  }
+
+  public deleteUserNutritionItem(id: number, user_id: number):  Observable<string> {
+    let url = this.baseUrl + "deleteUserNutritionItem.php?id=" + id + "&user_id=" + user_id ;
+    return this.http.get<string>(url);
+  }
+
+  public getCaloriesData(user_id: number):  Observable<string> {
+    let url = this.baseUrl + "getCaloriesData.php?user_id=" + user_id;
+    return this.http.get<string>(url);
+  }
+}  

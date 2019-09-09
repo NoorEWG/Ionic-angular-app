@@ -140,10 +140,10 @@ export class WeightUpdateComponent implements OnInit {
     var lastDate = this.weights[0].date;
     var newDate = moment(lastDate, 'YYYY-MM-DD').add(7,'days').format('YYYY-MM-DD');
 
-    if( moment(lastDate, 'YYYY-MM-DD').add(7,'days') > moment() ) {
+    /* if( moment(lastDate, 'YYYY-MM-DD').add(7,'days') > moment() ) {
       this.message = this.translations.weightUpdateNewDateAfterNow +  moment(newDate, 'YYYY-MM-DD').format('DD-MM-YYYY');
       this.presentToast(2000);
-    } else {
+    } else { */
       newWeight.date = newDate;
       newWeight.save = false;
       newWeight.edit = true;
@@ -151,7 +151,7 @@ export class WeightUpdateComponent implements OnInit {
       this.weights.unshift(newWeight);
       this.weights[0].save = true;
       this.weights[0].edit = false;
-    }
+    //}
   }
 
   public openEdit(index: number, open: boolean) {
