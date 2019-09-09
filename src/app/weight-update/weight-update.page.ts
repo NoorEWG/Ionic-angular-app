@@ -12,14 +12,20 @@ import { UserData } from '../model/UserData';
 export class WeightUpdatePage implements OnInit {
 
   translations: Internationalization;
-  show: boolean;
+  updateWeight: boolean;
+  updateObjectif: boolean;
+  updateNutrition: boolean;
+  updateCaloriesCalc: boolean;
   auth: boolean;
   user: UserData;
   
   constructor(
     private storage: Storage,
     private events: Events) {
-      this.show = true;
+      this.updateNutrition = false;
+      this.updateWeight = true;
+      this.updateObjectif = false;
+      this.updateCaloriesCalc = false;
       this.auth= false;  
       this.translations = new Internationalization();
       this.storage.get('translations').then((data) => {
@@ -58,11 +64,31 @@ export class WeightUpdatePage implements OnInit {
   }
 
   showWeightUpdate() {
-    this.show = true;
+    this.updateWeight = true;
+    this.updateObjectif = false;
+    this.updateNutrition = false;
+    this.updateCaloriesCalc = false;
   }
 
   showWeightObjectifUpdate() {
-    this.show = false;
+    this.updateWeight = false;
+    this.updateObjectif = true;
+    this.updateNutrition = false;
+    this.updateCaloriesCalc = false;
+  }
+
+  showNutritionUpdate() {
+    this.updateWeight = false;
+    this.updateObjectif = false;
+    this.updateNutrition = true;
+    this.updateCaloriesCalc = false;
+  }
+
+  showCaloriesUpdate() {
+    this.updateWeight = false;
+    this.updateObjectif = false;
+    this.updateNutrition = false;
+    this.updateCaloriesCalc = true;
   }
 
 }

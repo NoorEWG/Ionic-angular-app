@@ -1,26 +1,33 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>{{ translations.weightAddUpdate }}</ion-title>
-    <ion-buttons slot="secondary">
-      <ion-button fill="solid" color="secondary" (click)="showWeightUpdate()">
+<ion-content padding>
+  <ion-title>{{ translations.weightAddUpdate }}</ion-title>
+  <div class="updateButtons">
+    <ion-buttons slot="primary">
+      <ion-button fill="solid" color="tertiary" (click)="showWeightUpdate()">
         {{ translations.weight }}
       </ion-button>
-    </ion-buttons>
-    <ion-buttons slot="primary">
-      <ion-button fill="solid" color="secondary"  (click)="showWeightObjectifUpdate()">
+      <ion-button fill="solid" color="tertiary"  (click)="showWeightObjectifUpdate()">
         {{ translations.objectifs }}
       </ion-button>
+      <ion-button fill="solid" color="tertiary"  (click)="showNutritionUpdate()">
+        {{ translations.nutrition }}
+      </ion-button>
+      <ion-button fill="solid" color="tertiary"  (click)="showCaloriesUpdate()">
+        {{ translations.calories }}
+      </ion-button>
     </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
+  </div>
   <span *ngIf="auth">
-    <span *ngIf="show">
+    <span *ngIf="updateWeight">
       <app-weight-update></app-weight-update>
     </span>
-    <span *ngIf="!show">
+    <span *ngIf="updateObjectif">
       <app-weight-objectif-update></app-weight-objectif-update>
+    </span>
+    <span *ngIf="updateNutrition">
+      <app-add-edit-nutrition></app-add-edit-nutrition>
+    </span>
+    <span *ngIf="updateCaloriesCalc">
+      <app-calculator></app-calculator>
     </span>
   </span>
   <span *ngIf="!auth">

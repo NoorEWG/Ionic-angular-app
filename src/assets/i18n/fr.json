@@ -89,6 +89,9 @@
 "fat" : "Graisse",
 "muscle" : "Muscle",
 "water" : "Eau",
-"fatMuscleWaterPercentages" : "Graisse / Muscle / Eau percentages"
+"fatMuscleWaterPercentages" : "Graisse / Muscle / Eau percentages",
+
+"nutrition" : "Nutrition",
+"calories" : "Calories"
 
 }

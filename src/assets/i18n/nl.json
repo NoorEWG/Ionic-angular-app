@@ -90,6 +90,9 @@
 "fat" : "Vet",
 "muscle" : "Spieren",
 "water" : "Water",
-"fatMuscleWaterPercentages" : "Vet / Spier / Water percentages"
+"fatMuscleWaterPercentages" : "Vet / Spier / Water percentages",
+
+"nutrition" : "Voeding",
+"calories" : "Calorieen"
 
 }

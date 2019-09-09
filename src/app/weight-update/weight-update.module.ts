@@ -4,6 +4,8 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { WeightUpdateComponent } from '../weight-update/weight-update.component';
 import { WeightObjectifUpdateComponent } from '../weight-objectif-update/weight-objectif-update.component';
+import { AddEditNutritionComponent } from '../nutrition/add-edit-nutrition/add-edit-nutrition.component';
+import { CalculatorComponent } from '../smartpoints/calculator/calculator.component';
 import { IonicModule } from '@ionic/angular';
 import { WeightUpdatePage } from './weight-update.page';
 
@@ -25,7 +27,9 @@ const routes: Routes = [
   declarations: [
     WeightUpdatePage, 
     WeightUpdateComponent, 
-    WeightObjectifUpdateComponent
+    WeightObjectifUpdateComponent,
+    AddEditNutritionComponent,
+    CalculatorComponent
   ]
 })
 export class WeightUpdatePageModule {}

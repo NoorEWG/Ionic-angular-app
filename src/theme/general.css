@@ -28,3 +28,8 @@
   width: 30px;
   height: auto;
 }
+
+.updateButtons {
+  display: flex;
+  justify-content: center;
+}

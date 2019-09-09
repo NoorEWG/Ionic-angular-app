@@ -49,7 +49,7 @@ export class AppComponent {
         "leftToLose","weeklyWeightLoss", "monthlyWeightLoss", "month","week", 
         "statsGraphs","weightAddUpdate", "objectifs", "objectif1", "objectif2", "objectif3",
         "objectif4", "reward", "locale", "age", "gender", "male", "female", "other", "objectif",
-        "fat","muscle", "water", "fatMuscleWaterPercentages"
+        "fat","muscle", "water", "fatMuscleWaterPercentages", "nutrition", "calories"
       ];
       // initialize language
       this.initTranslate();
