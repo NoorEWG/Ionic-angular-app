@@ -76,13 +76,13 @@
 <div class="nutrition-form">Minimaal benodigde calorieën per dag {{ neededCalories }}</div>
 <div class="nutrition-data">
   <div class="nutrition-header">
-      <div>Datum</div>
-      <div>Calorieën</div>
-      <div>Verschil</div>
-      <div>SmartPoints</div>
+      <div class="caloriesDate">Datum</div>
+      <div class="caloriesMin">Calorieën</div>
+      <div class="caloriesMin">Verschil</div>
+      <div class="caloriesMin">SmartPoints</div>
   </div>
   <div *ngFor="let c of caloriesData.valuesPerDay; let i of index" class="nutrition-table statList">
-    <div class="caloriesMin">{{ c.date }}</div>
+    <div class="caloriesDate">{{ c.date }}</div>
     <div [ngClass]="c.calories > 1500 ? 'caloriesPlus' : 'caloriesMin'">{{ c.calories }}</div>
     <div class="caloriesMin">{{ c.calories - neededCalories }}</div>
     <div [ngClass]="c.smartPoints > 28 ? 'smartPointsPlus' : 'smartPointsMin'">{{ c.smartPoints }}</div>

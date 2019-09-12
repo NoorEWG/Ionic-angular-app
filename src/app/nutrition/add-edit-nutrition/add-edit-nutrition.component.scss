@@ -109,11 +109,18 @@ button {
     display: inline-block;
 }
 
+.caloriesDate {
+    font-weight: bold;
+}
+
+
 .caloriesPlus, .smartPointsPlus {
     color:  #991111;
     font-weight: bold;
+    text-align: right;
 }
 
 .caloriesMin, .smartPointsMin {
     font-weight: bold;
+    text-align: right;
 }

@@ -72,7 +72,7 @@ export class AddEditNutritionComponent {
         this.auth = true;
         this.user = val;
         this.userNutritionDay.user = this.user;
-        this.neededCalories = Math.round(477.593 + 9.247 * Number(this.user.currentWeight) + 3.098 * Number(this.user.length*100) - 4.33 * Number(this.user.age)) * 1.2;
+        this.neededCalories = Math.round((477.593 + 9.247 * Number(this.user.currentWeight) + 3.098 * Number(this.user.length*100) - 4.33 * Number(this.user.age)) * 1.2);
         this.getNutritionData();
         this.getCaloriesData();
       }
