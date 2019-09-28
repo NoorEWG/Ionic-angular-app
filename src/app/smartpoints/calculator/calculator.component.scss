@@ -43,3 +43,46 @@ button {
     width: 40%;
     text-align: right;
 }
+
+
+.calculator-header {
+    background: #991111;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    font-size: 70%;
+}
+*
+.calculator-table {
+    font-size: 70%;
+    display: flex;
+}
+
+.calculator-table:nth-child(2n) {
+    background-color: #cca3a3;
+}
+
+.calculator-table:nth-child(2n+1) {
+    background-color: #ccbebe;
+}
+
+.calculator-table div:first-child, .calculator-header div:first-child {
+    width: 150px;
+    padding: 2px;
+}
+ 
+.calculator-table div:not(:first-child), .calculator-header div:not(:first-child) {
+    width: 80px;
+    padding: 2px;
+    text-align: right;
+}
+
+.nutritionList {
+    border: solid 2px #991111;
+    border-radius: 8px;
+}
+
+.nutritionList .calculator-table:last-child {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}

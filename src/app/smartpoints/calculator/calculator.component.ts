@@ -24,6 +24,7 @@ export class CalculatorComponent implements OnInit {
   smartPoints: number;
   showPoints: boolean;
   message;
+  nutritionList: Array<Nutrition>;
 
   constructor(private nutritionService: NutritionService) {
     this.showPoints = false;
@@ -40,6 +41,7 @@ export class CalculatorComponent implements OnInit {
     this.zeroPoints = false;
     this.smartPoints = 0;
     this.message = {'errorCode' : 0, 'message' : ""};
+    this.getNutritionList();
   }
 
   public calculate() { 
@@ -85,6 +87,12 @@ export class CalculatorComponent implements OnInit {
         this.message = data.body;
       });
     }
+  }
+
+  public getNutritionList() {
+    this.nutritionService.getNutritionList().subscribe(data => {
+      this.nutritionList = data; 
+    });
   }
 
   ngOnInit() {}

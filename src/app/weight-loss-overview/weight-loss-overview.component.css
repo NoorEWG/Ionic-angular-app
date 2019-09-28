@@ -19,11 +19,14 @@
     border-top-left-radius: 4px;
 }
 
-.wrapper .overview:last-child {
-    border-bottom-right-radius: 8px;
-    border-bottom-left-radius: 8px;
+.wrapper .overview:last-child div:last-child {
+    border-bottom-right-radius: 6px;
 }
-  
+ 
+.wrapper .overview:last-child div:first-child {
+    border-bottom-left-radius: 6px;
+}
+
 .header {
     width: 600px;
     padding: 2px;

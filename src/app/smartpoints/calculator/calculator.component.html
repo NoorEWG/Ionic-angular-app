@@ -77,3 +77,25 @@
   </div>  
 </form>
 <br/>
+<div class="nutritionList">
+  <div class="calculator-header">
+    <div>voedingsmiddel</div>
+    <div>calorieen</div>
+    <div>vetten</div>
+    <div>vet</div>
+    <div>koolhydraten</div>
+    <div>suikers</div>
+    <div>eiwitten</div>
+    <div>SP</div>
+  </div>
+  <div *ngFor="let n of nutritionList" class="calculator-table">
+    <div>{{ n.name }}</div>
+    <div>{{ n.calories }}</div>
+    <div>{{ n.fat }}</div>
+    <div>{{ n.saturatedFat }}</div>
+    <div>{{ n.carbs }}</div>
+    <div>{{ n.sugar }}</div>
+    <div>{{ n.protein }}</div>
+    <div>{{ n.smartPoints }}</div>
+  </div>
+</div>

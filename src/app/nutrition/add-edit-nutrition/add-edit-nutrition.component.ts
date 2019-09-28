@@ -35,7 +35,6 @@ export class AddEditNutritionComponent {
   date: string;
   selectedMealType: number;
   caloriesData;
-  neededCalories: number;
   message;
 
   constructor(private nutritionService: NutritionService, 
@@ -54,7 +53,6 @@ export class AddEditNutritionComponent {
     this.quantity = 1;
     this.date = moment(new Date()).format("YYYY-MM-DD");
     this.userNutritionDay = new UserNutritionDay();
-    this.neededCalories = 0;
     this.caloriesData = { 'caloriesPerDay' : null };
     this.message = { 'errorCode' : 0, 'message' : ''};
   
@@ -72,7 +70,6 @@ export class AddEditNutritionComponent {
         this.auth = true;
         this.user = val;
         this.userNutritionDay.user = this.user;
-        this.neededCalories = Math.round((477.593 + 9.247 * Number(this.user.currentWeight) + 3.098 * Number(this.user.length*100) - 4.33 * Number(this.user.age)) * 1.2);
         this.getNutritionData();
         this.getCaloriesData();
       }
@@ -171,15 +168,37 @@ export class AddEditNutritionComponent {
       other.calories = otherCalories;
       other.smartPoints = otherSmartPoints;
       this.otherNutritionData.push(other);
-
       this.getCaloriesData();
-
     });
   }
 
   public getCaloriesData() {
+    let minCalories = Math.round((477.593 + 9.247 * Number(this.user.currentWeight) + 3.098 * Number(this.user.length*100) - 4.33 * Number(this.user.age)) * 1.2);
     this.nutritionService.getCaloriesData(this.user.id).subscribe(data => {
       this.caloriesData = data;
+      let valuesPerDay = this.caloriesData.valuesPerDay;
+      let fitbitPerDay = this.caloriesData.fitbitCalories;
+      this.caloriesData.minCalories = minCalories;
+
+      valuesPerDay.forEach( function(item) {
+        let i = 0;
+        item.fitbitCalories = 0;
+        // add the fitbit calories
+        while (i < fitbitPerDay.length) {
+          if ( fitbitPerDay[i].date === item.date) {
+            item.fitbitCalories = fitbitPerDay[i].fitbitCalories;
+            i = fitbitPerDay.length;
+          }
+          else {
+            i++
+          }
+        }
+        // if there is no fitbitdata, we take the minimum required calories per day
+        if (item.fitbitCalories == 0) {
+          item.fitbitCalories = minCalories;
+        } 
+      });
+      this.caloriesData.valuesPerDay = valuesPerDay;
     });  
   }
 
