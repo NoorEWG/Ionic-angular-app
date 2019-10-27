@@ -8,6 +8,9 @@ import { AddEditNutritionComponent } from '../nutrition/add-edit-nutrition/add-e
 import { CalculatorComponent } from '../smartpoints/calculator/calculator.component';
 import { IonicModule } from '@ionic/angular';
 import { WeightUpdatePage } from './weight-update.page';
+import { MonthYearPipe } from 'src/app/month-year.pipe';
+import { MealPipe } from 'src/app/meal.pipe';
+import { FilterNutritionPipe } from 'src/app/filter-nutrition.pipe';
 
 const routes: Routes = [
   {
@@ -29,7 +32,12 @@ const routes: Routes = [
     WeightUpdateComponent, 
     WeightObjectifUpdateComponent,
     AddEditNutritionComponent,
-    CalculatorComponent
-  ]
+    CalculatorComponent,
+    MonthYearPipe,
+    MealPipe,
+    FilterNutritionPipe
+  ],
+  providers: [MonthYearPipe, MealPipe, FilterNutritionPipe],
+  exports: [MonthYearPipe, MealPipe, FilterNutritionPipe]
 })
 export class WeightUpdatePageModule {}

@@ -5,50 +5,46 @@ import { NutritionService } from '../../api/nutrition.service';
 import { Nutrition } from 'src/app/model/Nutrition';
 import { NutritionData } from 'src/app/model/NutritionData';
 import { MealType } from 'src/app/model/MealType';
+import { NutritionType } from 'src/app/model/NutritionType';
 import { UserNutritionDay } from 'src/app/model/UserNutritionDay';
 import { UserData } from 'src/app/model/UserData';
-
 
 @Component({
   selector: 'app-add-edit-nutrition',
   templateUrl: './add-edit-nutrition.component.html',
-  styleUrls: ['./add-edit-nutrition.component.scss'],
+  styleUrls: ['./add-edit-nutrition.component.scss']
 })
 export class AddEditNutritionComponent {
-  
+    
   nutrition: Nutrition;
   nutritionList: Array<Nutrition>;
   nutritionData: Array<NutritionData>;
-  allNutritionData: Array<NutritionData>;
-  breakfastNutritionData: Array<NutritionData>;
-  lunchNutritionData: Array<NutritionData>;
-  dinerNutritionData: Array<NutritionData>;
-  otherNutritionData: Array<NutritionData>;
+  queryString: string;
   mealType: MealType;
   mealTypeUpdate: string;
   mealTypeList: Array<MealType>;
+  nutritionType: NutritionType;
+  nutritionTypeList: Array<NutritionType>;
   quantity: number;
   quantityChange: number;
   user: UserData;
   userNutritionDay: UserNutritionDay;
   auth: boolean;
   date: string;
-  selectedMealType: number;
+  selectedMealType: string;
+  selectedCaloriesMonth: string;
+  selectedCaloriesYear: string;
   caloriesData;
   message;
 
-  constructor(private nutritionService: NutritionService, 
-    private storage: Storage) {
+  constructor(private nutritionService: NutritionService, private storage: Storage) {  
     this.nutrition = new Nutrition();
+    this.selectedCaloriesMonth = moment(new Date()).format("MM");
+    this.selectedCaloriesYear =  moment(new Date()).format("YYYY");
     this.nutritionData = new Array<NutritionData>();
-    this.allNutritionData = new Array<NutritionData>();
-    this.breakfastNutritionData = new Array<NutritionData>();
-    this.lunchNutritionData = new Array<NutritionData>();
-    this.dinerNutritionData = new Array<NutritionData>();
-    this.otherNutritionData = new Array<NutritionData>();
     this.mealType = new MealType();
     this.mealTypeUpdate = "";
-    this.selectedMealType = 1;
+    this.selectedMealType = "alles";
     this.user = new UserData();
     this.quantity = 1;
     this.date = moment(new Date()).format("YYYY-MM-DD");
@@ -63,6 +59,10 @@ export class AddEditNutritionComponent {
     this.nutritionService.getMealTypeList().subscribe(data => {
       this.mealTypeList = data;
       this.mealType = this.mealTypeList[0];
+    });
+    this.nutritionService.getNutritionTypeList().subscribe(data => {
+      this.nutritionTypeList = data;
+      this.nutritionType = this.nutritionTypeList[0];
     });
 
     this.storage.get('user').then((val) => {
@@ -95,79 +95,19 @@ export class AddEditNutritionComponent {
 
   public getNutritionData() {
     this.nutritionService.getNutritionData(this.user, this.date).subscribe(data => {
-      this.allNutritionData = data;
+      this.nutritionData = data;
       let total = new NutritionData();
-      total.name = 'dag totaal';
-      let breakfast = new NutritionData();
-      breakfast.name = 'ontbijt totaal';
-      let lunch = new NutritionData();
-      lunch.name = 'lunch totaal';
-      let diner = new NutritionData();
-      diner.name = 'diner totaal';
-      let other = new NutritionData();
-      other.name = 'tussendoortjes totaal';
+      total.name = 'totaal';
+      total.mealType = this.selectedMealType;
       let dayCalories = 0;
       let daySmartPoints = 0;
-      let breakfastCalories = 0;
-      let breakfastSmartPoints = 0;
-      let lunchCalories = 0;
-      let lunchSmartPoints = 0;
-      let dinerCalories = 0;
-      let dinerSmartPoints = 0;
-      let otherCalories = 0;
-      let otherSmartPoints = 0;
-      let breakfastNutritionData = new Array<NutritionData>();
-      let lunchNutritionData = new Array<NutritionData>();
-      let dinerNutritionData = new Array<NutritionData>();
-      let otherNutritionData = new Array<NutritionData>();
-      this.allNutritionData.forEach( function(item) {
+      this.nutritionData.forEach( function(item) {
         dayCalories = dayCalories + Number(item.calories);
         daySmartPoints = daySmartPoints + Number(item.smartPoints);
-        if ( item.mealType === 'ontbijt') {
-          breakfastCalories = breakfastCalories + Number(item.calories);
-          breakfastSmartPoints = breakfastSmartPoints + Number(item.smartPoints);
-          breakfastNutritionData.push(item);
-        }
-        if ( item.mealType === 'lunch') {
-          lunchCalories = lunchCalories + Number(item.calories);
-          lunchSmartPoints = lunchSmartPoints + Number(item.smartPoints);
-          lunchNutritionData.push(item);
-        }
-        if ( item.mealType === 'diner') {
-          dinerCalories = dinerCalories + Number(item.calories);
-          dinerSmartPoints = dinerSmartPoints + Number(item.smartPoints);
-          dinerNutritionData.push(item);
-        }
-        if ( item.mealType === 'tussendoortjes') {
-          otherCalories = otherCalories + Number(item.calories);
-          otherSmartPoints = otherSmartPoints + Number(item.smartPoints);
-          otherNutritionData.push(item);
-        }
       });
       total.calories = dayCalories;
       total.smartPoints = daySmartPoints;
-      this.allNutritionData.push(total);
-      this.nutritionData = this.allNutritionData;
-
-      this.breakfastNutritionData = breakfastNutritionData;
-      breakfast.calories = breakfastCalories;
-      breakfast.smartPoints = breakfastSmartPoints;
-      this.breakfastNutritionData.push(breakfast);
-      
-      this.lunchNutritionData = lunchNutritionData;
-      lunch.calories = lunchCalories;
-      lunch.smartPoints = lunchSmartPoints;
-      this.lunchNutritionData.push(lunch);
-      
-      this.dinerNutritionData = dinerNutritionData;
-      diner.calories = dinerCalories;
-      diner.smartPoints = dinerSmartPoints;
-      this.dinerNutritionData.push(diner);
-
-      this.otherNutritionData = otherNutritionData;
-      other.calories = otherCalories;
-      other.smartPoints = otherSmartPoints;
-      this.otherNutritionData.push(other);
+      this.nutritionData.push(total);
       this.getCaloriesData();
     });
   }
@@ -198,30 +138,13 @@ export class AddEditNutritionComponent {
           item.fitbitCalories = minCalories;
         } 
       });
+      valuesPerDay = 
       this.caloriesData.valuesPerDay = valuesPerDay;
     });  
   }
 
   public changeNutritionData() {
     this.getNutritionData();
-  }
-
-  public changeMealNutritionData() {
-    if ( this.selectedMealType == 1) { 
-      this.nutritionData = this.allNutritionData;     
-    }
-    else if ( this.selectedMealType == 2) { 
-      this.nutritionData = this.breakfastNutritionData;     
-    }
-    else if ( this.selectedMealType == 3) { 
-      this.nutritionData = this.lunchNutritionData;     
-    }
-    else if ( this.selectedMealType == 4) { 
-      this.nutritionData = this.dinerNutritionData;     
-    }
-    else { 
-      this.nutritionData = this.otherNutritionData;     
-    }
   }
 
   public editNutrition(nutrition) {

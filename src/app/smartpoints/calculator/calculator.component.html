@@ -57,6 +57,14 @@
     </div>
   </div>
   <div class="voedingsmiddelen">  
+      <div >  
+        <div>Schijf van vijf</div>
+        <select [(ngModel)]="nutritionType" name="nutritionType">
+            <option *ngFor = "let n of nutritionTypeList" [ngValue]="n">{{ n.nutritionType }}</option>
+        </select>    
+      </div>
+    </div>
+  <div class="voedingsmiddelen">  
     <div >  
       <div>Zero points</div>
       <input title="zero-points" type="checkbox" [(ngModel)]="zeroPoints" (ngModelChange)="calculate()" name="zeroPoints" />

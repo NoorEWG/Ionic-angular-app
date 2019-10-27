@@ -5,6 +5,7 @@ import { UserData } from '../model/UserData';
 import { Nutrition } from '../model/Nutrition';
 import { NutritionData } from '../model/NutritionData';
 import { MealType } from '../model/MealType';
+import { NutritionType } from '../model/NutritionType';
 import { UserNutritionDay } from '../model/UserNutritionDay';
 
 
@@ -62,6 +63,11 @@ export class NutritionService {
   public getMealTypeList(): Observable<Array<MealType>> {
     let url = this.baseUrl + "getMealTypeList.php";
     return this.http.get<Array<MealType>>(url);
+  }
+
+  public getNutritionTypeList(): Observable<Array<NutritionType>> {
+    let url = this.baseUrl + "getNutritionTypeList.php";
+    return this.http.get<Array<NutritionType>>(url);
   }
 
   public getNutritionData(user: UserData,date: string): Observable<Array<NutritionData>> {

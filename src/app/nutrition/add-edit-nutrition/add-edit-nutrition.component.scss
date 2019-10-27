@@ -75,9 +75,13 @@ button {
 .nutrition-header {
     background: #991111;
     color: white;
-    font-weight: bold;
+    font-weight: bold;      
 }
 
+.nutrition-header input, .nutrition-header select {  
+    color: black;
+    font-weight: bold;      
+}
 .nutrition-data .nutrition-table:nth-child(2n) {
     background-color: #cca3a3;
 }

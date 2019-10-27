@@ -13,8 +13,7 @@ import { WeightLossPieChartComponent } from './weight-loss-pie-chart/weight-loss
 import { WeightLossMonthDataComponent } from './weight-loss-month-data/weight-loss-month-data.component';
 import { WeightObjectifsComponent} from './weight-objectifs/weight-objectifs.component';
 import { WeightLossWeightBmiDataComponent} from './weight-loss-weight-bmi-data/weight-loss-weight-bmi-data.component';
-//import { CalculatorComponent} from './smartpoints/calculator/calculator.component';
-//import { AddEditNutritionComponent} from './nutrition/add-edit-nutrition/add-edit-nutrition.component';
+import { MonthYearPipe } from './month-year.pipe';
 
 @NgModule({
   declarations: [
@@ -27,9 +26,7 @@ import { WeightLossWeightBmiDataComponent} from './weight-loss-weight-bmi-data/w
     WeightLossOverviewComponent,
     WeightLossPieChartComponent,
     WeightObjectifsComponent,
-    WeightLossWeightBmiDataComponent,
-    //CalculatorComponent,
-    //AddEditNutritionComponent
+    WeightLossWeightBmiDataComponent
   ],
   exports: [
     WeightStatsComponent,
@@ -41,9 +38,7 @@ import { WeightLossWeightBmiDataComponent} from './weight-loss-weight-bmi-data/w
     WeightLossOverviewComponent,
     WeightLossPieChartComponent,
     WeightObjectifsComponent,
-    WeightLossWeightBmiDataComponent,
-    //CalculatorComponent,
-    //AddEditNutritionComponent
+    WeightLossWeightBmiDataComponent
   ],
   imports: [
     IonicModule,
@@ -51,6 +46,8 @@ import { WeightLossWeightBmiDataComponent} from './weight-loss-weight-bmi-data/w
     FormsModule,
     ReactiveFormsModule,
     AngularFontAwesomeModule
-  ]
+  ],
+  providers: [MonthYearPipe]
+
 })
 export class ComponentModule {}

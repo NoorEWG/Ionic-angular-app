@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'weight-stats', pathMatch: 'full' },
   { path: 'home', loadChildren:  './user-login/user-login.module#UserLoginPageModule' },

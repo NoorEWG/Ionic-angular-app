@@ -16,7 +16,6 @@ import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 import { Ionic4DatepickerModule } from '@logisticinfotech/ionic4-datepicker';
-
 import {
   MatInputModule,
   MatPaginatorModule,
@@ -26,6 +25,7 @@ import {
   MatIconModule,
   MatButtonModule,
   MatCardModule,
+  MatAutocompleteModule,
   MatFormFieldModule } from "@angular/material";
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
@@ -62,6 +62,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
+    MatAutocompleteModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -79,6 +80,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

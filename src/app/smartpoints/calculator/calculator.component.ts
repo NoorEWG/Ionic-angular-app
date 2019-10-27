@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NutritionService } from '../../api/nutrition.service'; 
 import { Nutrition } from 'src/app/model/Nutrition';
+import { NutritionType } from 'src/app/model/NutritionType';
 
 @Component({
   selector: 'app-calculator',
@@ -21,6 +22,8 @@ export class CalculatorComponent implements OnInit {
   saturatedFat: number;
   protein: number;
   zeroPoints: boolean;
+  nutritionType: NutritionType;
+  nutritionTypeList: Array<NutritionType>;
   smartPoints: number;
   showPoints: boolean;
   message;
@@ -41,6 +44,10 @@ export class CalculatorComponent implements OnInit {
     this.zeroPoints = false;
     this.smartPoints = 0;
     this.message = {'errorCode' : 0, 'message' : ""};
+    this.nutritionService.getNutritionTypeList().subscribe(data => {
+      this.nutritionTypeList = data;
+      this.nutritionType = this.nutritionTypeList[0];
+    });
     this.getNutritionList();
   }
 
@@ -83,6 +90,7 @@ export class CalculatorComponent implements OnInit {
       nutrition.protein = this.protein;
       nutrition.zeroPoints = this.zeroPoints;
       nutrition.smartPoints = this.smartPoints;
+      nutrition.nutritionType = this.nutritionType;
       this.nutritionService.addNutrition(nutrition).subscribe(data => {
         this.message = data.body;
       });

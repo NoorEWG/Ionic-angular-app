@@ -1,3 +1,5 @@
+import { NutritionType } from './NutritionType';
+
 export class Nutrition {
 
     id: number;
@@ -13,7 +15,7 @@ export class Nutrition {
     protein: number;
     zeroPoints: boolean;
     smartPoints: number;
-    //showPoints: boolean;
+    nutritionType: NutritionType;
   
     constructor() {}
 
