@@ -6,6 +6,10 @@ input, select {
     width: 50%;
 }
 
+.hoeveelheid {
+    width: 25%;
+}
+
 
 button {
     margin: 2px;
@@ -68,11 +72,11 @@ button {
 }
 
 
-.nutrition-table, .nutrition-header {
+.nutrition-table, .nutrition-header, .nutrition-footer {
   display: flex;
 }
 
-.nutrition-header {
+.nutrition-header, .nutrition-footer {
     background: #991111;
     color: white;
     font-weight: bold;      
@@ -104,6 +108,9 @@ button {
     width: 80px;
 }
 
+.nutrition-footer div {
+    width: 110px;
+}
 .nutrition-data .nutrition-table:last-child div {
     font-weight: bold;
 }
@@ -127,4 +134,14 @@ button {
 .caloriesMin, .smartPointsMin {
     font-weight: bold;
     text-align: right;
+}
+
+.mat-form-field-flex, .mat-option, .mat-select-content {
+    width: 500px !important;
+}
+
+::ng-deep .mat-select-content{
+    width:500px;
+    color:green;
+    font-size: 10px;   
 }

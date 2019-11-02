@@ -8,17 +8,20 @@ import { MealType } from 'src/app/model/MealType';
 import { NutritionType } from 'src/app/model/NutritionType';
 import { UserNutritionDay } from 'src/app/model/UserNutritionDay';
 import { UserData } from 'src/app/model/UserData';
+import { FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-add-edit-nutrition',
   templateUrl: './add-edit-nutrition.component.html',
   styleUrls: ['./add-edit-nutrition.component.scss']
 })
+
 export class AddEditNutritionComponent {
     
   nutrition: Nutrition;
   nutritionList: Array<Nutrition>;
   nutritionData: Array<NutritionData>;
+  totalNutrition: NutritionData;
   queryString: string;
   mealType: MealType;
   mealTypeUpdate: string;
@@ -27,6 +30,7 @@ export class AddEditNutritionComponent {
   nutritionTypeList: Array<NutritionType>;
   quantity: number;
   quantityChange: number;
+  unit: string;
   user: UserData;
   userNutritionDay: UserNutritionDay;
   auth: boolean;
@@ -35,26 +39,52 @@ export class AddEditNutritionComponent {
   selectedCaloriesMonth: string;
   selectedCaloriesYear: string;
   caloriesData;
+  months;
+  years: Array<Number>;
   message;
+  myControl;
 
   constructor(private nutritionService: NutritionService, private storage: Storage) {  
     this.nutrition = new Nutrition();
     this.selectedCaloriesMonth = moment(new Date()).format("MM");
     this.selectedCaloriesYear =  moment(new Date()).format("YYYY");
+    this.months = [
+      { "number": 1, "name": "Januari" }, 
+      { "number": 2, "name": "Februari" }, 
+      { "number": 3, "name": "Maart" }, 
+      { "number": 4, "name": "April" }, 
+      { "number": 5, "name": "Mei" }, 
+      { "number": 6, "name": "Juni" }, 
+      { "number": 7, "name": "Juli" }, 
+      { "number": 8, "name": "Augustus" }, 
+      { "number": 9, "name": "September" }, 
+      { "number": 10, "name": "Oktober" }, 
+      { "number": 11, "name": "November" }, 
+      { "number": 12, "name": "December" }, 
+    ];
+    this.years = new Array<Number>();
+    let year = Number(this.selectedCaloriesYear) - 10;
+    while (year <= Number(this.selectedCaloriesYear)) {
+      this.years.push(year);
+      year++;
+    }  
     this.nutritionData = new Array<NutritionData>();
+    this.totalNutrition = new NutritionData();
     this.mealType = new MealType();
     this.mealTypeUpdate = "";
     this.selectedMealType = "alles";
     this.user = new UserData();
-    this.quantity = 1;
+    this.quantity = 0;
+    this.unit = "";
     this.date = moment(new Date()).format("YYYY-MM-DD");
     this.userNutritionDay = new UserNutritionDay();
     this.caloriesData = { 'caloriesPerDay' : null };
     this.message = { 'errorCode' : 0, 'message' : ''};
-  
+    this.myControl = new FormControl();
+
     this.nutritionService.getNutritionList().subscribe(data => {
       this.nutritionList = data;
-      this.nutrition = this.nutritionList[0];   
+      this.nutrition = this.nutritionList[0];
     });
     this.nutritionService.getMealTypeList().subscribe(data => {
       this.mealTypeList = data;
@@ -82,13 +112,15 @@ export class AddEditNutritionComponent {
 
   public addUserNutrition() {
     this.userNutritionDay.nutrition = this.nutrition;
-    this.userNutritionDay.quantity = this.quantity;
+    this.userNutritionDay.quantity = Math.round(Number(this.quantity) * 100 / Number(this.nutrition.quantity)) / 100;
     this.userNutritionDay.date = this.date;
     this.userNutritionDay.mealType = this.mealType;
     this.nutritionService.addNutritionItem(this.userNutritionDay).subscribe(data => {
       this.message = data.body;
       this.nutrition = null;
-      this.quantity = 1;
+      this.quantity = 0;
+      this.unit = ""
+      this.queryString = "";
       this.getNutritionData();
     });
   }
@@ -101,13 +133,27 @@ export class AddEditNutritionComponent {
       total.mealType = this.selectedMealType;
       let dayCalories = 0;
       let daySmartPoints = 0;
+      let dayFat = 0;
+      let dayFiber = 0;
+      let dayCarbs = 0;
+      let dayProtein = 0;
       this.nutritionData.forEach( function(item) {
-        dayCalories = dayCalories + Number(item.calories);
-        daySmartPoints = daySmartPoints + Number(item.smartPoints);
+        if(item.mealType === total.mealType || total.mealType === "alles") {
+          dayCalories = dayCalories + Number(item.calories);
+          daySmartPoints = daySmartPoints + Number(item.smartPoints);
+          dayFat = dayFat + Number(item.fat);
+          dayFiber = dayFiber + Number(item.fiber);
+          dayCarbs = dayCarbs + Number(item.carbs);
+          dayProtein = dayProtein + Number(item.protein);
+        }
       });
       total.calories = dayCalories;
       total.smartPoints = daySmartPoints;
-      this.nutritionData.push(total);
+      total.carbs = dayCarbs;
+      total.fat = dayFat;
+      total.fiber = dayFiber;
+      total.protein = dayProtein;
+      this.totalNutrition = total;
       this.getCaloriesData();
     });
   }
@@ -175,4 +221,15 @@ export class AddEditNutritionComponent {
       nutrition.editNutrition = true;
     });
   }
+
+  displayFn(nutrition) {
+    if(nutrition) {
+      this.nutrition = nutrition;
+      this.quantity = nutrition.quantity;
+      this.unit = nutrition.unit;
+      //return nutrition.name + " (" + nutrition.quantity + " " +  nutrition.unit + ")";
+      return nutrition.name;
+    }
+  }
+
 }

@@ -86,3 +86,25 @@ button {
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
 }
+
+.calculator-checkbox {
+    background: #991111;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    font-size: 70%;
+}
+.calculator-checkbox input {
+    color: black;
+}
+
+
+.calculator-checkbox label {
+    margin-right: 10px; 
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-retroorange,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-retroorange {
+  color: #fff;
+  background: #ff9933;
+}

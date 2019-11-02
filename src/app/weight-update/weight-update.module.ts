@@ -10,7 +10,9 @@ import { IonicModule } from '@ionic/angular';
 import { WeightUpdatePage } from './weight-update.page';
 import { MonthYearPipe } from 'src/app/month-year.pipe';
 import { MealPipe } from 'src/app/meal.pipe';
+import { NutritionPipe } from 'src/app/nutrition.pipe';
 import { FilterNutritionPipe } from 'src/app/filter-nutrition.pipe';
+import { MatInputModule, MatAutocompleteModule, MatFormFieldModule } from "@angular/material";
 
 const routes: Routes = [
   {
@@ -25,6 +27,9 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatFormFieldModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
@@ -35,9 +40,10 @@ const routes: Routes = [
     CalculatorComponent,
     MonthYearPipe,
     MealPipe,
+    NutritionPipe,
     FilterNutritionPipe
   ],
-  providers: [MonthYearPipe, MealPipe, FilterNutritionPipe],
-  exports: [MonthYearPipe, MealPipe, FilterNutritionPipe]
+  providers: [MonthYearPipe, MealPipe, NutritionPipe, FilterNutritionPipe],
+  exports: [MonthYearPipe, MealPipe, NutritionPipe, FilterNutritionPipe]
 })
 export class WeightUpdatePageModule {}

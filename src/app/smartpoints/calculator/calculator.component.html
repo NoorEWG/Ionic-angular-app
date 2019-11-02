@@ -86,24 +86,46 @@
 </form>
 <br/>
 <div class="nutritionList">
+    <div class="calculator-header">
+      <div>voedingsmiddel</div>
+      <div>
+        <input type="text" [(ngModel)]="searchText">
+      </div>  
+    </div>  
+    <div class="calculator-checkbox">
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input"  [(ngModel)]="sp_box" id="sp_box">
+        <label class="custom-control-label" for="sp_box">smartPoints</label>
+      </div>
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input"  [(ngModel)]="sat_fat_box" id="sat_fat_box">
+        <label class="custom-control-label" for="sat_fat_box">verz.vet</label>
+      </div>
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input"  [(ngModel)]="fiber_box" id="fiber_box">
+        <label class="custom-control-label" for="fiber_box">vezels</label>
+      </div>
+    </div>
   <div class="calculator-header">
-    <div>voedingsmiddel</div>
-    <div>calorieen</div>
-    <div>vetten</div>
+    <div>naam</div>
+    <div>cal</div>
     <div>vet</div>
-    <div>koolhydraten</div>
-    <div>suikers</div>
-    <div>eiwitten</div>
-    <div>SP</div>
+    <div *ngIf="sat_fat_box">verz.vet</div>
+    <div>koolh.</div>
+    <div>suiker</div>
+    <div *ngIf="fiber_box">vezels</div>
+    <div>eiwit</div>
+    <div *ngIf="sp_box">SP</div>
   </div>
-  <div *ngFor="let n of nutritionList" class="calculator-table">
+  <div *ngFor="let n of nutritionList | nutritionName : searchText" class="calculator-table">
     <div>{{ n.name }}</div>
     <div>{{ n.calories }}</div>
     <div>{{ n.fat }}</div>
-    <div>{{ n.saturatedFat }}</div>
+    <div *ngIf="sat_fat_box">{{ n.saturatedFat }}</div>
     <div>{{ n.carbs }}</div>
     <div>{{ n.sugar }}</div>
+    <div *ngIf="fiber_box">{{ n.fiber }}</div>
     <div>{{ n.protein }}</div>
-    <div>{{ n.smartPoints }}</div>
+    <div *ngIf="sp_box">{{ n.smartPoints }}</div>
   </div>
 </div>

@@ -1,15 +1,25 @@
-<form novalidate>
+<form novalidate>  
+  
+
   <div class="nutrition-form">
-    <div>  
+    <div>
+      <mat-form-field>
+        <input type="text" placeholder="Voer een voedingmiddel in"  [(ngModel)]="queryString"  name="queryString" matInput [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn.bind(this)">
+          <mat-option *ngFor="let n of nutritionList | filterNutrition: queryString" [value]="n">{{ n.name }} ({{ n.quantity }} {{ n.unit }})</mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>  
+    <!--div>  
       <div>Voedingsmiddel</div>
-      <input type="text" [(ngModel)]="queryString" name="queryString">
+      <input type="text" [(ngModel)]="queryString" name="queryString">  
       <select [(ngModel)]="nutrition" name="nutrition" >
         <option *ngFor = "let n of nutritionList | filterNutrition: queryString" [ngValue]="n">{{ n.name }} ({{ n.quantity }} {{ n.unit }})</option>
       </select>  
-    </div>
+    </div-->
     <div>  
       <div>Hoeveelheid</div>
-      <input type="float" [(ngModel)]="quantity" name="quantity" /> 
+      <input class="hoeveelheid" type="float" [(ngModel)]="quantity" name="quantity" />{{ unit }} 
     </div>
     <div>  
       <div>Maaltijd</div>
@@ -30,7 +40,7 @@
 <div class="nutrition-data">
   <div class="nutrition-header">
     <div>Maaltijd</div>
-    <select [(ngModel)] = "selectedMealType">
+    <select [(ngModel)] = "selectedMealType" (change)="getNutritionData()">
       <option value="alles">alles</option>
       <option value="ontbijt">ontbijt</option>
       <option value="lunch">lunch</option>
@@ -72,12 +82,36 @@
     <div *ngIf="nd.name.includes('totaal')">
    </div>
   </div>
+  <div class="nutrition-footer">
+      <div><b>Calorieen</b></div>
+      <div><b>{{ totalNutrition.calories }}</b></div>
+      <div><b>SmartPoints</b></div>
+      <div><b>{{ totalNutrition.smartPoints }}</b></div>
+    </div> 
+  <div class="nutrition-footer">
+    <div><b>Vet</b></div>
+    <div><b>{{ totalNutrition.fat }} gr</b></div>
+    <div><b>Koolhydraten</b></div>
+    <div><b>{{ totalNutrition.carbs }} gr</b></div>
+  </div> 
+  <div class="nutrition-footer">
+    <div><b>Eiwit</b></div>
+    <div><b>{{ totalNutrition.protein }} gr</b></div>
+    <div><b>Vezels</b></div>
+    <div><b>{{ totalNutrition.fiber }} gr</b></div>
+  </div> 
 </div>
 <br>
 <div class="nutrition-data">
   <div class="nutrition-header">
-    <div>Maand</div><input type="text" [(ngModel)]="selectedCaloriesMonth" name="selectedCaloriesMonth" value="selectedCaloriesMonth"/> 
-    <div>Jaar</div><input type="text" [(ngModel)]="selectedCaloriesYear" name="selectedCaloriesYear" value="selectedCaloriesYear"/> 
+    <div>Maand</div>
+    <select type="text" [(ngModel)]="selectedCaloriesMonth" name="selectedCaloriesMonth" value="selectedCaloriesMonth">
+      <option *ngFor="let m of months" [value]="m.number">{{ m.name }}</option>
+    </select> 
+    <div>Jaar</div>
+    <select type="text" [(ngModel)]="selectedCaloriesYear" name="selectedCaloriesYear" value="selectedCaloriesYear">
+        <option *ngFor="let y of years" [value]="y">{{ y }}</option>
+    </select> 
   </div>
   <div class="nutrition-header">
       <div class="caloriesDate">Datum</div>

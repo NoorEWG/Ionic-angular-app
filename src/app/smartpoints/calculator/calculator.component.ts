@@ -26,6 +26,10 @@ export class CalculatorComponent implements OnInit {
   nutritionTypeList: Array<NutritionType>;
   smartPoints: number;
   showPoints: boolean;
+  searchText: string;
+  sp_box: boolean;
+  sat_fat_box: boolean;
+  fiber_box: boolean;
   message;
   nutritionList: Array<Nutrition>;
 
@@ -43,6 +47,10 @@ export class CalculatorComponent implements OnInit {
     this.protein = 0;
     this.zeroPoints = false;
     this.smartPoints = 0;
+    this.searchText = null;
+    this.sp_box = true;
+    this.sat_fat_box = false;
+    this.fiber_box = false;
     this.message = {'errorCode' : 0, 'message' : ""};
     this.nutritionService.getNutritionTypeList().subscribe(data => {
       this.nutritionTypeList = data;
