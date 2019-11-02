@@ -10,7 +10,6 @@ export class FilterNutritionPipe implements PipeTransform {
       if (!items) return [];
       if (!value) return  items;
       if (value == '' || value == null) return [];
-      console.log(value);
       if(value.name) {
         return items.filter(item => item.name.toLowerCase().indexOf(value.name.toLowerCase()) > -1 );   
       }

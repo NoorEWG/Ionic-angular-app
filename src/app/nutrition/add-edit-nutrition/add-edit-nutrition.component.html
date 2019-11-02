@@ -4,19 +4,12 @@
   <div class="nutrition-form">
     <div>
       <mat-form-field>
-        <input type="text" placeholder="Voer een voedingmiddel in"  [(ngModel)]="queryString"  name="queryString" matInput [matAutocomplete]="auto">
+        <input type="text" placeholder="Voer een voedingsmiddel in"  [(ngModel)]="queryString"  name="queryString" matInput [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn.bind(this)">
-          <mat-option *ngFor="let n of nutritionList | filterNutrition: queryString" [value]="n">{{ n.name }} ({{ n.quantity }} {{ n.unit }})</mat-option>
+          <mat-option *ngFor="let n of nutritionList | filterNutrition: queryString" [value]="n">{{ n.name }}</mat-option>
         </mat-autocomplete>
       </mat-form-field>
     </div>  
-    <!--div>  
-      <div>Voedingsmiddel</div>
-      <input type="text" [(ngModel)]="queryString" name="queryString">  
-      <select [(ngModel)]="nutrition" name="nutrition" >
-        <option *ngFor = "let n of nutritionList | filterNutrition: queryString" [ngValue]="n">{{ n.name }} ({{ n.quantity }} {{ n.unit }})</option>
-      </select>  
-    </div-->
     <div>  
       <div>Hoeveelheid</div>
       <input class="hoeveelheid" type="float" [(ngModel)]="quantity" name="quantity" />{{ unit }} 
