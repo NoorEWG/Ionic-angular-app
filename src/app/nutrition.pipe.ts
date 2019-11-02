@@ -11,7 +11,7 @@ export class NutritionPipe implements PipeTransform {
         return items;
     }
     return items.filter( item => {
-        return (item.name.includes(searchText));
+        return (item.name.toLowerCase().includes(searchText.toLowerCase()));
     });
   }
 }  
