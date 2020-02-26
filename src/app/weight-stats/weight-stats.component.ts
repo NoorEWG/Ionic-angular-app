@@ -143,7 +143,25 @@ export class WeightStatsComponent implements OnInit {
         this.userStats = data;
         var user = this.userStats.user;
         this.totalWeightToLose = Math.round((this.userStats.user.startWeight - this.userStats.user.targetWeight)*10)/10; 
-        this.userStats.weights.forEach( function(item) {
+        this.userStats.weights.forEach( function(item) {  
+          while (chartDates.length === 0 || moment(chartDates[chartDates.length-1], 'YYYY-MM-DD').add(7, 'days').isBefore(moment(item.date, 'YYYY-MM-DD'))) {        
+            bmiData.push(bmiData[bmiData.length-1]);
+            weightData.push(weightData[weightData.length-1]);
+            weightLossData.push(weightLossData[weightLossData.length-1]);
+            abdominalCircumferenceData.push(abdominalCircumferenceData[abdominalCircumferenceData.length-1]);
+            chartDates.push(moment(chartDates[chartDates.length - 1]).add(7,'days').format('YYYY-MM-DD'));   
+            hipsData.push(hipsData[hipsData.length - 1]);
+            leftArmData.push(leftArmData[leftArmData.length - 1]);
+            rightArmData.push(rightArmData[rightArmData.length - 1]);
+            leftLegData.push(leftLegData[leftLegData.length - 1])
+            rightLegData.push(rightLegData[rightLegData.length - 1]);
+            fatPercentageData.push(fatPercentageData[fatPercentageData.length - 1]);
+            musclePercentageData.push(musclePercentageData[musclePercentageData.length - 1]);
+            waterPercentageData.push(waterPercentageData[waterPercentageData.length - 1]);    
+            whtrRatioData.push(whrRatioData[whrRatioData.length - 1]);
+            absiData.push(absiData[absiData.length - 1]);
+            bmrData.push(bmrData[bmrData.length - 1]);
+          }
           bmiData.push(Number(item.bmi));
           weightData.push(Number(item.weight));
           weightLossData.push(Number(item.weightLoss));
@@ -179,13 +197,14 @@ export class WeightStatsComponent implements OnInit {
             weightGainPieData.push({name: translations.week + " " + (item.weekNumber-1)  + " (" + weightGain + " kg)", sliced: true, y: Number(weightGain)});
           }
         });
+
         this.totalLost = this.userStats.weights[this.userStats.weights.length-1].weightLoss;
         var restToLose =  Math.round((this.userStats.user.startWeight - this.userStats.user.targetWeight - this.totalLost) * 10) / 10
         weightLossPieData.push({name: translations.leftToLose + " (" + restToLose + " kg)" , sliced: true, y: restToLose});
         for(var i = 0; i < Math.floor(this.totalLost); i++) {
           kg.push(i);
         }
-        this.totalWeeks = this.userStats.weights[this.userStats.weights.length-1].weekNumber - 1;
+        this.totalWeeks = chartDates.length - 1;
         this.firstDate = this.userStats.weights[0].date;
         var startDate = moment(this.firstDate, "YYYY-MM-DD");
         var totalLost = (this.totalLost > 0 ) ? this.totalLost : 0;

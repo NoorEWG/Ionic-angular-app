@@ -3,7 +3,6 @@ import { Storage } from '@ionic/storage';
 import { Events} from '@ionic/angular';
 import * as moment from 'moment'; 
 import { Internationalization } from '../model/Internationalization';
-import { SWITCH_VIEW_CONTAINER_REF_FACTORY__POST_R3__ } from '@angular/core/src/linker/view_container_ref';
 
 @Component({
   selector: 'app-weight-loss-overview',
