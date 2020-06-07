@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
-import { Events } from '@ionic/angular';
+import { Events } from '../api/event.service';
 import { UserService} from '../api/user.service';
 import { UserData } from '../model/UserData';
 import { WeightService} from '../api/weight.service';

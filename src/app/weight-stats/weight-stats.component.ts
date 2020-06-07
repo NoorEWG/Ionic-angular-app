@@ -3,7 +3,7 @@ import { UserWeightStats } from '../model/UserWeightStats';
 import * as moment from 'moment'; 
 import { WeightService } from '../api/weight.service';  
 import { UserData } from '../model/UserData';
-import { Events} from '@ionic/angular';
+import { Events} from '../api/event.service';
 import { Storage } from '@ionic/storage';
 import { MenuController } from '@ionic/angular';
 import { Route, ActivatedRoute, ParamMap } from '@angular/router';

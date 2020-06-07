@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { Events } from '@ionic/angular';
+import { Events } from '../api/event.service';
 import { Internationalization } from '../model/Internationalization';
 // import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 // import { Health } from '@ionic-native/health/ngx';
@@ -25,7 +25,8 @@ export class UserLoginPage implements OnInit {
 
   ngOnInit() {
     this.events.subscribe('translations', (data) => {
-      this.translations = data;
+      console.log(data.translations);
+      this.translations = data.translations;
     }); 
   }
 

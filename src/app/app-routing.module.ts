@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router'; 
+import { UserLoginComponent } from './user-login/user-login.component';
+import { WeightStatsComponent } from './weight-stats/weight-stats.component'; 
+import { WeightUpdateComponent } from './weight-update/weight-update.component'; 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'weight-stats', pathMatch: 'full' },
-  { path: 'home', loadChildren:  './user-login/user-login.module#UserLoginPageModule' },
-  { path: 'weight-stats', loadChildren: './weight-stats/weight-stats.module#WeightStatsPageModule' },
-  { path: 'weight-stats/:graph', loadChildren: './weight-stats/weight-stats.module#WeightStatsPageModule' },
-  { path: 'user-login', loadChildren: './user-login/user-login.module#UserLoginPageModule' },
-  { path: 'weight-update', loadChildren: './weight-update/weight-update.module#WeightUpdatePageModule' },
+  { path: 'home', component:  UserLoginComponent },
+  { path: 'weight-stats', component: WeightStatsComponent },
+  { path: 'weight-stats/:graph', component: WeightStatsComponent },
+  { path: 'user-login', component: UserLoginComponent },
+  { path: 'weight-update', component: WeightUpdateComponent },
+  { path: '', redirectTo: 'user-login', pathMatch: 'full' }
 ];
 
 @NgModule({

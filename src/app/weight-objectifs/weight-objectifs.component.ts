@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WeightService } from '../api/weight.service';  
 import { UserWeightObjectifs } from '../model/UserWeightObjectifs';
 import { UserData } from '../model/UserData';
-import { Events} from '@ionic/angular';
+import { Events} from '../api/event.service';
 import { Storage } from '@ionic/storage';
 import { Internationalization } from '../model/Internationalization';
 import * as moment from 'moment'; 

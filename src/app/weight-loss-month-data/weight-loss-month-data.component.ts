@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { Events } from '@ionic/angular';
+import { Events } from '../api/event.service';
 import { MonthWeightLoss } from '../model/MonthWeightLoss';
 import { Internationalization } from '../model/Internationalization';
 

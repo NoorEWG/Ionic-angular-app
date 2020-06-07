@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Platform, Events } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
+import { Events } from './api/event.service';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
@@ -90,7 +91,7 @@ export class AppComponent {
     this.translateService.get(this.translateArray).subscribe((res: Internationalization) => {
       this.translations = res;
       if(value) {
-        this.events.publish('translations', this.translations);
+        this.events.publish('translations', {translations : this.translations});
       }
       else {
         this.storage.set('translations', this.translations);

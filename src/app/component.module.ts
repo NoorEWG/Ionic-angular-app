@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WeightStatsComponent } from './weight-stats/weight-stats.component';
 import { WeightLossDataComponent } from './weight-loss-data/weight-loss-data.component';
@@ -14,6 +13,7 @@ import { WeightLossMonthDataComponent } from './weight-loss-month-data/weight-lo
 import { WeightObjectifsComponent} from './weight-objectifs/weight-objectifs.component';
 import { WeightLossWeightBmiDataComponent} from './weight-loss-weight-bmi-data/weight-loss-weight-bmi-data.component';
 import { MonthYearPipe } from './month-year.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,8 @@ import { MonthYearPipe } from './month-year.pipe';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFontAwesomeModule
+    FontAwesomeModule,
+    
   ],
   providers: [MonthYearPipe]
 

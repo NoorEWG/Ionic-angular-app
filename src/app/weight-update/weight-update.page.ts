@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { Events } from '@ionic/angular';
+import { Events } from '../api/event.service';
 import { Internationalization } from '../model/Internationalization';
 import { UserData } from '../model/UserData';
 
