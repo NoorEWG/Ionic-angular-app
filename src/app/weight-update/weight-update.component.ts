@@ -45,6 +45,7 @@ export class WeightUpdateComponent implements OnInit {
     this.storage.get('translations').then((data) => {
       if(data) {
        this.translations = data;
+       console.log(JSON.stringify(this.translations));
       }
     });
     this.events.subscribe('user', (data) => {
@@ -74,10 +75,11 @@ export class WeightUpdateComponent implements OnInit {
     if(Number(weightDate.weight)) {
       this.weights[index].save = false;
       this.weights[index].edit = true;
+
       this.weightService.editWeight(weightDate, this.user).subscribe(data => {
-        this.message = data.body;
         this.status = data.status;
         if(this.status == 200) {
+          this.message = this.translations.weightUpdateSuccess;
           this.events.publish("weightUpdate", true);
           this.weightService.getWeightObjectifs(this.user.id).subscribe(data => {
             var objectifs = data;
@@ -90,7 +92,6 @@ export class WeightUpdateComponent implements OnInit {
           });
         }
         this.presentToast(2000);
-
       });
     }
     else {

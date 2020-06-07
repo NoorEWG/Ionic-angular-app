@@ -43,13 +43,14 @@ export class AppComponent {
         "weightLoss","weightLossPieChart","weightGainPieChart","bmi",
         "waist","hips","leftLeg","rightLeg","leftArm","rightArm",
         "arms","legs","weightLossGainPieCharts",
-        "weightUpdateMissingData", "weightUpdateNewDateBeforeNow",
+        "weightUpdateMissingData", "weightUpdateNewDateAfterNow", "weightUpdateSuccess",
         "totalWeightToLose","kg","actuelWeight","totalWeightLostSoFar","averagePerWeek",
         "startDate","targetDate","date","totalWeightLoss","percentageOfWeightToLose",
         "leftToLose","weeklyWeightLoss", "monthlyWeightLoss", "month","week", 
         "statsGraphs","weightAddUpdate", "objectifs", "objectif1", "objectif2", "objectif3",
         "objectif4", "reward", "locale", "age", "gender", "male", "female", "other", "objectif",
-        "fat","muscle", "water", "fatMuscleWaterPercentages", "nutrition", "calories"
+        "fat","muscle", "water", "fatMuscleWaterPercentages", "nutrition", "calories", 
+        
       ];
       // initialize language
       this.initTranslate();

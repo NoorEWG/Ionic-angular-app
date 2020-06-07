@@ -49,6 +49,7 @@ export class Internationalization {
     menu: string;
     weightUpdateMissingData: string;
     weightUpdateNewDateAfterNow: string;
+    weightUpdateSuccess: string;
                 
     totalWeightToLose: string;
     kg: string;

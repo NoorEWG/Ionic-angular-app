@@ -51,7 +51,7 @@
 
 "weightUpdateMissingData": "Merci de renseigner au moins votre poids",
 "weightUpdateNewDateAfterNow": "Vous ne pouvez enregistrez des nouvelles données. Vous devriez attentre jusqu'à ",
-
+"weightUpdateSuccess" : "Votre poids et les autres informations sont sauvegardés",
 
 "totalWeightToLose": "Total de poids à perdre",
 "kg": "kg",

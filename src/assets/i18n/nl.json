@@ -51,7 +51,7 @@
 
 "weightUpdateMissingData": "Vul minimaal uw gewicht in",
 "weightUpdateNewDateAfterNow": "U kunt nog geen nieuw gewicht invoeren. U zult moeten wachten tot ", 
-
+"weightUpdateSuccess" : "Uw gewicht en eventuele andere informatie zijn opgeslagen of bijgewerkt", 
 
 "totalWeightToLose": "Gewenst gewichtsverlies",
 "kg": "kg",

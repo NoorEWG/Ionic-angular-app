@@ -51,6 +51,7 @@
 
 "weightUpdateMissingData": "Please enter a least your weight",
 "weightUpdateNewDateAfterNow": "You can't add a new weight, you will have to wait until ",
+"weightUpdateSuccess": "Your weight and other information is successfully saved or updated",
 
 "totalWeightToLose": "Total weight to lose",
 "kg": "kg",
