@@ -56,7 +56,7 @@
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
-    "highcharts": "^7.0.3",
+    "highcharts": "^7.2.2",
     "jquery": "^1.9.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
