@@ -192,7 +192,8 @@ export class UserLoginComponent implements OnInit {
 
   ngOnInit() { 
     this.events.subscribe('translations', (data) => {
-      this.translations = data;
+      this.translations = data.translations;
+      console.log(JSON.stringify(this.translations));
       this.createForms();
       this.knownUser();
     }); 

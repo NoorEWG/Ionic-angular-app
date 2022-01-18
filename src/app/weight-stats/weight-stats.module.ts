@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { WeightStatsPage } from './weight-stats.page';
-import { ComponentModule} from '../component.module';
+// import { ComponentModule} from '../component.module';
+import { AppModule} from '../app.module';
+import { WeightStatsComponent } from './weight-stats.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: WeightStatsPage
+    component: WeightStatsComponent
   }
 ];
 
@@ -19,11 +20,11 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    ComponentModule,
+    AppModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
-    WeightStatsPage
+    WeightStatsComponent
   ]
 })
 

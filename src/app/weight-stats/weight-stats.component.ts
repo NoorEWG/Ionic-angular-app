@@ -279,13 +279,13 @@ export class WeightStatsComponent implements OnInit {
   ngOnInit() { 
           
     this.events.subscribe('user', (data) => {
-      this.userData = data;
+      this.userData = data.user;
       this.auth = this.userData.auth;
       this.calculateData(this.userData.id);
     });
 
     this.events.subscribe('clearData', (data) => {
-      this.userData = data;
+      this.userData = data.clearData;
       this.auth = false;
     });
 
@@ -302,7 +302,7 @@ export class WeightStatsComponent implements OnInit {
     });     
 
     this.events.subscribe('translations', (data) => {
-      this.translations = data;
+      this.translations = data.translations;
       if(this.userData && this.userData.id) { 
         this.calculateData(this.userData.id);
       }

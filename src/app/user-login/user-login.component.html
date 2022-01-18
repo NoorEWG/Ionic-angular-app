@@ -1,4 +1,10 @@
-<div class="login">
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ translations.login }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="login" padding>
+  <div class="login">
   <br>
   <div *ngIf="message" [ngClass]="auth ? 'alert alert-success' : 'alert alert-danger'">
   {{ message }} 
@@ -151,3 +157,5 @@
       <button type="submit" class="btn btn-primary" (click)="logOut()"><ion-icon name="exit"></ion-icon> {{ translations.logout }}</button>  
     </div>
   </div>
+
+</ion-content>  

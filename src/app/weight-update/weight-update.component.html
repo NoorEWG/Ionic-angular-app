@@ -1,60 +1,43 @@
-<ion-icon name="add-circle-outline" class="big-icon"  (click)="addWeight()"></ion-icon>
-<div *ngFor="let w of weights; let i = index;">
-  <form novalidate>
-    <input type="text" [(ngModel)]="w.date" name="date" [value]="w.date" hidden>
-    <div class="weightUpdateList">
-      <div class="updateFlexBetween">
-        <div class="updateFlex">  
-          <ion-icon name="arrow-dropdown" (click)="openEdit(i,true)" [ngClass]="w.openEdit ? 'hideButton' : 'showButton'"></ion-icon>
-          <ion-icon name="arrow-dropup" (click)="openEdit(i, false)" [ngClass]="w.openEdit ? 'showButton' : 'hideButton'"></ion-icon>
-          <div><b>week {{ w.weekNumber }} ({{ w.date | date: 'dd-MM-yyyy' }})</b></div>
-        </div>
-        <div>
-          <div class="updateFlexRight">
-          <ion-icon name="create" (click)="editWeight(i)" tooltip="save" positionV="top" arrow="true" [ngClass]="(w.edit && w.openEdit) ? 'showButton' : 'hideButton'"></ion-icon>
-          <ion-icon name="save" (click)="saveChanges(w,i)" [ngClass]="(w.save && w.openEdit) ? 'showButton' : 'hideButton'"></ion-icon>
-          <ion-icon name="close-circle-outline" (click)="confirmDelete(i)"  [ngClass]="(w.openEdit && !w.openConfirmDelete)? 'showButton' : 'hideButton'"></ion-icon>
-          <div [ngClass]="(w.openConfirmDelete) ? 'showButton' : 'hideButton'">             
-            <ion-icon name="arrow-dropleft" (click)="abortDelete(i)"></ion-icon>
-            <ion-icon name="checkmark-circle-outline" (click)="deleteWeight(i,w)"></ion-icon>
-          </div>  
-        </div>
-        </div>
-      </div>
-      <div [ngClass]="w.openEdit ? 'showEdit' : 'hideEdit'">
-        <div class="updateFlex">  
-          <label>{{ translations.weight }}</label>
-          <input title="weight" type="float" [(ngModel)]="w.weight" name="weight" [value]="w.weight" [disabled]="w.edit"/>
-          <label>{{ translations.waist }}</label>
-          <input title="waist" type="float"  [(ngModel)]="w.abdominalCircumference" name="abdominalCircumference"  [value]="w.abdominalCircumference" [disabled]="w.edit"/>
-        </div>
-        <div class="updateFlex">  
-          <label>{{ translations.hips }}</label>
-          <input title="hips" type="float" [(ngModel)]="w.hips" name="hips" [value]="w.hips" [disabled]="w.edit"/>
-        </div>
-        <div class="updateFlex">  
-          <label>{{ translations.leftLeg }}</label>
-          <input title="left leg" type="float" [(ngModel)]="w.leftLeg" name="leftLeg" [value]="w.leftLeg" [disabled]="w.edit"/>
-          <label>{{ translations.rightLeg }}</label>
-          <input title="right leg" type="float"  [(ngModel)]="w.rightLeg" name="rightLeg"  [value]="w.rightLeg" [disabled]="w.edit"/>
-        </div>
-        <div class="updateFlex">  
-          <label>{{ translations.leftArm }}</label>
-          <input title="left arm" type="float" [(ngModel)]="w.leftArm" name="leftArm" [value]="w.leftArm" [disabled]="w.edit"/>
-          <label>{{ translations.rightArm }}</label>
-          <input title="right arm" type="float"  [(ngModel)]="w.rightArm" name="rightArm"  [value]="w.rightArm" [disabled]="w.edit"/>
-        </div> 
-        <div class="updateFlex">  
-          <label>{{ translations.fat }}</label>
-          <input title="fat percentage" type="float" [(ngModel)]="w.fatPercentage" name="fatPercentage" [value]="w.fatPercentage" [disabled]="w.edit"/>
-          <label>{{ translations.muscle }}</label>
-          <input title="muscle percentage" type="float"  [(ngModel)]="w.musclePercentage" name="musclePercentage"  [value]="w.musclePercentaghe" [disabled]="w.edit"/>
-        </div> 
-        <div class="updateFlex">  
-          <label>{{ translations.water }}</label>
-          <input title="water percentage" type="float" [(ngModel)]="w.waterPercentage" name="waterPercentage" [value]="w.waterPercentage" [disabled]="w.edit"/>
-        </div> 
-      </div>     
-    </div>
-  </form>
-</div> 
+<ion-content padding>
+  <ion-title>{{ translations.weightAddUpdate }}</ion-title>
+  <div class="updateButtons">
+    <ion-buttons slot="primary">
+      <ion-button fill="solid" color="tertiary" (click)="showWeightUpdate()">
+        {{ translations.weight }}
+      </ion-button>
+      <ion-button fill="solid" color="tertiary"  (click)="showWeightObjectifUpdate()">
+        {{ translations.objectifs }}
+      </ion-button>
+      <ion-button fill="solid" color="tertiary"  (click)="showNutritionUpdate()">
+        {{ translations.nutrition }}
+      </ion-button>
+      <ion-button fill="solid" color="tertiary"  (click)="showCaloriesUpdate()">
+        {{ translations.calories }}
+      </ion-button>
+    </ion-buttons>
+  </div>
+  <span *ngIf="auth">
+    <span *ngIf="updateWeight">
+      <app-weight-update-weight></app-weight-update-weight>
+    </span>
+    <span *ngIf="updateObjectif">
+      <app-weight-objectif-update></app-weight-objectif-update>
+    </span>
+    <span *ngIf="updateNutrition">
+      <app-add-edit-nutrition></app-add-edit-nutrition>
+    </span>
+    <span *ngIf="updateCaloriesCalc">
+      <app-calculator></app-calculator>
+    </span>
+  </span>
+  <span *ngIf="!auth">
+    <div *ngIf="auth === false ">
+      <button class="btn btn-primary" routerLink="/user-login">
+        <span>{{ translations.loginRequired }}</span>
+        <ion-icon name="person"></ion-icon>
+      </button>
+    </div>  
+  </span>
+</ion-content>
+
+

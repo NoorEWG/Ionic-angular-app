@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'weight-stats', component: WeightStatsComponent },
   { path: 'weight-stats/:graph', component: WeightStatsComponent },
   { path: 'user-login', component: UserLoginComponent },
-  { path: 'weight-update', component: WeightUpdateComponent },
+  { path: 'weight-update',  component: WeightUpdateComponent },
   { path: '', redirectTo: 'user-login', pathMatch: 'full' }
 ];
 
@@ -17,6 +17,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes)
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  declarations: [UserLoginComponent, WeightUpdateComponent, WeightStatsComponent]
 })
 export class AppRoutingModule {}
