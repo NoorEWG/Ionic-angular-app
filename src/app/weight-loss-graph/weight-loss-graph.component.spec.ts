@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync as  } from '@angular/core/testing';
 
 import { WeightLossGraphComponent } from './weight-loss-graph.component';
 
@@ -6,7 +6,7 @@ describe('WeightLossGraphComponent', () => {
   let component: WeightLossGraphComponent;
   let fixture: ComponentFixture<WeightLossGraphComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ WeightLossGraphComponent ]
     })

@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync as  } from '@angular/core/testing';
 
 import { WeightObjectifsPage } from './weight-objectifs.page';
 
@@ -7,7 +7,7 @@ describe('WeightObjectifsPage', () => {
   let component: WeightObjectifsPage;
   let fixture: ComponentFixture<WeightObjectifsPage>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ WeightObjectifsPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],

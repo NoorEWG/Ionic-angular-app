@@ -34,16 +34,20 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               {
-                "input": "src/theme/variables.scss"
+                "input": "src/theme/variables.scss",
+                "inject": true
               },
               {
-                "input": "src/global.scss"
+                "input": "src/global.scss",
+                "inject": true
               },
               {
-                "input": "src/theme/bootstrap.min.css"
+                "input": "src/theme/bootstrap.min.css",
+                "inject": true
               },
               {
-                "input": "src/theme/general.css"
+                "input": "src/theme/general.css",
+                "inject": true
               }
             ],
             "scripts": [],
@@ -60,7 +64,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
