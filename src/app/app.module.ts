@@ -79,7 +79,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ],
     exports: [
-        MatAutocompleteModule, MatInputModule
+        MatAutocompleteModule, MatInputModule, FormsModule, ReactiveFormsModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
