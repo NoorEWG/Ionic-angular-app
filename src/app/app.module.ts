@@ -35,54 +35,53 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
-    AppRoutingModule, 
-    HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    BrowserAnimationsModule,
-    DragDropModule,
-    ScrollingModule,
-    MatInputModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatSortModule,
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatAutocompleteModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    HttpModule,
-    FontAwesomeModule,
-    Ionic4DatepickerModule,
-    IonicStorageModule.forRoot({
-      name: '__mydb'
-    })
-  ],
-  providers: [
-    StatusBar,
-    Health,
-    BluetoothSerial,
-    SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
-  ],
-  exports: [
-    MatAutocompleteModule,MatInputModule
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(),
+        AppRoutingModule,
+        HttpClientModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        BrowserAnimationsModule,
+        DragDropModule,
+        ScrollingModule,
+        MatInputModule,
+        MatPaginatorModule,
+        MatProgressSpinnerModule,
+        MatSortModule,
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatAutocompleteModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        HttpModule,
+        FontAwesomeModule,
+        Ionic4DatepickerModule,
+        IonicStorageModule.forRoot({
+            name: '__mydb'
+        })
+    ],
+    providers: [
+        StatusBar,
+        Health,
+        BluetoothSerial,
+        SplashScreen,
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    ],
+    exports: [
+        MatAutocompleteModule, MatInputModule
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
