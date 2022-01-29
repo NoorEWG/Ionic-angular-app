@@ -63,7 +63,7 @@
     "highcharts": "^9.3.2",
     "ionicons": "^6.0.1",
     "jquery": "^3.5.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "ng-country-flags": "^1.0.6",
     "popper.js": "^1.14.7",
