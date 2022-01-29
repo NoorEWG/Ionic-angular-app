@@ -140,6 +140,25 @@ export class WeightUpdateWeightComponent implements OnInit {
     var lastDate = this.weights[0].date;
     var newDate = moment(lastDate, 'YYYY-MM-DD').add(7,'days').format('YYYY-MM-DD');
 
+    // add missing weeks if not added before
+    var lastWeekNumber = this.weights[0].weekNumber;
+    this.weights.forEach(data => {
+      var missingWeeks = lastWeekNumber - data.weekNumber;
+      if (missingWeeks > 1) {
+        for (var i = 0; i < missingWeeks; i++) { 
+          var missingWeekNumber = Number(data.weekNumber) + i;
+          var missingWeekDate = moment(data.date, 'YYYY-MM-DD').add((7*i),'days').format('YYYY-MM-DD');
+          var newWeightItem = new WeightDate();
+          newWeightItem.weekNumber = missingWeekNumber;
+          newWeightItem.date = missingWeekDate;
+          newWeightItem.weight = data.weight;
+          newWeightItem.abdominalCircumference = data.abdominalCircumference;
+          this.saveChanges(newWeightItem, 0);          
+        }
+      }
+      lastWeekNumber = data.weekNumber;
+    });
+
     if( moment(lastDate, 'YYYY-MM-DD').add(7,'days') > moment() ) {
       this.message = this.translations.weightUpdateNewDateAfterNow +  moment(newDate, 'YYYY-MM-DD').format('DD-MM-YYYY');
       this.presentToast(2000);

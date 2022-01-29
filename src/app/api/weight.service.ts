@@ -40,6 +40,7 @@ export class WeightService {
   public editWeight(weightDate: WeightDate, user: UserData): Observable<HttpResponse<String>> {
     let url = this.baseUrl + "editWeightStats.php";
     let data = {'weight': weightDate, 'user': user};
+    console.log(data);
     return this.http.post<String>(url, data, 
       {
         headers: this.httpHeaders,
