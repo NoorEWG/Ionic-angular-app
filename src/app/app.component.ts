@@ -3,7 +3,7 @@ import { Platform } from '@ionic/angular';
 import { Events } from './api/event.service';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Internationalization } from './model/Internationalization';
 
@@ -55,6 +55,7 @@ export class AppComponent {
       ];
       // initialize language
       this.initTranslate();
+      this.storage.create();
     });
 
     

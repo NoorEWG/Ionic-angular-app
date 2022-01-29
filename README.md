@@ -1,3 +1,3 @@
-# Ionic-angular-app
+# Weight Loss App
 
-Test app to get to know the ionic framework
+To keep track of your weight

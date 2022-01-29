@@ -3,7 +3,7 @@ import { WeightService } from '../api/weight.service';
 import { UserWeightObjectifs } from '../model/UserWeightObjectifs';
 import { UserData } from '../model/UserData';
 import { Events} from '../api/event.service';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 import { Internationalization } from '../model/Internationalization';
 import * as moment from 'moment'; 
 

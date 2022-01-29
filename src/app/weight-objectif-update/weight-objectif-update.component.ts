@@ -4,7 +4,7 @@ import { UserWeightObjectifs } from '../model/UserWeightObjectifs';
 import * as moment from 'moment'; 
 import { ToastController } from '@ionic/angular';
 import { Events} from '../api/event.service';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 import { Internationalization } from '../model/Internationalization';
 import { UserData } from '../model/UserData';
 import { UserWeightStats } from '../model/UserWeightStats';

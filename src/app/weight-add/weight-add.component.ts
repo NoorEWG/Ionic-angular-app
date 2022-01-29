@@ -5,7 +5,7 @@ import { UserData } from '../model/UserData';
 import * as moment from 'moment';
 import { ToastController } from '@ionic/angular';
 import { Events} from '../api/event.service';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-weight-add',

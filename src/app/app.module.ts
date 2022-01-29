@@ -14,7 +14,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpModule } from '@angular/http';
-import { IonicStorageModule } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage-angular';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 import { Ionic4DatepickerModule } from '@logisticinfotech/ionic4-datepicker';
 import { MatInputModule } from "@angular/material/input";

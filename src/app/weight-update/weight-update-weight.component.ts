@@ -5,7 +5,7 @@ import { WeightService } from '../api/weight.service';
 import { UserData } from '../model/UserData';
 import { ToastController } from '@ionic/angular';
 import { Events} from '../api/event.service';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 import { Internationalization } from '../model/Internationalization';
 import { UserWeightObjectifs } from '../model/UserWeightObjectifs';
 

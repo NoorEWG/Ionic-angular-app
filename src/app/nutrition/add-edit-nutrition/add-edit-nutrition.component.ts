@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 import * as moment from 'moment'; 
 import { NutritionService } from '../../api/nutrition.service'; 
 import { Nutrition } from 'src/app/model/Nutrition';

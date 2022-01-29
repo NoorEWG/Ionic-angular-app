@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import { WeightService } from '../api/weight.service';  
 import { UserData } from '../model/UserData';
 import { Events} from '../api/event.service';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 import { MenuController } from '@ionic/angular';
 import { Route, ActivatedRoute, ParamMap } from '@angular/router';
 import { Internationalization } from '../model/Internationalization';

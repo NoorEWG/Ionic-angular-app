@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 import { Events} from '../api/event.service';
 import * as moment from 'moment'; 
 import { Internationalization } from '../model/Internationalization';

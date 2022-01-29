@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { Storage } from '@ionic/storage';
-import { Events } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
+import { Events } from '../api/event.service';
 import * as Highcharts from 'highcharts';
 import Highcharts3d from 'highcharts/highcharts-3d'; 
 Highcharts3d(Highcharts); 

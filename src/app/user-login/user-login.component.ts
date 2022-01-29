@@ -6,7 +6,7 @@ import { UserData } from '../model/UserData';
 import { WeightService} from '../api/weight.service';
 import { WeightDate } from '../model/WeightDate';
 import { Internationalization } from '../model/Internationalization';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 import { BluetoothService} from '../api/bluetooth.service';
 import * as moment from 'moment';
 //import { Ionic4DatepickerModalComponent } from 'ionic4-datepicker';
