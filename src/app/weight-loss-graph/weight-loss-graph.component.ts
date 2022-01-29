@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { Events } from '../api/event.service';
+import { Events } from '@ionic/angular';
 import * as Highcharts from 'highcharts';
 import Highcharts3d from 'highcharts/highcharts-3d'; 
 Highcharts3d(Highcharts); 
@@ -108,7 +108,7 @@ export class WeightLossGraphComponent implements OnInit {
       chart: {
         type: this.chartType,
         zoomType: 'xy',
-        panning: true,
+        // panning: true,
         panKey: 'shift'
       },
       colors: ['#991111', '#435F84'],

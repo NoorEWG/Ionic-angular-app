@@ -23,3 +23,11 @@ describe('WeightLossDataComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+function waitForAsync(arg0: () => void): (done: DoneFn) => Promise<void> {
+  throw new Error('Function not implemented.');
+}
+
+function waitForAsync(arg0: () => void): (done: DoneFn) => Promise<void> {
+  throw new Error('Function not implemented.');
+}
+
