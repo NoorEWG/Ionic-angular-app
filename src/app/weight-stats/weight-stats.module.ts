@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
-// import { ComponentModule} from '../component.module';
-import { AppModule} from '../app.module';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { ComponentModule} from '../component.module';
 import { WeightStatsComponent } from './weight-stats.component';
 
 
@@ -17,10 +15,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    AppModule,
+    BrowserModule,
+    // CommonModule,
+    ComponentModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

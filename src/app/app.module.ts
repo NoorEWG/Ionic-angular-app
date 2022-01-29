@@ -1,4 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';  
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -37,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
     declarations: [AppComponent],
     imports: [
+        CommonModule,
         BrowserModule,
         IonicModule.forRoot(),
         AppRoutingModule,
@@ -79,7 +81,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ],
     exports: [
-        MatAutocompleteModule, MatInputModule, FormsModule, ReactiveFormsModule
+        MatAutocompleteModule, MatInputModule, BrowserModule, CommonModule, FormsModule, ReactiveFormsModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]

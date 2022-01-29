@@ -14,7 +14,7 @@ import { UserWeightObjectifs } from '../model/UserWeightObjectifs';
   templateUrl: './weight-update-weight.component.html',
   styleUrls: ['./weight-update-weight.component.css']
 })
-export class WeightUpdateComponent implements OnInit {
+export class WeightUpdateWeightComponent implements OnInit {
 
   weights: Array<WeightDate>;
   user: UserData;
@@ -45,7 +45,6 @@ export class WeightUpdateComponent implements OnInit {
     this.storage.get('translations').then((data) => {
       if(data) {
        this.translations = data;
-       console.log(JSON.stringify(this.translations));
       }
     });
     this.events.subscribe('user', (data) => {
