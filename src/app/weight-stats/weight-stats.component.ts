@@ -139,7 +139,7 @@ export class WeightStatsComponent implements OnInit {
     var waterPercentageData = new Array<number>();
     var kg = new Array<number>();
     if(id) {
-      this.weightService.getWeightStats('ASC',id).subscribe(data => {
+      this.weightService.getWeightStats('DESC',id).subscribe(data => {
         this.userStats = data;
         var user = this.userStats.user;
         this.totalWeightToLose = Math.round((this.userStats.user.startWeight - this.userStats.user.targetWeight)*10)/10; 
