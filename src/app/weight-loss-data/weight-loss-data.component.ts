@@ -27,7 +27,7 @@ export class WeightLossDataComponent implements OnInit {
   }
 
   ngOnInit() {
-  
+    this.weights.sort((a,b) => b.weekNumber - a.weekNumber);
     this.events.subscribe('translations', (data) => {
       this.translations = data;
     }); 
