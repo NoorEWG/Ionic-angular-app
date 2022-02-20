@@ -22,15 +22,17 @@ export class WeightUpdateWeightComponent implements OnInit {
   status: number;
   translations: Internationalization;
   auth: boolean;
+  range: number;
 
   constructor(private weightService: WeightService, private toastController: ToastController, private events: Events, private storage: Storage) { 
     
     this.auth = false;
+    this.range = 10;
     this.storage.get('user').then((data) => {
       if(data) {
         this.user = data;
         this.auth = this.user.auth;
-        weightService.getWeightStats('DESC', this.user.id).subscribe(data => { 
+        weightService.getWeightStatsWithLimit('DESC', this.user.id, this.range).subscribe(data => { 
           this.weights = data.weights;
           this.user = data.user;
           this.weights.forEach( function(w) {

@@ -37,10 +37,14 @@ export class WeightService {
     return this.http.get<UserWeightStats>(url);
   }   
 
+  public getWeightStatsWithLimit(order:String, id: number, limit: number): Observable<UserWeightStats> {
+    let url = this.baseUrl + 'getWeightStats.php?order=' + order + '&id='+id + '&limit=' + limit;
+    return this.http.get<UserWeightStats>(url);
+  }   
+
   public editWeight(weightDate: WeightDate, user: UserData): Observable<HttpResponse<String>> {
     let url = this.baseUrl + "editWeightStats.php";
     let data = {'weight': weightDate, 'user': user};
-    console.log(data);
     return this.http.post<String>(url, data, 
       {
         headers: this.httpHeaders,

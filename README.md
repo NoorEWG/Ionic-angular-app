@@ -11,7 +11,7 @@ ionic serve
 
 browser: 
 
-ionic build --base-href /weight-loss/
+ionic cordova build browser --base-href /weight-loss/
 De output staat onder platforms/browser/www. De inhoud via FileZilla uploaden.
 Let op => index.html dient <base href="/weight-loss/"/> te bevatten)
 

@@ -1,4 +1,5 @@
 <ion-icon name="add-circle-outline" class="big-icon"  (click)="addWeight()"></ion-icon>
+<!-- <ion-range min="10" max="500" [(ngModel)]="range" steps="50" pin="true"></ion-range> -->
 <div *ngFor="let w of weights; let i = index;">
   <form novalidate>
     <input type="text" [(ngModel)]="w.date" name="date" [value]="w.date" hidden>
