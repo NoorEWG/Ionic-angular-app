@@ -30,7 +30,7 @@ export class WeightLossGraphComponent implements OnInit {
   @Input('startWeight') startWeight: number;
   @Input('targetWeight') targetWeight: number;
   @Input('measure') measure: string;
-  @ViewChild('chartTarget') chartTarget: ElementRef;
+  @ViewChild('chartTarget',{static: true}) chartTarget: ElementRef;
   chart: Highcharts.Chart;
   zones: Array<Object>;
   translations: Internationalization;

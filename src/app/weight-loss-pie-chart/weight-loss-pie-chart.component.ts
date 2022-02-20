@@ -14,71 +14,14 @@ HighchartsOfflineExporting(Highcharts);
 })
 export class WeightLossPieChartComponent implements OnInit {
 
-  @ViewChild('chartTarget') chartTarget: ElementRef;
+  @ViewChild('pieChartTarget',{static: true}) pieChartTarget: ElementRef;
   @Input('series') series: Array<number>;
   @Input('title') title: string;
   @Input('name') name: string;
   chart: Highcharts.Chart;
   
-  constructor() { }
-
-  getColors() {
-    let base = "#991111",
-    colors = [],
-    multiple = 30;
-    if ( this.series.length > 20 && this.series.length <= 30 ) {
-      multiple = 20;
-    }
-    if ( this.series.length > 30 && this.series.length <= 50 ) {
-      multiple = 15;
-    }
-    if ( this.series.length > 50 && this.series.length <= 100 ) {
-      multiple = 10;
-    }
-    if ( this.series.length > 100 ) {
-      multiple = 8;
-    }
-    for (let i = 0; i < 1000; i += 1) {
-      let color = this.shadeColor(base,i*multiple);
-      if(colors.indexOf(color) < 0) {
-        colors.push(
-          {
-            radialGradient: {
-            cx: 0.5,
-            cy: 0.3,
-            r: 0.7
-          },
-          stops: [
-            [0, color],
-            [1, this.shadeColor(color,-20)] 
-          ]
-        });
-      }
-    }
-    return colors;
+  constructor() { 
   }
-
-  shadeColor(color, percent) {
-
-    var percentage = parseFloat(percent);
-    var R = parseInt(color.substring(1,3),16);
-    var G = parseInt(color.substring(3,5),16);
-    var B = parseInt(color.substring(5,7),16);
-
-    R = Math.round(R * (100 + percentage) / 100);
-    G = Math.round(G * (100 + percentage) / 100);
-    B = Math.round(B * (100 + percentage) / 100);
-
-    R = (R<255)?R:255;  
-    G = (G<255)?G:255;  
-    B = (B<255)?B:255;  
-
-    var RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
-    var GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
-    var BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
-
-    return "#"+RR+GG+BB;
-  } 
  
   ngOnInit() {
   
@@ -89,7 +32,6 @@ export class WeightLossPieChartComponent implements OnInit {
           enabled: true,
           alpha: 45
         },
-        //height: '300'
       },
       title: {
         text: '<b>' + this.title + '</b>'
@@ -120,7 +62,6 @@ export class WeightLossPieChartComponent implements OnInit {
                   '#526E8F',
                   '#CCBEBE', 
                   '#435F84'],
-          // colors: this.getColors(),
           allowPointSelect: true,
           innerSize: 100,
           depth: 45,
@@ -164,8 +105,8 @@ export class WeightLossPieChartComponent implements OnInit {
         enabled: false
       }
     };
-  
-    this.chart = new Highcharts.Chart(this.chartTarget.nativeElement, options);
+    console.log("" + this.pieChartTarget.nativeElement);
+    this.chart = new Highcharts.Chart(this.pieChartTarget.nativeElement, options);
   }
 
 }
