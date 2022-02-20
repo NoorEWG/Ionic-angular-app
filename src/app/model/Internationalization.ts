@@ -162,5 +162,7 @@ export class Internationalization {
         male: string = '',
         female: string = '',
         other: string = '',
+        calories: string = '',
+        nutrition: string = ''
     ) {}
 }
