@@ -12,6 +12,26 @@
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 
 .highcharts-color-0 {
-    fill:#900000 !important;
-    stroke:#900000 !important;
+    fill:#900000;
+    stroke:#900000;
+}
+
+ion-toggle {
+    --background: #ccbebe;
+    --background-checked: #ccbebe;
+  
+    --handle-background: #900000;
+    --handle-background-checked: #900000;
+    --handle-height: 20px;
+    --handle-max-height: 20px;  
+}
+
+:root {
+    --ion-color-primary: #900000;
+}
+
+.btn-primary {
+    color: #fff !important;
+    background-color:  #900000 !important;
+    border-color:  #900000 !important;
 }

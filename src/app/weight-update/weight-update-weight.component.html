@@ -1,5 +1,10 @@
-<ion-icon name="add-circle-outline" class="big-icon"  (click)="addWeight()"></ion-icon>
-<!-- <ion-range min="10" max="500" [(ngModel)]="range" steps="50" pin="true"></ion-range> -->
+<div class="toggle-flex">
+  <ion-icon name="add-circle-outline" class="big-icon"  (click)="addWeight()"></ion-icon>
+  <ion-toggle [(ngModel)]="limit10" (ionChange)="setLimit($event.detail.checked, 10)"></ion-toggle><span [class]="limit10 === true ? 'toggle-label-bold' : 'toggle-label'">10 weken</span>
+  <ion-toggle [(ngModel)]="limitJaar" (ionChange)="setLimit($event.detail.checked, 52)"></ion-toggle><span [class]="limitJaar === true ? 'toggle-label-bold' : 'toggle-label'">jaar</span>
+  <ion-toggle [(ngModel)]="noLimit" (ionChange)="setLimit($event.detail.checked, 0)"></ion-toggle><span [class]="noLimit === true ? 'toggle-label-bold' : 'toggle-label'">alles</span>
+</div>
+
 <div *ngFor="let w of weights; let i = index;">
   <form novalidate>
     <input type="text" [(ngModel)]="w.date" name="date" [value]="w.date" hidden>

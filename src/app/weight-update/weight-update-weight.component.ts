@@ -22,26 +22,23 @@ export class WeightUpdateWeightComponent implements OnInit {
   status: number;
   translations: Internationalization;
   auth: boolean;
+  limit10: boolean;
+  limitJaar: boolean;
+  noLimit: boolean;
   range: number;
 
   constructor(private weightService: WeightService, private toastController: ToastController, private events: Events, private storage: Storage) { 
     
     this.auth = false;
+    this.limit10 = true;
+    this.limitJaar = false;
+    this.noLimit = false;
     this.range = 10;
     this.storage.get('user').then((data) => {
       if(data) {
         this.user = data;
         this.auth = this.user.auth;
-        weightService.getWeightStatsWithLimit('DESC', this.user.id, this.range).subscribe(data => { 
-          this.weights = data.weights;
-          this.user = data.user;
-          this.weights.forEach( function(w) {
-            w.edit = true;
-            w.save = false;
-            w.openEdit = false;
-            w.openConfirmDelete = false;
-          });
-        });
+        this.getWeightsData();
       }
     });
     this.storage.get('translations').then((data) => {
@@ -52,14 +49,7 @@ export class WeightUpdateWeightComponent implements OnInit {
     this.events.subscribe('user', (data) => {
       this.user = data;
       this.auth = this.user.auth;
-      weightService.getWeightStats('DESC', this.user.id).subscribe(data => { 
-        this.weights = data.weights;
-        this.user = data.user;
-        this.weights.forEach( function(w) {
-          w.edit = true;
-          w.save = false;
-        });
-      });
+      this.getWeightsData();
     });  
   }
  
@@ -70,6 +60,49 @@ export class WeightUpdateWeightComponent implements OnInit {
       duration: duration
     });
     toast.present();
+  }
+
+  getWeightsData() {
+    this.weightService.getWeightStatsWithLimit('DESC', this.user.id, this.range).subscribe(data => { 
+      this.weights = data.weights;
+      this.user = data.user;
+      this.weights.forEach( function(w) {
+        w.edit = true;
+        w.save = false;
+        w.openEdit = false;
+        w.openConfirmDelete = false;
+      });
+    });
+  }  
+  
+  public setLimit(checked, limit) {
+    if (checked === true) {
+      if (limit === 10) {
+        this.limitJaar = false;
+        this.noLimit = false;
+      }
+      if (limit === 52) {
+        this.limit10 = false;
+        this.noLimit = false;
+      }
+      if (limit === 0) {
+        this.limit10 = false;
+        this.limitJaar = false;
+      }
+      this.range = limit;
+      this.getWeightsData();
+    }
+    else {
+      if (limit === 10) {
+        this.limit10 = false;
+      }
+      if (limit === 52) {
+        this.limitJaar = false;
+      }
+      if (limit === 0) {
+        this.noLimit = false;
+      }
+    }
   }
 
   public saveChanges(weightDate: WeightDate, index: number) {
