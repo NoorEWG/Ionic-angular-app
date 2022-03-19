@@ -1,37 +1,44 @@
-.weight-loss-month-data {
-    width: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 55%;
-    border: solid 2px #991111;
-    border-radius: 8px;
-}
-  
-.weight-loss-month-data div {
-  padding: 1px;
+.month-wrapper {
+  border: solid 2px  #ccbebe;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  padding: 10px;
 }
 
-.weight-loss-month-data div:first-child {
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
+.month-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  flex-wrap: wrap;
 }
 
-.weight-loss-month-data div:last-child {
-  border-bottom-right-radius: 6px;
-  border-bottom-left-radius: 6px;
+.month-card {
+  display: inline-block;
+  width: 150px;
 }
 
-.statList-wrapper {
-  width: 200px;
-  margin-left: auto;
-  margin-right: auto;
+ion-card, ion-card-subtitle {
+  background-color:  #ccbebe;
+  color: white;
 }
 
-.statList {
-    display: flex;
-    justify-content: center;
+.toggle-flex  {
+  display: flex;
+  justify-content: right;
+  vertical-align: top;
 }
 
-.statList div {
-  width: 100px;
+.toggle-label {
+  margin-top: 10px;
+  font-size: 85%;
+  font-weight: bold;
+}
+
+.title-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: bold;
 }

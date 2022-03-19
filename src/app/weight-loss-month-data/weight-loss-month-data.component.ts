@@ -14,18 +14,23 @@ export class WeightLossMonthDataComponent implements OnInit {
   @Input('monthData') monthData: Array<MonthWeightLoss>;
 
   translations: Internationalization;
+  currentYear: number;
+  monthToggle: boolean;
+  monthSearch: number;
   
   constructor(
     private storage: Storage,
     private events: Events
   ) { 
+    this.monthToggle = true;
+    this.currentYear = new Date().getFullYear();
+    this.monthSearch = this.currentYear;
     this.monthData = null;
     this.translations = new Internationalization();
     this.translations.monthlyWeightLoss = '';    
     this.storage.get('translations').then((data) => {
       this.translations = data;
     });
-
     
   }
 
@@ -33,6 +38,14 @@ export class WeightLossMonthDataComponent implements OnInit {
     this.events.subscribe('translations', (data) => {
       this.translations = data;
     }); 
+  }
+
+  toggle() {
+    if (this.monthToggle) {
+      this.monthSearch = this.currentYear;
+    } else {
+      this.monthSearch = null;
+    }
   }
 
 }

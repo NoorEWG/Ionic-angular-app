@@ -1,8 +1,21 @@
-.kg-img-center {
-    margin-left: 10px;
-    margin-right: 10px;
+.kg-wrapper {
+    margin-bottom: 5px;
+    border: solid 2px #ccbebe;
+    border-radius: 8px;
+    padding: 10px;
 }
-.kg-img {
+
+.kg-flex {
     display: flex;
     flex-wrap: wrap;
+}
+
+ion-card, ion-card-subtitle {
+    background-color:  #ccbebe;
+    color: white;
+  }
+
+.title {
+    font-size: 85%;
+    font-weight: bold;
 }

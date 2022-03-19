@@ -28,10 +28,29 @@ ion-toggle {
 
 :root {
     --ion-color-primary: #900000;
+    --ion-color-secondary: #cca3a3;
 }
 
 .btn-primary {
     color: #fff !important;
     background-color:  #900000 !important;
     border-color:  #900000 !important;
+}
+
+:root {
+    --ion-color-light:#ccbebe;
+    --ion-color-light-rgb: 105, 187, 123;
+    --ion-color-light-contrast: #ffffff;
+    --ion-color-light-contrast-rgb: 255, 255, 255;
+    --ion-color-light-shade: #413f3f;
+    --ion-color-light-tint: #c4aeae;
+}
+
+.ion-color-favorite {
+    --ion-color-base: var(--ion-color-light);
+    --ion-color-base-rgb: var(--ion-color-light-rgb);
+    --ion-color-contrast: var(--ion-color-light-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-light-contrast-rgb);
+    --ion-color-shade: var(--ion-color-light-shade);
+    --ion-color-tint: var(--ion-color-light-tint);
 }

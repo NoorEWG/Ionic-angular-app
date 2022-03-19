@@ -10,6 +10,7 @@ import { WeightLossBadgesComponent } from './weight-loss-badges/weight-loss-badg
 import { WeightLossGraphComponent } from './weight-loss-graph/weight-loss-graph.component';
 import { WeightLossOverviewComponent } from './weight-loss-overview/weight-loss-overview.component';
 import { WeightLossPieChartComponent } from './weight-loss-pie-chart/weight-loss-pie-chart.component';
+import { WeightLossGaugeComponent } from './weight-loss-gauge/weight-loss-gauge.component';
 import { WeightLossMonthDataComponent } from './weight-loss-month-data/weight-loss-month-data.component';
 import { WeightObjectifsComponent} from './weight-objectifs/weight-objectifs.component';
 import { WeightLossWeightBmiDataComponent} from './weight-loss-weight-bmi-data/weight-loss-weight-bmi-data.component';
@@ -21,6 +22,8 @@ import { MonthYearPipe } from './month-year.pipe';
 import { MealPipe } from 'src/app/meal.pipe';
 import { NutritionPipe } from 'src/app/nutrition.pipe';
 import { FilterNutritionPipe } from 'src/app/filter-nutrition.pipe';
+import { YearPipe } from './year.pipe';
+import { ObjectifPipe } from './objectif.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatInputModule } from '@angular/material/input';
 
@@ -34,6 +37,7 @@ import { MatInputModule } from '@angular/material/input';
     WeightLossGraphComponent,
     WeightLossOverviewComponent,
     WeightLossPieChartComponent,
+    WeightLossGaugeComponent,
     WeightObjectifsComponent,
     WeightLossWeightBmiDataComponent,
     WeightObjectifUpdateComponent,
@@ -43,7 +47,9 @@ import { MatInputModule } from '@angular/material/input';
     MonthYearPipe,
     MealPipe,
     NutritionPipe,
-    FilterNutritionPipe
+    FilterNutritionPipe,
+    YearPipe,
+    ObjectifPipe
   ],
   exports: [
     WeightLossDataComponent,
@@ -53,6 +59,7 @@ import { MatInputModule } from '@angular/material/input';
     WeightLossGraphComponent,
     WeightLossOverviewComponent,
     WeightLossPieChartComponent,
+    WeightLossGaugeComponent,
     WeightObjectifsComponent,
     WeightLossWeightBmiDataComponent, 
     WeightObjectifUpdateComponent,
@@ -62,7 +69,8 @@ import { MatInputModule } from '@angular/material/input';
     MonthYearPipe,
     MealPipe,
     NutritionPipe,
-    FilterNutritionPipe
+    FilterNutritionPipe,
+    YearPipe
   ],
   imports: [
     IonicModule,
@@ -74,7 +82,6 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     MatAutocompleteModule
   ],
-  providers: [MonthYearPipe, MealPipe, NutritionPipe, FilterNutritionPipe],
-
+  providers: [MonthYearPipe, MealPipe, NutritionPipe, FilterNutritionPipe, YearPipe, ObjectifPipe]
 })
 export class ComponentModule {}

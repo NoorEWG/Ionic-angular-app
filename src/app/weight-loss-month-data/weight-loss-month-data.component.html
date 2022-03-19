@@ -1,11 +1,25 @@
-<div class="weight-loss-month-data">
-  <div class="statList header">
-    <div class="text-right">{{ translations.month }}</div>
-    <div class="text-right">{{ translations.monthlyWeightLoss }}</div>
+<div class="month-wrapper">
+  <div class="title-flex">
+    <div class="title">Gewichtsverlies per maand</div>
+    <div class="toggle-flex">
+      <div class="toggle-label">alles</div>
+      <ion-toggle [(ngModel)]="monthToggle" (ionChange)="toggle()"></ion-toggle>
+      <div class="toggle-label">alleen dit jaar</div>
+    </div>
   </div>
-  <div *ngFor="let m of monthData" [ngClass]="(m.month % 2)? 'statList even':'statList uneven'">
-    <div class="text-right">{{ m.month }} / {{ m.year}} </div>
-    <div class="text-right">{{ m.monthWeightLoss }}</div>
-  </div>
+  <div class="month-flex">
+    <div class="month-card" *ngFor="let m of monthData | yearMonthStats: monthSearch">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>{{ m.month }} / {{ m.year}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-icon size="large" [name]="m.monthWeightLoss >= 2 ? 'sunny-outline' : m.monthWeightLoss >= 1 ? 'partly-sunny-outline' : m.monthWeightLoss >= 0 ? 'cloudy-outline' : 'thunderstorm-outline'"></ion-icon>
+          <span>  {{ m.monthWeightLoss }} kg</span>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>  
 </div>
+
 

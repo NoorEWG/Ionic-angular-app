@@ -35,10 +35,9 @@
 }
 
 .kg-badges {
+    display: flex;
+    justify-content: space-between;
     padding: 2px;
-    background-color: #ccbebe;
-    border: 2px solid#991111;
-    border-radius: 8px;
 }
 
 .img-container {
@@ -58,3 +57,9 @@
     justify-content: left; 
     flex-wrap: wrap;
 }    
+
+.stats-data {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

@@ -1,10 +1,27 @@
-<div class="badges-center">
-  <div class="badges">
-    <div *ngFor="let badge of badges">
-      <div  class="img-container"> 
-        <img src="assets/img/badge-circle.png" width="40px" height="auto" alt="percentage lost: {{badge}}" />
-        <div class="centered" style="font-size: 70%;">{{ badge }}</div>
+<div class="badges-wrapper">
+  <div class="badges-dark">
+    <div class="title">{{ translations.weightLoss }} in % van totaal te verliezen gewicht - {{ totalWeightToLose }} kg</div>
+    <div  class="badges-flex">
+      <div *ngFor="let badge of badgesFromWeightToLose">
+        <ion-card class="card-dark">
+          <ion-card-content>
+            <ion-icon size="large" name="scale-outline"></ion-icon>
+            <div class="badgeTxt">{{ badge }}</div>
+          </ion-card-content>
+        </ion-card> 
       </div>
+    </div>
+  </div>
+  <br>
+  <div class="badges-light">
+    <div class="title">{{ translations.weightLoss}} in % van begin gewicht - {{ startWeight }} kg      </div>
+    <div *ngFor="let badge2 of badgesFromStartWeight" class="badges-flex">
+      <ion-card class="card-light">
+        <ion-card-content>
+          <ion-icon size="large" name="scale-outline"></ion-icon>
+          <div class="badge-txt">{{ badge2 }}</div>
+        </ion-card-content>
+      </ion-card> 
     </div>
   </div>
 </div>

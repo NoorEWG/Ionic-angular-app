@@ -273,6 +273,7 @@ export class WeightStatsComponent implements OnInit {
         monthWeightLossData.push(mwl);
       }
     });
+    monthWeightLossData.sort((a,b) => (b.year > a.year ? 1 : -1 ));
     this.monthWeightLoss = monthWeightLossData;
   }
 

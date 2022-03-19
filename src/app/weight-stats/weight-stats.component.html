@@ -20,15 +20,17 @@
   <div *ngIf="auth">
     <app-weight-loss-overview *ngIf="showInfo === 'overview'" [targetWeight]="userStats.user.targetWeight"  [startWeight]="userStats.user.startWeight" [totalWeightToLose]="totalWeightToLose" [startDate]="firstDate" [targetDate]="targetDate" [totalLost]="totalLost" [totalWeeks]="totalWeeks" [length]="userStats.user.length"></app-weight-loss-overview> 
     <span *ngIf="showInfo === 'stats-data'">
-      <app-weight-loss-data [weights]="userStats.weights" [totalWeightToLose]="totalWeightToLose"></app-weight-loss-data>
-      <div class="kg-badges">
+      <div class="stats-data">
         <app-weight-loss-img [kg] ="kg"></app-weight-loss-img>
+        <br>
         <app-weight-loss-badges [targetWeight]="userStats.user.targetWeight"  [startWeight]="userStats.user.startWeight"  [totalLost]="totalLost"  ></app-weight-loss-badges>
+        <br>
+        <app-weight-loss-month-data [monthData]="monthWeightLoss"></app-weight-loss-month-data>
+        <br>
+        <app-weight-objectifs></app-weight-objectifs>
+        <br>
+        <app-weight-loss-gauge [title]="translations.weight" [targetWeight]="userStats.user.targetWeight"  [startWeight]="userStats.user.startWeight" [totalLost]="totalLost" [chartType]="solidgauge"></app-weight-loss-gauge>
       </div>
-      <br>
-      <app-weight-loss-month-data [monthData]="monthWeightLoss"></app-weight-loss-month-data>
-      <br>
-      <app-weight-objectifs></app-weight-objectifs>
     </span>
     <app-weight-loss-graph *ngIf="showInfo === 'bmi-chart'" [title]="translations.bmi" [categories]="chartDates" [series]="bmiData" chartType="areaspline"></app-weight-loss-graph>
     <app-weight-loss-weight-bmi-data *ngIf="showInfo === 'bmi-chart'" [weights]="userStats.weights"></app-weight-loss-weight-bmi-data>

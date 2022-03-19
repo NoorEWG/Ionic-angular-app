@@ -45,3 +45,67 @@
 .objectif-small {
 width: 50px;
 }  
+
+.objectif-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    flex-wrap: wrap;
+  }
+  
+.objectif-card {
+    display: inline-block;
+    width: 300px;
+}
+
+.objectif-wrapper {
+    border: solid 2px #cca3a3;;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    padding: 10px;
+}
+
+.toggle-flex  {
+    display: flex;
+    justify-content: right;
+    vertical-align: top;
+}
+
+.toggle-label {
+    margin-top: 10px;
+    font-size: 85%;
+    font-weight: bold;
+}
+
+.title-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-weight: bold;
+}
+
+ion-card, ion-card-title, ion-card-subtitle {
+    background-color: #cca3a3;
+    color: white;
+}
+
+.card-title {
+    size: 80%;
+    font-weight: bold;
+    height: 25px;
+    min-height: 25px;
+}
+
+.card-subtitle {
+    height: 30px;
+    min-height: 30px;
+    width: 70%;
+}
+
+.card-title-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
+import { Events } from '../api/event.service';
+import { Internationalization } from '../model/Internationalization';
 
 @Component({
   selector: 'app-weight-loss-img',
@@ -7,11 +10,23 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class WeightLossImgComponent implements OnInit {
 
-  constructor() { }
-
   @Input('kg') kg: Array<number>;
- 
+  translations: Internationalization;
+
+  constructor( 
+    private storage: Storage,
+    private events: Events
+  ) { 
+    this.translations = new Internationalization();
+    this.storage.get('translations').then((data) => {
+      this.translations = data;
+    });
+  }
+     
   ngOnInit() {
+    this.events.subscribe('translations', (data) => {
+      this.translations = data;
+    }); 
   }
 
 }

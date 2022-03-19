@@ -1,24 +1,41 @@
-.badges-center {
-    margin-left: 10px;
-    margin-right: 10px; 
+.badges-light { 
+    border: solid 2px #ccbebe;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    padding: 10px;
 }
 
-.badges {
+.badges-dark { 
+    border: solid 2px #cca3a3;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    padding: 10px;
+}
+
+.badges-flex {
     display: flex;
-    flex-wrap: wrap;  
+    flex-wrap: wrap;
 }
 
-.badges .img-container {
-    position: relative;
-    text-align: center;
+.title {
+    font-size: 85%;
+    font-weight: bold;
 }
 
-.badges .img-container .centered {
-    position: absolute;
-    color: #4B787D;
-    font-size: 90%;
-    font-weight: 800;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.badge-txt {
+    font-weight: bold;
+}
+
+ion-card, ion-card-subtitle {
+    width: 125px;
+}
+
+.card-light {
+    background-color:  #ccbebe;
+    color: white;
+}
+
+.card-dark {
+    background-color:  #cca3a3;
+    color: white;
 }
